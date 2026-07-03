@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ordio · Besta deildin 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --orange:#F97316;
+  --orange-soft:#FDBA8C;
+  --orange-tint:#FFF3EA;
+  --navy:#111827;
+  --navy-2:#1B2433;
+  --dark-grey:#374151;
+  --med-grey:#6B7280;
+  --light-grey:#F3F4F6;
+  --line:#E5E7EB;
+  --green:#22C55E;
+  --blue:#2563EB;
+  --white:#fff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  color:var(--navy);background:var(--white);
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 32px}
+
+/* ── NAV ─────────────────────────────── */
+.nav{
+  height:88px;display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(255,255,255,.92);
+  backdrop-filter:saturate(180%) blur(10px);z-index:50;
+}
+.nav-logo{height:40px;display:block}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-link{
+  font-size:14px;font-weight:500;color:var(--med-grey);transition:color .15s;
+}
+.nav-link:hover{color:var(--navy)}
+.nav-cta{
+  font-size:13px;font-weight:600;color:var(--navy);
+  border:1px solid var(--line);padding:8px 16px;border-radius:9px;transition:.15s;
+}
+.nav-cta:hover{border-color:var(--orange);color:var(--orange)}
+
+/* ── HERO ────────────────────────────── */
+.hero{
+  background:var(--navy);color:var(--white);position:relative;overflow:hidden;
+  padding:84px 0 150px;
+}
+.hero::before{
+  content:'';position:absolute;top:-40%;right:-10%;width:560px;height:560px;
+  background:radial-gradient(circle,rgba(249,115,22,.16),transparent 62%);
+  pointer-events:none;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:12px;font-weight:600;letter-spacing:.04em;
+  color:var(--orange-soft);text-transform:uppercase;margin-bottom:22px;
+}
+.hero-eyebrow::before{content:'';width:22px;height:2px;background:var(--orange);border-radius:2px}
+.hero h1{
+  font-size:clamp(30px,5.4vw,54px);font-weight:800;line-height:1.05;letter-spacing:-.025em;
+  max-width:800px;margin-bottom:22px;
+}
+.hero h1 .hl{color:var(--orange)}
+.hero p{
+  font-size:18px;line-height:1.6;color:#AEB6C2;max-width:600px;font-weight:400;
+}
+
+/* ── KPI STRIP ───────────────────────── */
+.kpis{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
+  margin-top:-86px;position:relative;z-index:5;margin-bottom:96px;
+}
+.kpi{
+  background:var(--white);border:1px solid var(--line);border-radius:16px;
+  padding:24px 24px 22px;box-shadow:0 12px 34px -22px rgba(17,24,39,.45);
+  position:relative;overflow:hidden;
+}
+.kpi::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:var(--orange)}
+.kpi-num{font-size:42px;font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--navy)}
+.kpi-num .u{font-size:22px;font-weight:700;color:var(--orange);margin-left:1px}
+.kpi-lbl{font-size:13px;font-weight:600;color:var(--dark-grey);margin-top:12px}
+.kpi-sub{font-size:12px;color:var(--med-grey);margin-top:3px}
+
+/* ── SECTION HEAD ────────────────────── */
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:24px}
+.sec-title{font-size:24px;font-weight:800;letter-spacing:-.02em}
+.sec-kicker{font-size:13px;color:var(--med-grey);margin-top:5px;font-weight:400}
+.sec-link{font-size:14px;font-weight:600;color:var(--orange);display:inline-flex;align-items:center;gap:6px}
+.sec-link .ar{transition:transform .18s}
+.sec-link:hover .ar{transform:translateX(4px)}
+
+/* ── LEAGUE CARDS ────────────────────── */
+.leagues{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:100px}
+.lg{
+  border:1px solid var(--line);border-radius:18px;padding:30px;cursor:pointer;
+  transition:transform .18s,box-shadow .18s,border-color .18s;
+  display:flex;flex-direction:column;position:relative;overflow:hidden;
+  border-top-width:4px;
+}
+.lg-w{background:var(--orange-tint);border-color:#FBDCC6;border-top-color:var(--orange)}
+.lg-k{background:#F4F6F9;border-color:#DFE4EC;border-top-color:var(--navy)}
+.lg:hover{transform:translateY(-4px);box-shadow:0 20px 44px -26px rgba(17,24,39,.4)}
+.lg-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px}
+.lg-glyph{
+  width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+  font-size:25px;font-weight:700;
+}
+.lg-w .lg-glyph{background:var(--orange);color:#fff}
+.lg-k .lg-glyph{background:var(--navy);color:#fff}
+.lg-tag{font-size:12px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;padding:5px 11px;border-radius:999px}
+.lg-w .lg-tag{background:rgba(249,115,22,.14);color:#C2410C}
+.lg-k .lg-tag{background:rgba(17,24,39,.09);color:var(--navy)}
+.lg h3{font-size:27px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
+.lg-updated{font-size:12px;color:var(--med-grey);margin-bottom:24px}
+.lg-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:20px 0;border-top:1px solid var(--line);margin-top:auto}
+.lg-w .lg-stats{border-top-color:#FBDCC6}
+.lg-k .lg-stats{border-top-color:#DFE4EC}
+.lg-stat-num{font-size:22px;font-weight:800;letter-spacing:-.02em}
+.lg-w .lg-stat-num.hl{color:var(--orange)}
+.lg-k .lg-stat-num.hl{color:var(--orange)}
+.lg-stat-lbl{font-size:11px;color:var(--med-grey);margin-top:4px;font-weight:500}
+.lg-cta{
+  display:inline-flex;align-items:center;gap:9px;align-self:flex-start;
+  margin-top:22px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:600;color:#fff;
+  transition:gap .18s;
+}
+.lg-w .lg-cta{background:var(--orange)}
+.lg-k .lg-cta{background:var(--navy)}
+.lg:hover .lg-cta{gap:14px}
+.lg-watermark{
+  position:absolute;right:-10px;bottom:-30px;font-size:170px;font-weight:800;line-height:1;
+  opacity:.045;pointer-events:none;user-select:none;
+}
+
+/* ── NEWS ────────────────────────────── */
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+.news-card{
+  border:1px solid var(--line);border-top-width:4px;border-radius:16px;padding:24px;background:var(--white);
+  display:flex;flex-direction:column;transition:.18s;cursor:pointer;
+}
+.news-card:hover{transform:translateY(-3px);box-shadow:0 16px 38px -28px rgba(17,24,39,.45)}
+.g-kvenna{border-top-color:var(--orange)}
+.g-karla{border-top-color:var(--navy)}
+.g-both{border-top-color:var(--med-grey)}
+.news-meta{display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.chip{font-size:11px;font-weight:700;letter-spacing:.02em;padding:4px 9px;border-radius:6px}
+.chip-type{background:var(--light-grey);color:var(--dark-grey)}
+.g-kvenna .chip-gender{background:var(--orange-tint);color:#C2410C}
+.g-karla .chip-gender{background:#EDF0F5;color:var(--navy)}
+.g-both .chip-gender{background:var(--light-grey);color:var(--med-grey)}
+.news-round{font-size:11px;font-weight:600;color:var(--med-grey)}
+.news-date{font-size:12px;color:var(--med-grey);margin-left:auto}
+.news-card h4{font-size:18px;font-weight:700;line-height:1.28;letter-spacing:-.01em;margin-bottom:10px}
+.news-card p{font-size:14px;line-height:1.6;color:var(--dark-grey);font-weight:400}
+.news-clamp{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.news-more{font-size:13px;font-weight:600;color:var(--orange);margin-top:16px;display:inline-flex;gap:6px}
+.g-karla .news-more{color:var(--navy)}
+
+/* ── FOOTER ──────────────────────────── */
+.footer{background:var(--light-grey);border-top:1px solid var(--line);margin-top:30px}
+.footer-in{display:flex;align-items:center;justify-content:space-between;padding:34px 0;flex-wrap:wrap;gap:18px}
+.footer-logo{height:24px}
+.footer-txt{font-size:13px;color:var(--med-grey);line-height:1.6}
+.footer-txt a{color:var(--orange);font-weight:600}
+
+/* ── RESPONSIVE ──────────────────────── */
+@media(max-width:980px){
+  .news-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:880px){
+  .kpis{grid-template-columns:1fr 1fr;margin-bottom:70px}
+  .leagues{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .news-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .wrap{padding:0 20px}
+  .hero{padding:56px 0 120px}
+  .kpis{gap:12px}
+  .kpi{padding:20px 18px}
+  .kpi-num{font-size:32px}
+  .nav-link{display:none}
+  .nav-logo{height:34px}
+  .lg{padding:24px}
+  .sec-head{flex-wrap:wrap;gap:12px}
+  .footer-in{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;width:100%">
+    <a href="index.html" aria-label="Ordio"><img class="nav-logo" src="assets/ordio-logo-light.png" alt="Ordio"></a>
+    <div class="nav-links">
+      <a href="#deildir" class="nav-link">Deildir</a>
+      <a href="#frettir" class="nav-link">Fréttir</a>
+      <a href="um-vefinn.html" class="nav-cta">Um vefinn</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <span class="hero-eyebrow">Besta deildin 2026</span>
+    <h1>Tölfræðin á bak við <span class="hl">leikmennina</span> í bestu deild kvenna og karla</h1>
+    <p>Ordio fylgist með hverri umferð og hvort uppaldir leikmenn séu að fá að spila. Hvaða leikmenn spila mest, eru yngstir og hverjir skora mörkin.</p>
+  </div>
+</header>
+
+<!-- KPI STRIP -->
+<div class="wrap">
+  <div class="kpis">
+    <div class="kpi">
+      <div class="kpi-num" id="kpi-matches">–</div>
+      <div class="kpi-lbl">Leikir greindir</div>
+      <div class="kpi-sub" id="kpi-matches-sub">báðar deildir</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-num" id="kpi-hg">–<span class="u">%</span></div>
+      <div class="kpi-lbl">Uppaldar mínútur</div>
+      <div class="kpi-sub">hlutfall leikmínútna</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-num" id="kpi-age">–</div>
+      <div class="kpi-lbl">Meðalaldur byrjunarliða</div>
+      <div class="kpi-sub">vegið yfir deildir</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-num" id="kpi-players">–</div>
+      <div class="kpi-lbl">Leikmenn í gögnum</div>
+      <div class="kpi-sub">með spilaðar mínútur</div>
+    </div>
+  </div>
+</div>
+
+<!-- LEAGUES -->
+<main class="wrap">
+  <section id="deildir">
+    <div class="sec-head">
+      <div>
+        <div class="sec-title">Veldu deild</div>
+        <div class="sec-kicker">Stöðutöflur, leikir, leikmenn og uppeldistölfræði fyrir hvora deild.</div>
+      </div>
+    </div>
+    <div class="leagues">
+
+      <div class="lg lg-w" onclick="location='Dashboard.html'" role="link" aria-label="Besta deild kvenna">
+        <div class="lg-top">
+          <div class="lg-glyph">♀</div>
+          <div class="lg-tag">Konur</div>
+        </div>
+        <h3>Besta deild kvenna</h3>
+        <div class="lg-updated" id="w-updated">&nbsp;</div>
+        <div class="lg-stats">
+          <div><div class="lg-stat-num" id="w-matches">–</div><div class="lg-stat-lbl">Leikir</div></div>
+          <div><div class="lg-stat-num hl" id="w-hg">–%</div><div class="lg-stat-lbl">Uppaldar mín</div></div>
+          <div><div class="lg-stat-num" id="w-age">–</div><div class="lg-stat-lbl">Meðalaldur XI</div></div>
+        </div>
+        <span class="lg-cta">Skoða yfirlit <span>→</span></span>
+        <div class="lg-watermark" style="color:var(--orange)">♀</div>
+      </div>
+
+      <div class="lg lg-k" onclick="location='Dashboard-K.html'" role="link" aria-label="Besta deild karla">
+        <div class="lg-top">
+          <div class="lg-glyph">♂</div>
+          <div class="lg-tag">Karlar</div>
+        </div>
+        <h3>Besta deild karla</h3>
+        <div class="lg-updated" id="k-updated">&nbsp;</div>
+        <div class="lg-stats">
+          <div><div class="lg-stat-num" id="k-matches">–</div><div class="lg-stat-lbl">Leikir</div></div>
+          <div><div class="lg-stat-num hl" id="k-hg">–%</div><div class="lg-stat-lbl">Uppaldar mín</div></div>
+          <div><div class="lg-stat-num" id="k-age">–</div><div class="lg-stat-lbl">Meðalaldur XI</div></div>
+        </div>
+        <span class="lg-cta">Skoða yfirlit <span>→</span></span>
+        <div class="lg-watermark" style="color:var(--navy)">♂</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section id="frettir">
+    <div class="sec-head">
+      <div>
+        <div class="sec-title">Fréttir og tilkynningar</div>
+        <div class="sec-kicker">Samantektir úr hverri umferð — með áherslu á unga og uppalda leikmenn.</div>
+      </div>
+      <a href="um-vefinn.html#frettir" class="sec-link">Allar fréttir <span class="ar">→</span></a>
+    </div>
+    <div class="news-grid" id="news-grid">
+      <div style="grid-column:1/-1;color:var(--med-grey);font-size:14px;padding:20px 0">Hleð fréttum…</div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap footer-in">
+    <div class="footer-txt">
+      Ábendingar og athugasemdir: <a href="mailto:saevarmar@gmail.com">saevarmar@gmail.com</a><br>
+      Gögn frá KSÍ · Besta deild kvenna og karla 2026
+    </div>
+  </div>
+</footer>
+
+<script>
+const ROUND = (x)=>Math.round(x);
+const dec1 = (x)=> x==null ? '–' : x.toFixed(1).replace('.',',');
+function computeLeague(d){
+  const ms=d.matches, pc=d.playerStats||{};
+  let tot=0, hg=0; const starters=new Set(), played=new Set();
+  for(const m of ms) for(const p of m.players){
+    if(p.mins>0){tot+=p.mins; played.add(p.id); if(pc[p.id]&&pc[p.id].homegrown) hg+=p.mins;}
+    if(p.isStarter&&p.mins>0) starters.add(p.id);
+  }
+  const ages=[...starters].filter(id=>pc[id]&&pc[id].birthYear).map(id=>2026-pc[id].birthYear);
+  const ageAvg=ages.length?ages.reduce((s,a)=>s+a,0)/ages.length:null;
+  return {
+    matches:ms.length,
+    teams:new Set(ms.flatMap(m=>[m.homeTeam,m.awayTeam])).size,
+    players:played.size,
+    totMins:tot, hgMins:hg,
+    hgPct:tot?ROUND(hg/tot*100):0,
+    age:ageAvg, ageWeight:ages.length,
+    updated:d.lastUpdated
+  };
+}
+const IS_MONTHS=['janúar','febrúar','mars','apríl','maí','júní','júlí','ágúst','september','október','nóvember','desember'];
+const IS_MONTHS_SHORT=['jan','feb','mar','apr','maí','jún','júl','ágú','sep','okt','nóv','des'];
+function fmtDate(s){
+  if(!s) return '';
+  const dt=new Date(s);
+  return dt.getDate()+'. '+IS_MONTHS[dt.getMonth()]+' '+dt.getFullYear();
+}
+
+Promise.all([
+  fetch('ksi_data.json').then(r=>r.json()).catch(()=>null),
+  fetch('ksi_karlar_data.json').then(r=>r.json()).catch(()=>null)
+]).then(([w,k])=>{
+  const $=id=>document.getElementById(id);
+  const W=w?computeLeague(w):null, K=k?computeLeague(k):null;
+  // per-league cards
+  if(W){
+    $('w-matches').textContent=W.matches; $('w-hg').textContent=W.hgPct+'%';
+    $('w-age').textContent=dec1(W.age);
+    $('w-updated').textContent=W.updated?('Uppfært '+fmtDate(W.updated)):'';
+  }
+  if(K){
+    $('k-matches').textContent=K.matches; $('k-hg').textContent=K.hgPct+'%';
+    $('k-age').textContent=dec1(K.age);
+    $('k-updated').textContent=K.updated?('Uppfært '+fmtDate(K.updated)):'';
+  }
+  // combined KPIs
+  const list=[W,K].filter(Boolean);
+  const totMatches=list.reduce((s,x)=>s+x.matches,0);
+  const totMins=list.reduce((s,x)=>s+x.totMins,0);
+  const totHg=list.reduce((s,x)=>s+x.hgMins,0);
+  const totPlayers=list.reduce((s,x)=>s+x.players,0);
+  const ageNum=list.reduce((s,x)=>s+(x.age||0)*x.ageWeight,0);
+  const ageDen=list.reduce((s,x)=>s+x.ageWeight,0);
+  document.getElementById('kpi-matches').textContent=totMatches;
+  document.getElementById('kpi-matches-sub').textContent=(W&&K)?'kvenna + karla':' ';
+  document.getElementById('kpi-hg').innerHTML=(totMins?ROUND(totHg/totMins*100):0)+'<span class="u">%</span>';
+  document.getElementById('kpi-age').textContent=ageDen?dec1(ageNum/ageDen):'–';
+  document.getElementById('kpi-players').textContent=totPlayers.toLocaleString('is-IS');
+});
+
+// ── NEWS ──
+const LG_LABEL={kvenna:'Besta deild kvenna',karla:'Besta deild karla',both:'Báðar deildir',all:'Allt'};
+const TYPE_LABEL={recap:'Samantekt',update:'Uppfærsla',correction:'Leiðrétting',feature:'Nýtt'};
+function newsExcerpt(item){
+  if(item.paragraphs&&item.paragraphs.length){
+    return item.paragraphs.length>1?item.paragraphs[1]:item.paragraphs[0];
+  }
+  return item.body||'';
+}
+function newsDate(s){
+  const dt=new Date(s);
+  return dt.getDate()+'. '+IS_MONTHS_SHORT[dt.getMonth()];
+}
+fetch('news.json').then(r=>r.json()).then(d=>{
+  const items=(d.items||[]).slice(0,6);
+  const grid=document.getElementById('news-grid');
+  grid.innerHTML='';
+  items.forEach((it)=>{
+    const g = (it.league==='kvenna'||it.league==='karla') ? it.league : 'both';
+    const card=document.createElement('a');
+    card.href='um-vefinn.html#frettir';
+    card.className='news-card g-'+g;
+    const round=it.round?('&nbsp;·&nbsp;'+it.round):'';
+    card.innerHTML=`
+      <div class="news-meta">
+        <span class="chip chip-gender">${LG_LABEL[it.league]||''}</span>
+        <span class="chip chip-type">${TYPE_LABEL[it.type]||'Frétt'}</span>
+        ${it.round?`<span class="news-round">${it.round}</span>`:''}
+        <span class="news-date">${newsDate(it.date)}</span>
+      </div>
+      <h4>${it.title}</h4>
+      <p class="news-clamp">${newsExcerpt(it)}</p>
+      <span class="news-more">Lesa meira <span>→</span></span>
+    `;
+    grid.appendChild(card);
+  });
+});
+</script>
+</body>
+</html>

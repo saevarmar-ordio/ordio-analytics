@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Besta deild karla 2026 — Greining</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{height:100%}
+body{font-family:'Inter',sans-serif;color:#111827;font-size:14px;line-height:1.5;height:100%;overflow:hidden}
+#root{height:100%;display:flex}
+.data-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.data-table thead th{padding:9px 12px;font-family:'Inter',sans-serif;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#6B7280;background:#F9FAFB;border-bottom:1px solid #E7E9EE;white-space:nowrap;cursor:pointer;user-select:none;transition:color .12s}
+.data-table thead th:hover{color:#111827}
+.data-table td{padding:9px 12px;border-bottom:1px solid #E7E9EE;font-size:13px;vertical-align:middle;color:#111827}
+.data-table tbody tr:hover td{background:#F4F5F7;cursor:pointer}
+.data-table tbody tr:last-child td{border-bottom:none}
+.data-table th.num,.data-table td.num{text-align:right}
+.data-table th.sorted-asc::after{content:' ↑';color:#F97316}
+.data-table th.sorted-desc::after{content:' ↓';color:#F97316}
+.card{background:#fff;border:1px solid #E7E9EE;box-shadow:0 1px 3px rgba(15,23,42,.06),0 1px 2px rgba(15,23,42,.04)}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
+aside::-webkit-scrollbar{width:0}
+.fade-in{animation:fadeSlide .2s ease both}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.nav-item{display:flex;align-items:center;justify-content:space-between;width:100%;padding:9px 12px;background:none;border:none;border-left:2px solid transparent;cursor:pointer;text-align:left;border-radius:0 6px 6px 0;margin-bottom:2px;transition:background .15s,border-color .15s}
+.nav-item:hover{background:rgba(255,255,255,.06)}
+.nav-item.active{background:rgba(249,115,22,.14);border-left-color:#F97316}
+.main-content{padding:28px 32px}
+.main-content--compact{padding:20px 24px}
+.tbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.mobile-nav{display:none}
+.mobile-header{display:none}
+@media(max-width:768px){
+  aside{display:none!important}
+  .mobile-nav{display:flex!important}
+  .mobile-header{display:flex!important}
+  .main-content,.main-content--compact{padding:16px!important}
+  .data-table thead th,.data-table td{padding:7px 9px;font-size:12px}
+}
+</style>
+</head>
+<body>
+<div id="root">
+  <div style="display:flex;align-items:center;justify-content:center;width:100%;font-family:'Inter',sans-serif;font-size:13px;color:#94a3b8;letter-spacing:.05em">
+    Hleður gögn…
+  </div>
+</div>
+
+<script>
+/* ── CONFIG — KARLAR ─────────────────────────────────────── */
+window.DATA_FILE   = 'ksi_karlar_data.json';
+window.LEAGUE_TITLE= ['Besta deild','karla 2026'];
+window.LEAGUE_KEY  = 'karla';
+
+window.TEAMS=['Breiðablik','FH','Fram','ÍA','ÍBV','KA','Keflavík','KR','Stjarnan','Þór','Valur','Víkingur R.'];
+window.ROUNDS=[
+  {label:'1. umferð',n:1,ids:['7041325','7041328','7041329','7041327','7041326','7041330']},
+  {label:'2. umferð',n:2,ids:['7041333','7041332','7041331','7041335','7041334','7041336']},
+  {label:'3. umferð',n:3,ids:['7041338','7041337','7041339','7041341','7041342','7041340']},
+  {label:'4. umferð',n:4,ids:['7041344','7041345','7041343','7041348','7041347','7041346']},
+  {label:'5. umferð',n:5,ids:['7041349','7041350','7041353','7041352','7041351','7041354']},
+  {label:'6. umferð',n:6,ids:['7041355','7041359','7041358','7041357','7041356','7041360']},
+  {label:'7. umferð',n:7,ids:['7041362','7041361','7041363','7041364','7041366','7041365']},
+  {label:'8. umferð',n:8,ids:['7041367','7041369','7041368','7041372','7041371','7041370']},
+  {label:'9. umferð',n:9,ids:['7041375','7041376','7041377','7041378','7041379','7041380']},
+  {label:'14. umferð (færðir leikir)',n:14,ids:['7041373','7041374']},
+];
+window.TEAM_DISPLAY={
+  'Víkingur R.':'Víkingur',
+};
+
+/* ── DATA UTILS (identical to women's) ───────────────────── */
+window.teamAgg=function(matches,pc,team){
+  const pmap={};let totalMins=0,hgMins=0;
+  for(const m of matches){for(const p of m.players){
+    if(p.team!==team)continue;
+    if(!pmap[p.id])pmap[p.id]={id:p.id,name:p.name,number:p.number,mins:0,apps:0,starts:0,squad:0};
+    pmap[p.id].squad++;
+    pmap[p.id].mins+=p.mins;
+    if(p.mins>0){pmap[p.id].apps++;totalMins+=p.mins;if(pc[p.id]?.homegrown)hgMins+=p.mins;}
+    if(p.isStarter&&p.mins>0)pmap[p.id].starts++;
+  }}
+  const players=Object.values(pmap).filter(p=>p.apps>0).sort((a,b)=>b.mins-a.mins);
+  const roster=Object.values(pmap).sort((a,b)=>b.mins-a.mins||b.squad-a.squad||a.name.localeCompare(b.name,'is'));
+  const hgCount=players.filter(p=>pc[p.id]?.homegrown).length;
+  const wa=players.filter(p=>pc[p.id]?.birthYear);
+  // Minutes-weighted: age of the players actually getting time
+  const waMin=wa.reduce((s,p)=>s+p.mins,0);
+  const avgAge=waMin?wa.reduce((s,p)=>s+(2026-pc[p.id].birthYear)*p.mins,0)/waMin:null;
+  // Starter minutes per player
+  const stMins={};
+  for(const m of matches)for(const p of m.players){if(p.team===team&&p.isStarter&&p.mins>0)stMins[p.id]=(stMins[p.id]||0)+p.mins;}
+  const stWa=Object.keys(stMins).filter(id=>pc[id]?.birthYear);
+  const stWaMin=stWa.reduce((s,id)=>s+stMins[id],0);
+  const avgAgeSt=stWaMin?stWa.reduce((s,id)=>s+(2026-pc[id].birthYear)*stMins[id],0)/stWaMin:null;
+  const u21=players.filter(p=>pc[p.id]?.birthYear&&(2026-pc[p.id].birthYear)<21);
+  const u21active=u21.filter(p=>p.mins>90);
+  const teamMatches=matches.filter(m=>m.homeTeam===team||m.awayTeam===team);
+  const maxMins=teamMatches.length*90;
+  const corePlayers=players.filter(p=>p.mins>maxMins*0.5);
+  const top11=players.slice(0,11);
+  const t11a=top11.filter(p=>pc[p.id]?.birthYear).map(p=>2026-pc[p.id].birthYear);
+  const coreAge=t11a.length?t11a.reduce((s,a)=>s+a,0)/t11a.length:null;
+  let hgStSum=0,matchCt=0;
+  for(const m of matches.filter(m=>m.homeTeam===team||m.awayTeam===team)){
+    const starters=m.players.filter(p=>p.team===team&&p.isStarter&&p.mins>0);
+    const hgSt=starters.filter(p=>pc[p.id]?.homegrown);
+    hgStSum+=hgSt.length; matchCt++;
+  }
+  const hgStPerMatch=matchCt?+(hgStSum/matchCt).toFixed(1):0;
+
+  return{team,players:players.length,playerList:players,rosterList:roster,avgAge,avgAgeSt,coreAge,
+    hgCount,hgPct:players.length?Math.round(hgCount/players.length*100):0,
+    minPct:totalMins?Math.round(hgMins/totalMins*100):0,
+    hgStPerMatch,
+    u21:u21.length,u21active:u21active.length,corePlayers:corePlayers.length,
+    totalMins,hgMins,teamMatches,maxMins};
+};
+window.matchTeamStats=function(match,team,pc){
+  const played=match.players.filter(p=>p.team===team&&p.mins>0);
+  const starters=match.players.filter(p=>p.team===team&&p.isStarter);
+  const bench=match.players.filter(p=>p.team===team&&!p.isStarter);
+  const totalMins=played.reduce((s,p)=>s+p.mins,0);
+  const hg=played.filter(p=>pc[p.id]?.homegrown);
+  const hgMins=hg.reduce((s,p)=>s+p.mins,0);
+  const wa=played.filter(p=>pc[p.id]?.birthYear);
+  const avgAge=wa.length?wa.reduce((s,p)=>s+(2026-pc[p.id].birthYear),0)/wa.length:null;
+  const stWa=starters.filter(p=>pc[p.id]?.birthYear);
+  const avgAgeSt=stWa.length?stWa.reduce((s,p)=>s+(2026-pc[p.id].birthYear),0)/stWa.length:null;
+  const hgSt=starters.filter(p=>pc[p.id]?.homegrown);
+  return{played,starters,bench,avgAge,avgAgeSt,hgCount:hg.length,
+    hgPct:played.length?Math.round(hg.length/played.length*100):0,
+    minPct:totalMins?Math.round(hgMins/totalMins*100):0,
+    hgStCount:hgSt.length,hgStPct:starters.length?Math.round(hgSt.length/starters.length*100):0,
+    totalMins,hgMins};
+};
+window.getRound=function(matchId){return ROUNDS.find(r=>r.ids.includes(matchId));};
+window.fn=function(v,d=1){if(v===null||v===undefined)return'–';return(+v).toFixed(d).replace('.',',');};
+window.pctCol=function(pct){return pct>=50?'#16A34A':pct>=30?'#D97706':'#E05A5A';};
+window.td=function(name){return TEAM_DISPLAY[name]||name;};
+
+/* ── RESULTS / EVENTS UTILS ──────────────────────────────── */
+window.computeStandings=function(matches){
+  const t={};
+  for(const team of TEAMS) t[team]={team,P:0,W:0,D:0,L:0,GF:0,GA:0,GD:0,Pts:0};
+  for(const m of matches){
+    if(m.homeScore==null||m.awayScore==null) continue;
+    const h=t[m.homeTeam], a=t[m.awayTeam];
+    if(!h||!a) continue;
+    h.P++; a.P++;
+    h.GF+=m.homeScore; h.GA+=m.awayScore;
+    a.GF+=m.awayScore; a.GA+=m.homeScore;
+    if(m.homeScore>m.awayScore){h.W++;h.Pts+=3;a.L++;}
+    else if(m.homeScore<m.awayScore){a.W++;a.Pts+=3;h.L++;}
+    else {h.D++;a.D++;h.Pts++;a.Pts++;}
+  }
+  for(const team of TEAMS){t[team].GD=t[team].GF-t[team].GA;}
+  return Object.values(t).sort((x,y)=>
+    y.Pts-x.Pts || y.GD-x.GD || y.GF-x.GF || x.team.localeCompare(y.team,'is'));
+};
+window.teamResults=function(matches,team){
+  let pts=0,gf=0,ga=0,yc=0,rc=0,w=0,d=0,l=0,p=0;
+  for(const m of matches){
+    const isHome=m.homeTeam===team, isAway=m.awayTeam===team;
+    if(!isHome&&!isAway) continue;
+    if(m.homeScore!=null&&m.awayScore!=null){
+      p++;
+      const us=isHome?m.homeScore:m.awayScore;
+      const them=isHome?m.awayScore:m.homeScore;
+      gf+=us; ga+=them;
+      if(us>them){w++;pts+=3;} else if(us<them){l++;} else {d++;pts++;}
+    }
+    for(const e of (m.events||[])){
+      if(e.team!==team) continue;
+      if(e.type==='yellow_card'&&!e.isSecondYellow) yc++;
+      else if(e.type==='red_card') rc++;
+    }
+  }
+  return {pts,gf,ga,gd:gf-ga,yc,rc,w,d,l,played:p};
+};
+window.playerEvents=function(matches){
+  const map={};
+  const ensure=id=>{ if(!map[id]) map[id]={goals:0,penalties:0,ownGoals:0,yellow:0,red:0}; return map[id]; };
+  for(const m of matches) for(const e of (m.events||[])){
+    if(!e.playerId) continue;
+    const r=ensure(e.playerId);
+    if(e.type==='goal'){
+      if(e.isOwnGoal) r.ownGoals++;
+      else { r.goals++; if(e.isPenalty) r.penalties++; }
+    } else if(e.type==='yellow_card'&&!e.isSecondYellow){ r.yellow++; }
+    else if(e.type==='red_card'){ r.red++; }
+  }
+  return map;
+};
+</script>
+
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="components.jsx"></script>
+<script type="text/babel" src="views-matches.jsx"></script>
+<script type="text/babel" src="views-teams.jsx"></script>
+<script type="text/babel" src="views-players.jsx"></script>
+<script type="text/babel" src="views-standings.jsx"></script>
+<script type="text/babel" src="views-news.jsx"></script>
+<script type="text/babel" src="app.jsx"></script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Um vefinn — Ordio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:#F4F5F7}
+body{font-family:'Inter',sans-serif;color:#111827;font-size:15px;line-height:1.6}
+
+/* ── TOPBAR ─────────────────────────────────── */
+.topbar{
+  background:#111827;
+  padding:0 28px;
+  height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;top:0;z-index:10;
+}
+.topbar-logo{display:inline-flex;text-decoration:none;transition:opacity .15s}
+.topbar-logo:hover{opacity:.8}
+.topbar-logo img{height:34px;display:block}
+.topbar-back{
+  font-size:12px;font-weight:500;color:rgba(255,255,255,.6);
+  text-decoration:none;
+  transition:color .15s;
+}
+.topbar-back:hover{color:#fff}
+
+/* ── PAGE ───────────────────────────────────── */
+.page{
+  max-width:660px;
+  margin:0 auto;
+  padding:56px 28px 80px;
+}
+
+/* ── SECTION LABEL ──────────────────────────── */
+.sec-label{
+  font-size:12px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.08em;color:#F97316;
+  margin-bottom:14px;
+}
+
+/* ── HEADING ────────────────────────────────── */
+h1{
+  font-size:40px;font-weight:800;
+  letter-spacing:-.03em;line-height:1.08;
+  color:#111827;margin-bottom:36px;
+}
+@media(max-width:600px){h1{font-size:30px}}
+
+/* ── BODY TEXT ──────────────────────────────── */
+.body-block{
+  background:#fff;
+  border:1px solid #E7E9EE;
+  border-radius:14px;
+  box-shadow:0 1px 3px rgba(15,23,42,.05);
+  padding:28px 32px;
+  margin-bottom:16px;
+}
+.body-block p{
+  font-size:15px;
+  color:#374151;
+  line-height:1.75;
+}
+.body-block p + p{margin-top:14px}
+
+/* ── CONTACT ────────────────────────────────── */
+.contact-block{
+  background:#111827;
+  border-radius:14px;
+  padding:28px 32px;
+  margin-bottom:16px;
+}
+.contact-block .name{
+  font-size:20px;font-weight:700;
+  color:#fff;margin-bottom:6px;
+}
+.contact-block a{
+  font-size:14px;font-weight:600;color:#F97316;
+  text-decoration:none;
+  transition:color .15s;
+  display:inline-block;margin-top:4px;
+}
+.contact-block a:hover{color:#FDBA8C}
+
+/* ── DISCLAIMER ─────────────────────────────── */
+.disclaimer{
+  font-size:12px;color:#9CA3AF;
+  padding:16px 0 0;
+  border-top:1px solid #E7E9EE;
+  line-height:1.7;
+}
+
+/* ── BACK LINK ──────────────────────────────── */
+.back-link{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:600;
+  color:#F97316;text-decoration:none;
+  margin-bottom:40px;
+  transition:gap .15s;
+}
+.back-link:hover{gap:12px}
+
+/* ── Q&A ─────────────────────────────────────────── */
+.qa-list{display:flex;flex-direction:column;gap:1px;background:#E7E9EE;border:1px solid #E7E9EE;border-radius:14px;overflow:hidden;margin-bottom:16px}
+.qa-item{background:#fff;padding:20px 24px}
+.qa-q{font-size:15px;font-weight:700;color:#111827;margin-bottom:8px}
+.qa-a{font-size:14px;color:#374151;line-height:1.7}
+.qa-a em{font-style:normal;font-weight:600;color:#111827}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="topbar-logo"><img src="assets/ordio-logo-dark.png" alt="Ordio"></a>
+</div>
+
+<div class="page">
+  <a href="index.html" class="back-link">← Til baka á forsíðu</a>
+
+  <div class="sec-label">Um vefinn</div>
+  <h1>Hvernig og hvers vegna</h1>
+
+  <div class="body-block">
+    <p>
+      Mér finnst hafa vantað upp á fjölbreytta tölfræði um bæði Bestu deild kvenna og karla og því ákvað ég að nýta gervigreind og búa til vef sem sýnir hinar ýmsu tölfræðiupplýsingar þar sem í forgrunni er tölfræði um uppalda leikmenn.
+    </p>
+    <p>
+      Vefurinn byggir á upplýsingum úr leikskýrslum frá KSÍ. Engin ábyrgð tekin á villum.
+    </p>
+  </div>
+
+  <div class="contact-block">
+    <div class="name">Sævar Már Þórisson</div>
+    <p style="font-size:13px;color:rgba(255,255,255,.55);margin:6px 0 8px;line-height:1.6">Ef þú hefur spurningar eða athugasemdir sendu mér þá endilega skilaboð</p>
+    <a href="mailto:saevarmar@gmail.com">saevarmar@gmail.com</a>
+  </div>
+
+  <!-- Q&A -->
+  <div class="sec-label" style="margin-top:48px">Skilgreiningar</div>
+  <h2 style="font-size:24px;font-weight:800;letter-spacing:-.02em;color:#111827;margin-bottom:24px">Hvað þýða tölurnar?</h2>
+
+  <div class="qa-list">
+
+    <div class="qa-item">
+      <div class="qa-q">Hvað er uppalinn leikmaður?</div>
+      <div class="qa-a">Leikmaður sem á að minnsta kosti 1 leik skráðan í 3.–5. flokki hjá sama félagi. Þetta er skilgreining KSÍ úr leikskýrslunum.</div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">Hvað er Uppaldar mín%?</div>
+      <div class="qa-a">Hlutfall heildarleiktíma sem uppaldir leikmenn spiluðu. Til dæmis þýðir 45% að 45% af öllum mínútum voru spilaðar af uppoldum leikmönnum. Þetta er aðalmælikvarðinn á vefnum.</div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">Hvað er Uppaldar%?</div>
+      <div class="qa-a">Hlutfall leikmanna (einstaklinga) sem eru uppaldir — af öllum leikmönnum sem fengu leiktíma í deildinni.</div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">Hvað er Meðalaldur XI?</div>
+      <div class="qa-a">Meðalaldur leikmanna sem voru í byrjunarlið yfir leikina sem greindir eru.</div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">Hvað er Kjarnaaldur?</div>
+      <div class="qa-a">Meðalaldur 11 leikmanna með flestar mínútur hjá liðinu. Þetta nær betur til raunverulegs "kjarnahóps" liðsins en almennur meðalaldur sem getur brotið vegna leikmanna með fáar mínútur.</div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">Hvað þýðir U21 virkar / alls?</div>
+      <div class="qa-a">Leikmenn undir 21 árs. <em>Virkar</em> = fengu yfir 90 mínútur yfir tímabilið. <em>Alls</em> = allir U21 leikmenn sem voru á leikskrá.</div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">Hvað er Kjarni (&gt;50% mín)?</div>
+      <div class="qa-a">Leikmenn sem spiluðu yfir 50% af mögulegum mínútum liðsins. Ef lið spilar 5 leiki (= 450 mín) þarf leikmaður 226+ mínútur til að teljast í kjarna.</div>
+    </div>
+
+  </div>
+
+  <div class="disclaimer" style="margin-top:40px">
+    Upplýsingar sóttar úr leikskýrslum KSÍ · Engin ábyrgð tekin á villum · 2026
+  </div>
+</div>
+
+</body>
+</html>
