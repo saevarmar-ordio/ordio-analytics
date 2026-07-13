@@ -113,6 +113,18 @@ h1{
 .qa-q{font-size:15px;font-weight:700;color:#111827;margin-bottom:8px}
 .qa-a{font-size:14px;color:#374151;line-height:1.7}
 .qa-a em{font-style:normal;font-weight:600;color:#111827}
+
+/* ── NEWS ────────────────────────────────────────── */
+.news-item{background:#fff;border:1px solid #E7E9EE;border-radius:14px;padding:24px 28px;margin-bottom:14px;box-shadow:0 1px 3px rgba(15,23,42,.05)}
+.news-meta{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.news-chip{font-size:11px;font-weight:700;letter-spacing:.02em;padding:4px 9px;border-radius:6px;background:#F3F4F6;color:#374151}
+.news-chip.gender-kvenna{background:#FFF3EA;color:#C2410C}
+.news-chip.gender-karla{background:#EDF0F5;color:#111827}
+.news-date{font-size:12px;color:#9CA3AF;margin-left:auto}
+.news-item h3{font-size:18px;font-weight:800;letter-spacing:-.01em;color:#111827;margin-bottom:10px}
+.news-item p{font-size:14px;color:#374151;line-height:1.7;margin-top:10px}
+.news-item p:first-of-type{margin-top:0}
+.news-empty{font-size:14px;color:#9CA3AF;padding:8px 0}
 </style>
 </head>
 <body>
@@ -140,6 +152,14 @@ h1{
     <div class="name">Sævar Már Þórisson</div>
     <p style="font-size:13px;color:rgba(255,255,255,.55);margin:6px 0 8px;line-height:1.6">Ef þú hefur spurningar eða athugasemdir sendu mér þá endilega skilaboð</p>
     <a href="mailto:saevarmar@gmail.com">saevarmar@gmail.com</a>
+  </div>
+
+  <!-- FRÉTTIR -->
+  <div class="sec-label" style="margin-top:48px" id="frettir">Fréttir</div>
+  <h2 style="font-size:24px;font-weight:800;letter-spacing:-.02em;color:#111827;margin-bottom:24px">Fréttir og tilkynningar</h2>
+
+  <div id="news-list">
+    <div class="news-empty">Hleð fréttum…</div>
   </div>
 
   <!-- Q&A -->
@@ -189,6 +209,41 @@ h1{
     Upplýsingar sóttar úr leikskýrslum KSÍ · Engin ábyrgð tekin á villum · 2026
   </div>
 </div>
+
+<script>
+const IS_MONTHS=['janúar','febrúar','mars','apríl','maí','júní','júlí','ágúst','september','október','nóvember','desember'];
+function fmtDate(s){
+  const dt=new Date(s);
+  return dt.getDate()+'. '+IS_MONTHS[dt.getMonth()]+' '+dt.getFullYear();
+}
+const LG_LABEL={kvenna:'Konur',karla:'Karlar',both:'Báðar deildir',all:'Allt'};
+const TYPE_LABEL={recap:'Samantekt',update:'Uppfærsla',correction:'Leiðrétting',feature:'Nýtt'};
+fetch('news.json').then(r=>r.json()).then(d=>{
+  const list=document.getElementById('news-list');
+  const items=d.items||[];
+  if(!items.length){ list.innerHTML='<div class="news-empty">Engar fréttir ennþá.</div>'; return; }
+  list.innerHTML='';
+  items.forEach(it=>{
+    const genderClass=(it.league==='kvenna'||it.league==='karla')?('gender-'+it.league):'';
+    const paras=(it.paragraphs&&it.paragraphs.length)?it.paragraphs:(it.body?[it.body]:[]);
+    const el=document.createElement('div');
+    el.className='news-item';
+    el.innerHTML=`
+      <div class="news-meta">
+        <span class="news-chip ${genderClass}">${LG_LABEL[it.league]||''}</span>
+        <span class="news-chip">${TYPE_LABEL[it.type]||'Frétt'}</span>
+        ${it.round?`<span class="news-chip">${it.round}</span>`:''}
+        <span class="news-date">${fmtDate(it.date)}</span>
+      </div>
+      <h3>${it.title}</h3>
+      ${paras.map(p=>`<p>${p}</p>`).join('')}
+    `;
+    list.appendChild(el);
+  });
+}).catch(()=>{
+  document.getElementById('news-list').innerHTML='<div class="news-empty">Ekki tókst að sækja fréttir.</div>';
+});
+</script>
 
 </body>
 </html>
