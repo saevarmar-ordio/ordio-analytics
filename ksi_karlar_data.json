@@ -154,6 +154,16 @@
         "7041397",
         "7041398"
       ]
+    },
+    {
+      "label": "14. umferð",
+      "ids": [
+        "7041405",
+        "7041406",
+        "7041407",
+        "7041408",
+        "7041409"
+      ]
     }
   ],
   "matches": [
@@ -30552,6 +30562,2033 @@
         "fourthOfficial": "Stefán Ragnar Guðlaugsson",
         "matchCommissioner": "Viðar Helgason"
       }
+    },
+    {
+      "matchId": "7041405",
+      "homeTeam": "KA",
+      "awayTeam": "ÍA",
+      "homeScore": 3,
+      "awayScore": 2,
+      "venue": "Greifavöllurinn",
+      "attendance": 625,
+      "referees": {
+        "referee": "Gunnar Freyr Róbertsson",
+        "assistant1": "Eðvarð Þór Eðvarðsson",
+        "assistant2": "Antoníus Bjarki Halldórsson",
+        "fourthOfficial": "Sveinn Arnarsson",
+        "matchCommissioner": "Valdimar Pálsson"
+      },
+      "players": [
+        {
+          "id": "83584",
+          "name": "Steinþór Már Auðunsson",
+          "number": "13",
+          "team": "KA",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "42333",
+          "name": "Birgir Baldvinsson",
+          "number": "2",
+          "team": "KA",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "65438",
+          "name": "Jeppe Pedersen",
+          "number": "8",
+          "team": "KA",
+          "isStarter": true,
+          "mins": 77
+        },
+        {
+          "id": "84859",
+          "name": "Sveinn Margeir Hauksson",
+          "number": "9",
+          "team": "KA",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "27157",
+          "name": "Hallgrímur Mar Steingrímsson",
+          "number": "10",
+          "team": "KA",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "53658",
+          "name": "Danijel Dejan Djuric",
+          "number": "14",
+          "team": "KA",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "60635",
+          "name": "Jakob Héðinn Róbertsson",
+          "number": "16",
+          "team": "KA",
+          "isStarter": true,
+          "mins": 68
+        },
+        {
+          "id": "58301",
+          "name": "Markús Máni Pétursson",
+          "number": "23",
+          "team": "KA",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "34636",
+          "name": "Hans Viktor Guðmundsson",
+          "number": "28",
+          "team": "KA",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "13186",
+          "name": "Jakob Snær Árnason",
+          "number": "29",
+          "team": "KA",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "55219",
+          "name": "Guðjón Ernir Hrafnkelsson",
+          "number": "30",
+          "team": "KA",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "62020",
+          "name": "Ívar Arnbro Þórhallsson",
+          "number": "1",
+          "team": "KA",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "42315",
+          "name": "Kári Gautason",
+          "number": "3",
+          "team": "KA",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "53086",
+          "name": "Breki Hólm Baldursson",
+          "number": "19",
+          "team": "KA",
+          "isStarter": false,
+          "mins": 1
+        },
+        {
+          "id": "88165",
+          "name": "Diego Montiel",
+          "number": "20",
+          "team": "KA",
+          "isStarter": false,
+          "mins": 13
+        },
+        {
+          "id": "68461",
+          "name": "Viktor Breki Hjartarson",
+          "number": "25",
+          "team": "KA",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "66991",
+          "name": "Árni Veigar Árnason",
+          "number": "27",
+          "team": "KA",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "49004",
+          "name": "Valdimar Logi Sævarsson",
+          "number": "44",
+          "team": "KA",
+          "isStarter": false,
+          "mins": 22
+        },
+        {
+          "id": "80536",
+          "name": "Ívar Logi Jóhannsson",
+          "number": "75",
+          "team": "KA",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "70016",
+          "name": "Snorri Kristinsson",
+          "number": "91",
+          "team": "KA",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "67525",
+          "name": "Jón Sölvi Símonarson",
+          "number": "37",
+          "team": "ÍA",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "61742",
+          "name": "Haukur Andri Haraldsson",
+          "number": "7",
+          "team": "ÍA",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "12991",
+          "name": "Steinar Þorsteinsson",
+          "number": "10",
+          "team": "ÍA",
+          "isStarter": true,
+          "mins": 69
+        },
+        {
+          "id": "76937",
+          "name": "Gísli Eyjólfsson",
+          "number": "11",
+          "team": "ÍA",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "82538",
+          "name": "Erik Tobias Tangen Sandberg",
+          "number": "13",
+          "team": "ÍA",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "22064",
+          "name": "Rúnar Már S Sigurjónsson",
+          "number": "16",
+          "team": "ÍA",
+          "isStarter": true,
+          "mins": 77
+        },
+        {
+          "id": "6806",
+          "name": "Böðvar Böðvarsson",
+          "number": "21",
+          "team": "ÍA",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "77278",
+          "name": "Ómar Björn Stefánsson",
+          "number": "22",
+          "team": "ÍA",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "51217",
+          "name": "Markús Páll Ellertsson",
+          "number": "25",
+          "team": "ÍA",
+          "isStarter": true,
+          "mins": 69
+        },
+        {
+          "id": "83088",
+          "name": "Jón Gísli Eyland Gíslason",
+          "number": "66",
+          "team": "ÍA",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "73643",
+          "name": "Styrmir Jóhann Ellertsson",
+          "number": "87",
+          "team": "ÍA",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "37614",
+          "name": "Árni Marinó Einarsson",
+          "number": "1",
+          "team": "ÍA",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "85475",
+          "name": "Johannes Björn Vall",
+          "number": "3",
+          "team": "ÍA",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "51199",
+          "name": "Baldvin Þór Berndsen",
+          "number": "5",
+          "team": "ÍA",
+          "isStarter": false,
+          "mins": 13
+        },
+        {
+          "id": "2507",
+          "name": "Viktor Jónsson",
+          "number": "9",
+          "team": "ÍA",
+          "isStarter": false,
+          "mins": 21
+        },
+        {
+          "id": "34904",
+          "name": "Gísli Laxdal Unnarsson",
+          "number": "17",
+          "team": "ÍA",
+          "isStarter": false,
+          "mins": 21
+        },
+        {
+          "id": "57526",
+          "name": "Rafael Máni Þrastarson",
+          "number": "18",
+          "team": "ÍA",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "66220",
+          "name": "Ísak Máni Guðjónsson",
+          "number": "20",
+          "team": "ÍA",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "69853",
+          "name": "Daníel Michal Grzegorzsson",
+          "number": "28",
+          "team": "ÍA",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "79231",
+          "name": "Aron Kristinn Zumbergs",
+          "number": "35",
+          "team": "ÍA",
+          "isStarter": false,
+          "mins": 0
+        }
+      ],
+      "events": [
+        {
+          "type": "goal",
+          "playerId": "76937",
+          "playerName": "Gísli Eyjólfsson",
+          "minute": 38,
+          "team": "ÍA",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "yellow_card",
+          "playerId": "83584",
+          "playerName": "Steinþór Már Auðunsson",
+          "minute": 58,
+          "team": "KA",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "goal",
+          "playerId": "22064",
+          "playerName": "Rúnar Már S Sigurjónsson",
+          "minute": 59,
+          "team": "ÍA",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "goal",
+          "playerId": "84859",
+          "playerName": "Sveinn Margeir Hauksson",
+          "minute": 62,
+          "team": "KA",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "goal",
+          "playerId": "84859",
+          "playerName": "Sveinn Margeir Hauksson",
+          "minute": 73,
+          "team": "KA",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "yellow_card",
+          "playerId": "13186",
+          "playerName": "Jakob Snær Árnason",
+          "minute": 88,
+          "team": "KA",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "goal",
+          "playerId": "27157",
+          "playerName": "Hallgrímur Mar Steingrímsson",
+          "minute": 90,
+          "team": "KA",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "yellow_card",
+          "playerId": "83088",
+          "playerName": "Jón Gísli Eyland Gíslason",
+          "minute": 90,
+          "team": "ÍA",
+          "isPenalty": false,
+          "isOwnGoal": false
+        }
+      ]
+    },
+    {
+      "matchId": "7041406",
+      "homeTeam": "Fram",
+      "awayTeam": "Þór",
+      "homeScore": 6,
+      "awayScore": 1,
+      "venue": "Lambhagavöllurinn",
+      "attendance": 425,
+      "referees": {
+        "referee": "Þórður Þorsteinsson Þórðarson",
+        "assistant1": "Egill Guðvarður Guðlaugsson",
+        "assistant2": "Eysteinn Hrafnkelsson",
+        "fourthOfficial": "Elías Ingi Árnason",
+        "matchCommissioner": "Viðar Helgason"
+      },
+      "players": [
+        {
+          "id": "84543",
+          "name": "Viktor Freyr Sigurðsson",
+          "number": "22",
+          "team": "Fram",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "57727",
+          "name": "Þorri Stefán Þorbjörnsson",
+          "number": "3",
+          "team": "Fram",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "36302",
+          "name": "Kristófer Konráðsson",
+          "number": "7",
+          "team": "Fram",
+          "isStarter": true,
+          "mins": 79
+        },
+        {
+          "id": "11160",
+          "name": "Haraldur Einar Ásgrímsson",
+          "number": "8",
+          "team": "Fram",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "77992",
+          "name": "Frederico Bello Saraiva",
+          "number": "10",
+          "team": "Fram",
+          "isStarter": true,
+          "mins": 68
+        },
+        {
+          "id": "87864",
+          "name": "Simon Tibbling",
+          "number": "12",
+          "team": "Fram",
+          "isStarter": true,
+          "mins": 79
+        },
+        {
+          "id": "42022",
+          "name": "Ægir Jarl Jónasson",
+          "number": "18",
+          "team": "Fram",
+          "isStarter": true,
+          "mins": 74
+        },
+        {
+          "id": "52708",
+          "name": "Kennie Knak Chopart",
+          "number": "19",
+          "team": "Fram",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "43381",
+          "name": "Freyr Sigurðsson",
+          "number": "25",
+          "team": "Fram",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "62183",
+          "name": "Sigurjón Rúnarsson",
+          "number": "26",
+          "team": "Fram",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "46868",
+          "name": "Vuk Oskar Dimitrijevic",
+          "number": "29",
+          "team": "Fram",
+          "isStarter": true,
+          "mins": 68
+        },
+        {
+          "id": "42004",
+          "name": "Sigurjón Daði Harðarson",
+          "number": "1",
+          "team": "Fram",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "43585",
+          "name": "Arnar Daníel Aðalsteinsson",
+          "number": "4",
+          "team": "Fram",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "48696",
+          "name": "Róbert Hauksson",
+          "number": "9",
+          "team": "Fram",
+          "isStarter": false,
+          "mins": 22
+        },
+        {
+          "id": "8905",
+          "name": "Bjarni Páll Linnet Runólfsson",
+          "number": "14",
+          "team": "Fram",
+          "isStarter": false,
+          "mins": 16
+        },
+        {
+          "id": "87031",
+          "name": "Jakob Byström",
+          "number": "15",
+          "team": "Fram",
+          "isStarter": false,
+          "mins": 22
+        },
+        {
+          "id": "87082",
+          "name": "Israel Garcia Moreno",
+          "number": "16",
+          "team": "Fram",
+          "isStarter": false,
+          "mins": 11
+        },
+        {
+          "id": "51977",
+          "name": "Már Ægisson",
+          "number": "23",
+          "team": "Fram",
+          "isStarter": false,
+          "mins": 11
+        },
+        {
+          "id": "19639",
+          "name": "Aron Birkir Stefánsson",
+          "number": "1",
+          "team": "Þór",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "66622",
+          "name": "Ásbjörn Líndal Arnarsson",
+          "number": "2",
+          "team": "Þór",
+          "isStarter": true,
+          "mins": 65
+        },
+        {
+          "id": "67302",
+          "name": "Einar Freyr Halldórsson",
+          "number": "8",
+          "team": "Þór",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "52195",
+          "name": "Kristófer Kristjánsson",
+          "number": "15",
+          "team": "Þór",
+          "isStarter": true,
+          "mins": 82
+        },
+        {
+          "id": "46333",
+          "name": "Bjarni Guðjón Brynjólfsson",
+          "number": "16",
+          "team": "Þór",
+          "isStarter": true,
+          "mins": 74
+        },
+        {
+          "id": "66917",
+          "name": "Sverrir Páll Ingason",
+          "number": "18",
+          "team": "Þór",
+          "isStarter": true,
+          "mins": 65
+        },
+        {
+          "id": "35037",
+          "name": "Ragnar Óli Ragnarsson",
+          "number": "19",
+          "team": "Þór",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "46825",
+          "name": "Vilhelm Ottó Biering Ottósson",
+          "number": "20",
+          "team": "Þór",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "32871",
+          "name": "Ágúst Eðvald Hlynsson",
+          "number": "22",
+          "team": "Þór",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "87337",
+          "name": "Christian Jakobsen",
+          "number": "25",
+          "team": "Þór",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "46824",
+          "name": "Sigfús Fannar Gunnarsson",
+          "number": "37",
+          "team": "Þór",
+          "isStarter": true,
+          "mins": 74
+        },
+        {
+          "id": "76463",
+          "name": "Franko Lalic",
+          "number": "28",
+          "team": "Þór",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "77031",
+          "name": "Birgir Ómar Hlynsson",
+          "number": "3",
+          "team": "Þór",
+          "isStarter": false,
+          "mins": 16
+        },
+        {
+          "id": "12291",
+          "name": "Hermann Helgi Rúnarsson",
+          "number": "4",
+          "team": "Þór",
+          "isStarter": false,
+          "mins": 16
+        },
+        {
+          "id": "88369",
+          "name": "Yann Emmanuel Affi",
+          "number": "5",
+          "team": "Þór",
+          "isStarter": false,
+          "mins": 25
+        },
+        {
+          "id": "33586",
+          "name": "Fannar Daði Malmquist Gíslason",
+          "number": "17",
+          "team": "Þór",
+          "isStarter": false,
+          "mins": 25
+        },
+        {
+          "id": "2729",
+          "name": "Elvar Baldvinsson",
+          "number": "21",
+          "team": "Þór",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "72049",
+          "name": "Ólíver Sesar Bjarnason",
+          "number": "26",
+          "team": "Þór",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "70364",
+          "name": "Nökkvi Hjörvarsson",
+          "number": "27",
+          "team": "Þór",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "78984",
+          "name": "Peter Ingi Helgason",
+          "number": "30",
+          "team": "Þór",
+          "isStarter": false,
+          "mins": 8
+        }
+      ],
+      "events": [
+        {
+          "type": "goal",
+          "playerId": "43381",
+          "playerName": "Freyr Sigurðsson",
+          "minute": 23,
+          "team": "Fram",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "yellow_card",
+          "playerId": "46333",
+          "playerName": "Bjarni Guðjón Brynjólfsson",
+          "minute": 35,
+          "team": "Þór",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "goal",
+          "playerId": "42022",
+          "playerName": "Ægir Jarl Jónasson",
+          "minute": 37,
+          "team": "Fram",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "goal",
+          "playerId": "32871",
+          "playerName": "Ágúst Eðvald Hlynsson",
+          "minute": 45,
+          "team": "Þór",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "goal",
+          "playerId": "11160",
+          "playerName": "Haraldur Einar Ásgrímsson",
+          "minute": 53,
+          "team": "Fram",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "goal",
+          "playerId": "11160",
+          "playerName": "Haraldur Einar Ásgrímsson",
+          "minute": 60,
+          "team": "Fram",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "goal",
+          "playerId": "36302",
+          "playerName": "Kristófer Konráðsson",
+          "minute": 71,
+          "team": "Fram",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "goal",
+          "playerId": "87031",
+          "playerName": "Jakob Byström",
+          "minute": 84,
+          "team": "Fram",
+          "isPenalty": false,
+          "isOwnGoal": false
+        }
+      ]
+    },
+    {
+      "matchId": "7041407",
+      "homeTeam": "KR",
+      "awayTeam": "ÍBV",
+      "homeScore": 5,
+      "awayScore": 2,
+      "venue": "Meistaravellir",
+      "attendance": 927,
+      "referees": {
+        "referee": "Ívar Orri Kristjánsson",
+        "assistant1": "Birkir Sigurðarson",
+        "assistant2": "Gylfi Már Sigurðsson",
+        "fourthOfficial": "Arnar Þór Stefánsson",
+        "matchCommissioner": "Einar Örn Daníelsson"
+      },
+      "players": [
+        {
+          "id": "44908",
+          "name": "Halldór Snær Georgsson",
+          "number": "12",
+          "team": "KR",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "62617",
+          "name": "Finnur Tómas Pálmason",
+          "number": "7",
+          "team": "KR",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "16225",
+          "name": "Eiður Gauti Sæbjörnsson",
+          "number": "9",
+          "team": "KR",
+          "isStarter": true,
+          "mins": 70
+        },
+        {
+          "id": "24819",
+          "name": "Aron Sigurðarson",
+          "number": "11",
+          "team": "KR",
+          "isStarter": true,
+          "mins": 70
+        },
+        {
+          "id": "84877",
+          "name": "Luke Morgan Conrad Rae",
+          "number": "17",
+          "team": "KR",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "42190",
+          "name": "Ástbjörn Þórðarson",
+          "number": "22",
+          "team": "KR",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "25376",
+          "name": "Arnór Ingvi Traustason",
+          "number": "23",
+          "team": "KR",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "52530",
+          "name": "Hrafn Tómasson",
+          "number": "26",
+          "team": "KR",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "37068",
+          "name": "Hjalti Sigurðsson",
+          "number": "28",
+          "team": "KR",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "50518",
+          "name": "Galdur Guðmundsson",
+          "number": "45",
+          "team": "KR",
+          "isStarter": true,
+          "mins": 85
+        },
+        {
+          "id": "44786",
+          "name": "Orri Hrafn Kjartansson",
+          "number": "77",
+          "team": "KR",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "44084",
+          "name": "Sigurpáll Sören Ingólfsson",
+          "number": "1",
+          "team": "KR",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "86014",
+          "name": "Stefán Árni Geirsson",
+          "number": "8",
+          "team": "KR",
+          "isStarter": false,
+          "mins": 20
+        },
+        {
+          "id": "36857",
+          "name": "Gyrðir Hrafn Guðbrandsson",
+          "number": "15",
+          "team": "KR",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "65199",
+          "name": "Jón Ernir Ragnarsson",
+          "number": "18",
+          "team": "KR",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "68007",
+          "name": "Tristan Gauti Línberg Arnórsson",
+          "number": "20",
+          "team": "KR",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "66599",
+          "name": "Fannar Heimisson",
+          "number": "24",
+          "team": "KR",
+          "isStarter": false,
+          "mins": 5
+        },
+        {
+          "id": "35690",
+          "name": "Aron Þórður Albertsson",
+          "number": "29",
+          "team": "KR",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "74783",
+          "name": "Sigurður Breki Kárason",
+          "number": "30",
+          "team": "KR",
+          "isStarter": false,
+          "mins": 20
+        },
+        {
+          "id": "69279",
+          "name": "Birgir Kjartan Ísleifsson",
+          "number": "33",
+          "team": "KR",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "89183",
+          "name": "Ari i Haraldstovu Petersen",
+          "number": "33",
+          "team": "ÍBV",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "87735",
+          "name": "Mattias Edeland",
+          "number": "4",
+          "team": "ÍBV",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "88288",
+          "name": "Milan Tomic",
+          "number": "6",
+          "team": "ÍBV",
+          "isStarter": true,
+          "mins": 67
+        },
+        {
+          "id": "40650",
+          "name": "Sesar Örn Harðarson",
+          "number": "7",
+          "team": "ÍBV",
+          "isStarter": true,
+          "mins": 67
+        },
+        {
+          "id": "37853",
+          "name": "Bjarki Björn Gunnarsson",
+          "number": "8",
+          "team": "ÍBV",
+          "isStarter": true,
+          "mins": 67
+        },
+        {
+          "id": "40999",
+          "name": "Eiður Atli Rúnarsson",
+          "number": "22",
+          "team": "ÍBV",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "3086",
+          "name": "Arnór Ingi Kristinsson",
+          "number": "23",
+          "team": "ÍBV",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "21256",
+          "name": "Alex Freyr Hilmarsson",
+          "number": "25",
+          "team": "ÍBV",
+          "isStarter": true,
+          "mins": 85
+        },
+        {
+          "id": "43814",
+          "name": "Felix Örn Friðriksson",
+          "number": "26",
+          "team": "ÍBV",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "82528",
+          "name": "Vicente Rafael Valor Martínez",
+          "number": "30",
+          "team": "ÍBV",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "86399",
+          "name": "Omar Sowe",
+          "number": "67",
+          "team": "ÍBV",
+          "isStarter": true,
+          "mins": 67
+        },
+        {
+          "id": "77293",
+          "name": "Sigurður Arnar Magnússon",
+          "number": "2",
+          "team": "ÍBV",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "63985",
+          "name": "Alexander Örn Friðriksson",
+          "number": "3",
+          "team": "ÍBV",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "89530",
+          "name": "Sturla Sagatun-Kristjánsson",
+          "number": "5",
+          "team": "ÍBV",
+          "isStarter": false,
+          "mins": 23
+        },
+        {
+          "id": "52656",
+          "name": "Viggó Valgeirsson",
+          "number": "10",
+          "team": "ÍBV",
+          "isStarter": false,
+          "mins": 23
+        },
+        {
+          "id": "68719",
+          "name": "Þorri Heiðar Bergmann",
+          "number": "11",
+          "team": "ÍBV",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "51678",
+          "name": "Arnar Breki Gunnarsson",
+          "number": "14",
+          "team": "ÍBV",
+          "isStarter": false,
+          "mins": 23
+        },
+        {
+          "id": "82549",
+          "name": "Sigurður Valur Sigursveinsson",
+          "number": "16",
+          "team": "ÍBV",
+          "isStarter": false,
+          "mins": 5
+        },
+        {
+          "id": "89409",
+          "name": "Vitor Hugo Cruz Rocha",
+          "number": "42",
+          "team": "ÍBV",
+          "isStarter": false,
+          "mins": 23
+        }
+      ],
+      "events": [
+        {
+          "type": "goal",
+          "playerId": "86399",
+          "playerName": "Omar Sowe",
+          "minute": 4,
+          "team": "ÍBV",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "goal",
+          "playerId": "24819",
+          "playerName": "Aron Sigurðarson",
+          "minute": 24,
+          "team": "KR",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "yellow_card",
+          "playerId": "42190",
+          "playerName": "Ástbjörn Þórðarson",
+          "minute": 25,
+          "team": "KR",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "goal",
+          "playerId": "25376",
+          "playerName": "Arnór Ingvi Traustason",
+          "minute": 28,
+          "team": "KR",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "yellow_card",
+          "playerId": "88288",
+          "playerName": "Milan Tomic",
+          "minute": 40,
+          "team": "ÍBV",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "yellow_card",
+          "playerId": "37853",
+          "playerName": "Bjarki Björn Gunnarsson",
+          "minute": 46,
+          "team": "ÍBV",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "yellow_card",
+          "playerId": "40999",
+          "playerName": "Eiður Atli Rúnarsson",
+          "minute": 57,
+          "team": "ÍBV",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "goal",
+          "playerId": "24819",
+          "playerName": "Aron Sigurðarson",
+          "minute": 58,
+          "team": "KR",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "goal",
+          "playerId": "44786",
+          "playerName": "Orri Hrafn Kjartansson",
+          "minute": 60,
+          "team": "KR",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "goal",
+          "playerId": "16225",
+          "playerName": "Eiður Gauti Sæbjörnsson",
+          "minute": 68,
+          "team": "KR",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "goal",
+          "playerId": "82528",
+          "playerName": "Vicente Rafael Valor Martínez",
+          "minute": 76,
+          "team": "ÍBV",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "yellow_card",
+          "playerId": "87735",
+          "playerName": "Mattias Edeland",
+          "minute": 89,
+          "team": "ÍBV",
+          "isPenalty": false,
+          "isOwnGoal": false
+        }
+      ]
+    },
+    {
+      "matchId": "7041408",
+      "homeTeam": "FH",
+      "awayTeam": "Valur",
+      "homeScore": 2,
+      "awayScore": 0,
+      "venue": "Kaplakrikavöllur",
+      "attendance": 507,
+      "referees": {
+        "referee": "Jóhann Ingi Jónsson",
+        "assistant1": "Ragnar Þór Bender",
+        "assistant2": "Guðmundur Ingi Bjarnason",
+        "fourthOfficial": "Pétur Guðmundsson",
+        "matchCommissioner": "Kristinn Jakobsson"
+      },
+      "players": [
+        {
+          "id": "33738",
+          "name": "Jökull Andrésson",
+          "number": "1",
+          "team": "FH",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "16739",
+          "name": "Birkir Valur Jónsson",
+          "number": "2",
+          "team": "FH",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "8681",
+          "name": "Grétar Snær Gunnarsson",
+          "number": "6",
+          "team": "FH",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "39541",
+          "name": "Kjartan Kári Halldórsson",
+          "number": "7",
+          "team": "FH",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "81399",
+          "name": "Sverrir Páll Hjaltested",
+          "number": "10",
+          "team": "FH",
+          "isStarter": true,
+          "mins": 59
+        },
+        {
+          "id": "46164",
+          "name": "Adolf Daði Birgisson",
+          "number": "14",
+          "team": "FH",
+          "isStarter": true,
+          "mins": 70
+        },
+        {
+          "id": "45297",
+          "name": "Tómas Orri Róbertsson",
+          "number": "23",
+          "team": "FH",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "47332",
+          "name": "Úlfur Ágúst Björnsson",
+          "number": "33",
+          "team": "FH",
+          "isStarter": true,
+          "mins": 70
+        },
+        {
+          "id": "67695",
+          "name": "Baldur Kári Helgason",
+          "number": "37",
+          "team": "FH",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "54622",
+          "name": "Arngrímur Bjartur Guðmundsson",
+          "number": "38",
+          "team": "FH",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "54291",
+          "name": "Róbert Hugi Sævarsson",
+          "number": "40",
+          "team": "FH",
+          "isStarter": true,
+          "mins": 59
+        },
+        {
+          "id": "6553",
+          "name": "Daði Freyr Arnarsson",
+          "number": "24",
+          "team": "FH",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "42424",
+          "name": "Kristján Snær Frostason",
+          "number": "3",
+          "team": "FH",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "11014",
+          "name": "Kristján Flóki Finnbogason",
+          "number": "9",
+          "team": "FH",
+          "isStarter": false,
+          "mins": 20
+        },
+        {
+          "id": "86409",
+          "name": "Aron Jónsson",
+          "number": "19",
+          "team": "FH",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "41373",
+          "name": "Ísak Óli Ólafsson",
+          "number": "22",
+          "team": "FH",
+          "isStarter": false,
+          "mins": 31
+        },
+        {
+          "id": "59919",
+          "name": "Gils Gíslason",
+          "number": "32",
+          "team": "FH",
+          "isStarter": false,
+          "mins": 20
+        },
+        {
+          "id": "57924",
+          "name": "Benjamín Bæring Þórsson",
+          "number": "39",
+          "team": "FH",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "87540",
+          "name": "Viktor Nói Vidarsson",
+          "number": "66",
+          "team": "FH",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "81396",
+          "name": "Arnór Borg Guðjohnsen",
+          "number": "90",
+          "team": "FH",
+          "isStarter": false,
+          "mins": 31
+        },
+        {
+          "id": "62384",
+          "name": "Frederik August Albrecht Schram",
+          "number": "18",
+          "team": "Valur",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "8729",
+          "name": "Jónatan Ingi Jónsson",
+          "number": "8",
+          "team": "Valur",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "68497",
+          "name": "Ingimar Torbjörnsson Stöle",
+          "number": "11",
+          "team": "Valur",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "32375",
+          "name": "Tryggvi Hrafn Haraldsson",
+          "number": "12",
+          "team": "Valur",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "88155",
+          "name": "Albin Skoglund",
+          "number": "14",
+          "team": "Valur",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "44710",
+          "name": "Lúkas Logi Heimisson",
+          "number": "17",
+          "team": "Valur",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "46351",
+          "name": "Jakob Franz Pálsson",
+          "number": "21",
+          "team": "Valur",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "32873",
+          "name": "Birkir Heimisson",
+          "number": "22",
+          "team": "Valur",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "89450",
+          "name": "Myles A Veldman",
+          "number": "24",
+          "team": "Valur",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "21628",
+          "name": "Samúel Kári Friðjónsson",
+          "number": "28",
+          "team": "Valur",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "62529",
+          "name": "Ólafur Flóki Stephensen",
+          "number": "66",
+          "team": "Valur",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "85635",
+          "name": "Tómas Blöndal-Petersson",
+          "number": "95",
+          "team": "Valur",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "55994",
+          "name": "Kristján Oddur Kristjánsson",
+          "number": "13",
+          "team": "Valur",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "64698",
+          "name": "Loki Kristjánsson",
+          "number": "16",
+          "team": "Valur",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "51747",
+          "name": "Dagur Orri Garðarsson",
+          "number": "19",
+          "team": "Valur",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "64682",
+          "name": "Emil Nönnu Sigurbjörnsson",
+          "number": "26",
+          "team": "Valur",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "72826",
+          "name": "Gunnar Karl Heiðdal",
+          "number": "30",
+          "team": "Valur",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "65022",
+          "name": "Óskar Sveinn Einarsson",
+          "number": "35",
+          "team": "Valur",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "67131",
+          "name": "Novak Tufegdzic",
+          "number": "36",
+          "team": "Valur",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "67130",
+          "name": "Stefan Tufegdzic",
+          "number": "37",
+          "team": "Valur",
+          "isStarter": false,
+          "mins": 0
+        }
+      ],
+      "events": [
+        {
+          "type": "yellow_card",
+          "playerId": "54622",
+          "playerName": "Arngrímur Bjartur Guðmundsson",
+          "minute": 41,
+          "team": "FH",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "goal",
+          "playerId": "59919",
+          "playerName": "Gils Gíslason",
+          "minute": 79,
+          "team": "FH",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "yellow_card",
+          "playerId": "44710",
+          "playerName": "Lúkas Logi Heimisson",
+          "minute": 81,
+          "team": "Valur",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "yellow_card",
+          "playerId": "45297",
+          "playerName": "Tómas Orri Róbertsson",
+          "minute": 88,
+          "team": "FH",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "goal",
+          "playerId": "59919",
+          "playerName": "Gils Gíslason",
+          "minute": 89,
+          "team": "FH",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "yellow_card",
+          "playerId": "46351",
+          "playerName": "Jakob Franz Pálsson",
+          "minute": 90,
+          "team": "Valur",
+          "isPenalty": false,
+          "isOwnGoal": false
+        }
+      ]
+    },
+    {
+      "matchId": "7041409",
+      "homeTeam": "Breiðablik",
+      "awayTeam": "Keflavík",
+      "homeScore": 2,
+      "awayScore": 1,
+      "venue": "Eikarvöllurinn",
+      "attendance": 588,
+      "referees": {
+        "referee": "Arnar Þór Stefánsson",
+        "assistant1": "Kristján Már Ólafs",
+        "assistant2": "Ronnarong Wongmahadthai",
+        "fourthOfficial": "Guðmundur Páll Friðbertsson",
+        "matchCommissioner": "Ólafur Ingi Guðmundsson"
+      },
+      "players": [
+        {
+          "id": "6471",
+          "name": "Anton Ari Einarsson",
+          "number": "1",
+          "team": "Breiðablik",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "50564",
+          "name": "Ásgeir Helgi Orrason",
+          "number": "4",
+          "team": "Breiðablik",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "76683",
+          "name": "Ívar Örn Árnason",
+          "number": "5",
+          "team": "Breiðablik",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "65066",
+          "name": "Arnór Gauti Jónsson",
+          "number": "6",
+          "team": "Breiðablik",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "36826",
+          "name": "Viktor Karl Einarsson",
+          "number": "8",
+          "team": "Breiðablik",
+          "isStarter": true,
+          "mins": 60
+        },
+        {
+          "id": "43841",
+          "name": "Ágúst Orri Þorsteinsson",
+          "number": "15",
+          "team": "Breiðablik",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "2763",
+          "name": "Davíð Ingvarsson",
+          "number": "18",
+          "team": "Breiðablik",
+          "isStarter": true,
+          "mins": 60
+        },
+        {
+          "id": "5036",
+          "name": "Viktor Örn Margeirsson",
+          "number": "21",
+          "team": "Breiðablik",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "57510",
+          "name": "Jónatan Guðni Arnarsson",
+          "number": "22",
+          "team": "Breiðablik",
+          "isStarter": true,
+          "mins": 72
+        },
+        {
+          "id": "49463",
+          "name": "Gabríel Snær Hallsson",
+          "number": "29",
+          "team": "Breiðablik",
+          "isStarter": true,
+          "mins": 84
+        },
+        {
+          "id": "72561",
+          "name": "Arnar Bjarki Gunnleifsson",
+          "number": "33",
+          "team": "Breiðablik",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "72595",
+          "name": "Gylfi Berg Snæhólm",
+          "number": "12",
+          "team": "Breiðablik",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "28406",
+          "name": "Kristinn Steindórsson",
+          "number": "10",
+          "team": "Breiðablik",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "41175",
+          "name": "Anton Logi Lúðvíksson",
+          "number": "13",
+          "team": "Breiðablik",
+          "isStarter": false,
+          "mins": 6
+        },
+        {
+          "id": "64229",
+          "name": "Dagur Örn Fjeldsted",
+          "number": "16",
+          "team": "Breiðablik",
+          "isStarter": false,
+          "mins": 30
+        },
+        {
+          "id": "23087",
+          "name": "Kristinn Jónsson",
+          "number": "19",
+          "team": "Breiðablik",
+          "isStarter": false,
+          "mins": 30
+        },
+        {
+          "id": "71445",
+          "name": "Bjartur Orri Jónsson",
+          "number": "24",
+          "team": "Breiðablik",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "72606",
+          "name": "Kristinn Narfi Björgvinsson",
+          "number": "32",
+          "team": "Breiðablik",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "63222",
+          "name": "Elmar Robertoson",
+          "number": "40",
+          "team": "Breiðablik",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "71489",
+          "name": "Þór Andersen Willumsson",
+          "number": "45",
+          "team": "Breiðablik",
+          "isStarter": false,
+          "mins": 18
+        },
+        {
+          "id": "61444",
+          "name": "Ásgeir Orri Magnússon",
+          "number": "1",
+          "team": "Keflavík",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "84619",
+          "name": "Davíð Helgi Aronsson",
+          "number": "5",
+          "team": "Keflavík",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "24763",
+          "name": "Sindri Snær Magnússon",
+          "number": "6",
+          "team": "Keflavík",
+          "isStarter": true,
+          "mins": 74
+        },
+        {
+          "id": "52700",
+          "name": "Þorlákur Breki Þ. Baxter",
+          "number": "8",
+          "team": "Keflavík",
+          "isStarter": true,
+          "mins": 83
+        },
+        {
+          "id": "14048",
+          "name": "Stefan Alexander Ljubicic",
+          "number": "10",
+          "team": "Keflavík",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "84450",
+          "name": "Muhamed Alghoul",
+          "number": "11",
+          "team": "Keflavík",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "88684",
+          "name": "Anton Kralj",
+          "number": "13",
+          "team": "Keflavík",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "88552",
+          "name": "Marin Mudrazija",
+          "number": "14",
+          "team": "Keflavík",
+          "isStarter": true,
+          "mins": 63
+        },
+        {
+          "id": "86849",
+          "name": "Marin Brigic",
+          "number": "20",
+          "team": "Keflavík",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "87480",
+          "name": "Alpha Conteh",
+          "number": "21",
+          "team": "Keflavík",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "81401",
+          "name": "Ásgeir Páll Magnússon",
+          "number": "22",
+          "team": "Keflavík",
+          "isStarter": true,
+          "mins": 90
+        },
+        {
+          "id": "77053",
+          "name": "Helgi Bergmann Hermannsson",
+          "number": "12",
+          "team": "Keflavík",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "62049",
+          "name": "Axel Ingi Jóhannesson",
+          "number": "3",
+          "team": "Keflavík",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "76079",
+          "name": "Ígnacio Heras Anglada",
+          "number": "4",
+          "team": "Keflavík",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "13047",
+          "name": "Dagur Ingi Valsson",
+          "number": "7",
+          "team": "Keflavík",
+          "isStarter": false,
+          "mins": 16
+        },
+        {
+          "id": "83449",
+          "name": "Baldur Logi Guðlaugsson",
+          "number": "17",
+          "team": "Keflavík",
+          "isStarter": false,
+          "mins": 7
+        },
+        {
+          "id": "45789",
+          "name": "Ernir Bjarnason",
+          "number": "18",
+          "team": "Keflavík",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "60138",
+          "name": "Eiður Orri Ragnarsson",
+          "number": "23",
+          "team": "Keflavík",
+          "isStarter": false,
+          "mins": 27
+        },
+        {
+          "id": "56496",
+          "name": "Viktor Árni Traustason",
+          "number": "28",
+          "team": "Keflavík",
+          "isStarter": false,
+          "mins": 0
+        },
+        {
+          "id": "70465",
+          "name": "Egill Valur Karlsson",
+          "number": "47",
+          "team": "Keflavík",
+          "isStarter": false,
+          "mins": 0
+        }
+      ],
+      "events": [
+        {
+          "type": "goal",
+          "playerId": "87480",
+          "playerName": "Alpha Conteh",
+          "minute": 25,
+          "team": "Keflavík",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "yellow_card",
+          "playerId": "5036",
+          "playerName": "Viktor Örn Margeirsson",
+          "minute": 32,
+          "team": "Breiðablik",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "goal",
+          "playerId": "57510",
+          "playerName": "Jónatan Guðni Arnarsson",
+          "minute": 57,
+          "team": "Breiðablik",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "goal",
+          "playerId": "23087",
+          "playerName": "Kristinn Jónsson",
+          "minute": 89,
+          "team": "Breiðablik",
+          "isPenalty": false,
+          "isOwnGoal": false
+        },
+        {
+          "type": "yellow_card",
+          "playerId": "65066",
+          "playerName": "Arnór Gauti Jónsson",
+          "minute": 90,
+          "team": "Breiðablik",
+          "isPenalty": false,
+          "isOwnGoal": false
+        }
+      ]
     }
   ],
   "playerMap": {
@@ -32249,6 +34286,31 @@
       "id": "68719",
       "name": "Þorri Heiðar Bergmann",
       "team": "ÍBV"
+    },
+    "69279": {
+      "id": "69279",
+      "name": "Birgir Kjartan Ísleifsson",
+      "team": "KR"
+    },
+    "82549": {
+      "id": "82549",
+      "name": "Sigurður Valur Sigursveinsson",
+      "team": "ÍBV"
+    },
+    "85635": {
+      "id": "85635",
+      "name": "Tómas Blöndal-Petersson",
+      "team": "Valur"
+    },
+    "65022": {
+      "id": "65022",
+      "name": "Óskar Sveinn Einarsson",
+      "team": "Valur"
+    },
+    "63222": {
+      "id": "63222",
+      "name": "Elmar Robertoson",
+      "team": "Breiðablik"
     }
   },
   "playerStats": {
@@ -33946,6 +36008,31 @@
       "birthYear": 2007,
       "homegrownGames": 0,
       "homegrown": false
+    },
+    "63222": {
+      "birthYear": 2009,
+      "homegrownGames": 106,
+      "homegrown": true
+    },
+    "65022": {
+      "birthYear": 2009,
+      "homegrownGames": 107,
+      "homegrown": true
+    },
+    "69279": {
+      "birthYear": 2010,
+      "homegrownGames": 97,
+      "homegrown": true
+    },
+    "82549": {
+      "birthYear": 2008,
+      "homegrownGames": 83,
+      "homegrown": true
+    },
+    "85635": {
+      "birthYear": 2009,
+      "homegrownGames": 41,
+      "homegrown": true
     }
   },
   "lastUpdated": "2026-06-30"
