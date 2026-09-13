@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yfirlit allra liða — Besta deild kvenna</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0BYTJH1PPX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0BYTJH1PPX');
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/chart.js@4.4.4/dist/chart.umd.js" crossorigin="anonymous"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{height:100%}
+body{font-family:'Inter',sans-serif;color:#111827;font-size:14px;line-height:1.5;height:100%;background:#F4F5F7}
+#root{min-height:100%;display:flex;flex-direction:column}
+
+.card{
+  background:#fff;border:1px solid #E7E9EE;border-radius:10px;
+  box-shadow:0 1px 3px rgba(15,23,42,.06),0 1px 2px rgba(15,23,42,.04);
+}
+.eyebrow{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#6B7280}
+
+.data-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.data-table thead th{
+  padding:8px 10px;font-size:10px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.06em;color:#6B7280;background:#F9FAFB;border-bottom:1px solid #E7E9EE;
+  white-space:nowrap;text-align:left;
+}
+.data-table td{padding:7px 10px;border-bottom:1px solid #E7E9EE;font-size:13px;vertical-align:middle}
+.data-table tbody tr:last-child td{border-bottom:none}
+.data-table th.num,.data-table td.num{text-align:right}
+.data-table tbody tr:hover td{background:#F9FAFB}
+.team-cell{display:flex;align-items:center;gap:8px;font-weight:600}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+
+.top-nav{
+  height:64px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;border-bottom:1px solid #E7E9EE;background:#fff;flex-wrap:wrap;gap:8px;
+}
+.top-nav a{color:#6B7280;font-size:13px;font-weight:500;text-decoration:none}
+.top-nav a:hover{color:#111827}
+.kpi-section{margin-bottom:36px}
+.kpi-title{font-family:'Inter',sans-serif;font-weight:700;font-size:17px;letter-spacing:-.01em;margin-bottom:2px}
+.kpi-sub{font-size:12px;color:#6B7280;margin-bottom:14px}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
+@media(max-width:900px){
+  .grid2{grid-template-columns:1fr!important}
+}
+</style>
+</head>
+<body>
+<div id="root">
+  <div style="display:flex;align-items:center;justify-content:center;height:100vh;font-size:13px;color:#94a3b8;letter-spacing:.05em">
+    Hleður gögn…
+  </div>
+</div>
+
+<script type="text/babel">
+const { useState, useEffect, useMemo, useRef } = React;
+
+const SEASONS_CONF = [
+  { year: 2023, file: 'ksi_data_2023.json' },
+  { year: 2024, file: 'ksi_data_2024.json' },
+  { year: 2025, file: 'ksi_data_2025.json' },
+  { year: 2026, file: 'ksi_data.json' },
+];
+
+const TEAM_DISPLAY = { 'Þór':'Þór/KA', 'Þróttur R.':'Þróttur', 'Víkingur R.':'Víkingur' };
+function teamLabel(t) { return TEAM_DISPLAY[t] || t; }
+
+/* distinct hue per team, stable across renders regardless of filtering */
+function colorForTeam(team, allTeamsSorted) {
+  const idx = allTeamsSorted.indexOf(team);
+  const hue = Math.round((idx * 360) / allTeamsSorted.length);
+  return `hsl(${hue}, 68%, 45%)`;
+}
+
+/* ── per-team KPI aggregate for one season ── */
+function teamKPIs(matches, pc, team, seasonYear) {
+  const pmap = {};
+  for (const m of matches) {
+    for (const p of m.players) {
+      if (p.team !== team) continue;
+      if (!pmap[p.id]) pmap[p.id] = { id: p.id, mins: 0, apps: 0, starts: 0 };
+      pmap[p.id].mins += p.mins;
+      if (p.mins > 0) pmap[p.id].apps++;
+      if (p.isStarter && p.mins > 0) pmap[p.id].starts++;
+    }
+  }
+  const players = Object.values(pmap).filter(p => p.apps > 0).map(p => {
+    const st = pc[p.id] || {};
+    return { ...p, age: st.birthYear ? seasonYear - st.birthYear : null, homegrown: !!st.homegrown };
+  });
+  if (!players.length) return null;
+
+  const hgCount = players.filter(p => p.homegrown).length;
+  const hgPct = Math.round(hgCount / players.length * 100);
+
+  const wa = players.filter(p => p.age != null);
+  const waMin = wa.reduce((s, p) => s + p.mins, 0);
+  const avgAge = waMin ? wa.reduce((s, p) => s + p.age * p.mins, 0) / waMin : null;
+
+  const starters = players.filter(p => p.starts > 0 && p.age != null);
+  const startWeight = starters.reduce((s, p) => s + p.starts, 0);
+  const avgAgeXI = startWeight ? starters.reduce((s, p) => s + p.age * p.starts, 0) / startWeight : null;
+
+  return { avgAge, hgPct, avgAgeXI, hgCount };
+}
+
+const KPI_DEFS = [
+  { key: 'avgAge', label: 'Meðalaldur (allur hópur)', fmt: v => v == null ? '–' : v.toFixed(1).replace('.', ','), suffix: '', short: 'Meðalaldur' },
+  { key: 'hgPct', label: 'Uppeldishlutfall (% uppaldir leikmenn)', fmt: v => v == null ? '–' : v + '%', suffix: '%', short: 'Uppeldis-%' },
+  { key: 'avgAgeXI', label: 'Meðalaldur byrjunarliðs (XI)', fmt: v => v == null ? '–' : v.toFixed(1).replace('.', ','), suffix: '', short: 'Meðalaldur XI' },
+  { key: 'hgCount', label: 'Fjöldi uppalinna leikmanna', fmt: v => v == null ? '–' : String(v), suffix: '', short: 'Fjöldi uppalinna' },
+];
+
+function KpiChart({ def, years, teams, dataByTeam }) {
+  const canvasRef = useRef(null);
+  const chartRef = useRef(null);
+
+  useEffect(() => {
+    if (!canvasRef.current) return;
+    if (chartRef.current) chartRef.current.destroy();
+    chartRef.current = new Chart(canvasRef.current, {
+      type: 'line',
+      data: {
+        labels: years,
+        datasets: teams.map(t => ({
+          label: teamLabel(t),
+          data: dataByTeam[t].map(v => v == null ? null : v),
+          borderColor: colorForTeam(t, teams),
+          backgroundColor: colorForTeam(t, teams),
+          spanGaps: false,
+          tension: 0.2,
+          pointRadius: 3,
+          pointHoverRadius: 5,
+          borderWidth: 1.75,
+        })),
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'nearest', intersect: true },
+        plugins: {
+          legend: {
+            position: 'right',
+            labels: { font: { family: 'Inter', size: 10 }, boxWidth: 8, padding: 8 },
+          },
+          tooltip: {
+            callbacks: { label: ctx => `${ctx.dataset.label}: ${def.fmt(ctx.parsed.y)}` },
+          },
+        },
+        scales: {
+          x: { grid: { display: false }, ticks: { font: { family: 'Inter', size: 12 } } },
+          y: {
+            ticks: { callback: v => def.suffix ? v + def.suffix : v, font: { family: 'Inter', size: 11 } },
+            grid: { color: '#EEF0F3' },
+          },
+        },
+      },
+    });
+    return () => { if (chartRef.current) chartRef.current.destroy(); };
+  }, [def.key, years.join(','), teams.join(','), JSON.stringify(dataByTeam)]);
+
+  return <div style={{ height: 340, position: 'relative' }}><canvas ref={canvasRef} /></div>;
+}
+
+function KpiTable({ def, years, teams, dataByTeam }) {
+  return (
+    <div style={{ overflowX: 'auto' }}>
+      <table className="data-table">
+        <thead>
+          <tr>
+            <th>Lið</th>
+            {years.map(y => <th key={y} className="num">{y}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {teams.map(t => (
+            <tr key={t}>
+              <td>
+                <span className="team-cell">
+                  <span className="dot" style={{ background: colorForTeam(t, teams) }} />
+                  {teamLabel(t)}
+                </span>
+              </td>
+              {dataByTeam[t].map((v, i) => (
+                <td key={years[i]} className="num" style={{ color: v == null ? '#D1D5DB' : '#111827' }}>
+                  {def.fmt(v)}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function App() {
+  const [seasonsData, setSeasonsData] = useState(null);
+
+  useEffect(() => {
+    Promise.all(
+      SEASONS_CONF.map(s => fetch(s.file).then(r => (r.ok ? r.json() : null)).catch(() => null))
+    ).then(setSeasonsData);
+  }, []);
+
+  const years = SEASONS_CONF.map(s => s.year);
+
+  const allTeams = useMemo(() => {
+    if (!seasonsData) return [];
+    const set = new Set();
+    seasonsData.forEach(d => { if (d) d.teams.forEach(t => set.add(t)); });
+    return [...set].sort((a, b) => a.localeCompare(b, 'is'));
+  }, [seasonsData]);
+
+  // kpiValues[kpiKey][team] = [v2023, v2024, v2025, v2026]
+  const kpiValues = useMemo(() => {
+    if (!seasonsData || !allTeams.length) return null;
+    const out = {};
+    KPI_DEFS.forEach(def => { out[def.key] = {}; });
+    allTeams.forEach(team => {
+      const perYear = SEASONS_CONF.map((s, i) => {
+        const d = seasonsData[i];
+        if (!d || !d.teams.includes(team)) return null;
+        return teamKPIs(d.matches, d.playerStats, team, s.year);
+      });
+      KPI_DEFS.forEach(def => {
+        out[def.key][team] = perYear.map(r => r ? r[def.key] : null);
+      });
+    });
+    return out;
+  }, [seasonsData, allTeams]);
+
+  if (!seasonsData || !kpiValues) {
+    return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', fontSize: 13, color: '#94a3b8', letterSpacing: '.05em' }}>Hleður gögn…</div>;
+  }
+
+  return (
+    <div style={{ width: '100%' }}>
+      <div className="top-nav">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+          <a href="index.html">← Ordio</a>
+          <span style={{ color: '#E7E9EE' }}>|</span>
+          <span style={{ fontWeight: 700, fontSize: 14 }}>Yfirlit allra liða — Besta deild kvenna</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+          <a href="Throun.html">Eitt lið →</a>
+          <a href="Dashboard.html">Núverandi tímabil →</a>
+        </div>
+      </div>
+
+      <div style={{ maxWidth: 1220, margin: '0 auto', padding: '28px 24px 60px' }}>
+        <p style={{ fontSize: 13, color: '#6B7280', marginBottom: 28 }}>
+          Þróun helstu KPI-a fyrir öll lið sem hafa leikið í Bestu deild kvenna 2023–2026. Lið sem voru ekki í deildinni tiltekið ár sýna „–" / rof í línuriti.
+        </p>
+
+        {KPI_DEFS.map(def => (
+          <div className="kpi-section" key={def.key}>
+            <div className="kpi-title">{def.label}</div>
+            <div className="kpi-sub">Smelltu á lið í skýringum til að fela/sýna línu</div>
+            <div className="card" style={{ padding: 16, marginBottom: 12 }}>
+              <KpiChart def={def} years={years} teams={allTeams} dataByTeam={kpiValues[def.key]} />
+            </div>
+            <div className="card" style={{ padding: 16 }}>
+              <KpiTable def={def} years={years} teams={allTeams} dataByTeam={kpiValues[def.key]} />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
