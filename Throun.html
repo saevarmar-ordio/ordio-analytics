@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="is">
+<html lang="is">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Þróun milli ára — Besta deild kvenna</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0BYTJH1PPX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0BYTJH1PPX');
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/chart.js@4.4.4/dist/chart.umd.js" crossorigin="anonymous"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{height:100%}
+body{font-family:'Inter',sans-serif;color:#111827;font-size:14px;line-height:1.5;height:100%;background:#F4F5F7}
+#root{min-height:100%;display:flex;flex-direction:column}
+
+.card{
+  background:#fff;border:1px solid #E7E9EE;border-radius:10px;
+  box-shadow:0 1px 3px rgba(15,23,42,.06),0 1px 2px rgba(15,23,42,.04);
+}
+.eyebrow{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#6B7280}
+
+.data-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.data-table thead th{
+  padding:8px 10px;font-size:10px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.06em;color:#6B7280;background:#F9FAFB;border-bottom:1px solid #E7E9EE;
+  white-space:nowrap;text-align:left;
+}
+.data-table td{padding:8px 10px;border-bottom:1px solid #E7E9EE;font-size:13px;vertical-align:middle}
+.data-table tbody tr:last-child td{border-bottom:none}
+.data-table th.num,.data-table td.num{text-align:right}
+.data-table tbody tr:hover td{background:#F9FAFB}
+
+.hg-badge{
+  display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:100px;
+  background:#DCFCE7;color:#15803D;
+}
+.select{
+  font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#111827;
+  border:1px solid #E7E9EE;border-radius:8px;padding:9px 14px;background:#fff;cursor:pointer;
+}
+.top-nav{
+  height:64px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;border-bottom:1px solid #E7E9EE;background:#fff;
+}
+.top-nav a{color:#6B7280;font-size:13px;font-weight:500;text-decoration:none}
+.top-nav a:hover{color:#111827}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
+@media(max-width:900px){
+  .grid3{grid-template-columns:1fr!important}
+}
+</style>
+</head>
+<body>
+<div id="root">
+  <div style="display:flex;align-items:center;justify-content:center;height:100vh;font-size:13px;color:#94a3b8;letter-spacing:.05em">
+    Hleður gögn…
+  </div>
+</div>
+
+<script type="text/babel">
+const { useState, useEffect, useMemo, useRef } = React;
+
+const SEASONS_CONF = [
+  { year: 2023, file: 'ksi_data_2023.json' },
+  { year: 2024, file: 'ksi_data_2024.json' },
+  { year: 2025, file: 'ksi_data_2025.json' },
+  { year: 2026, file: 'ksi_data.json' },
+];
+
+const COLORS = ['#F97316', '#2563EB', '#16A34A', '#B42318'];
+
+/* ── per-team aggregate for one season, age/homegrown baked into each player ── */
+function teamAggFor(matches, pc, team, seasonYear) {
+  const pmap = {};
+  for (const m of matches) {
+    for (const p of m.players) {
+      if (p.team !== team) continue;
+      if (!pmap[p.id]) pmap[p.id] = { id: p.id, name: p.name, mins: 0, apps: 0, starts: 0 };
+      pmap[p.id].mins += p.mins;
+      if (p.mins > 0) pmap[p.id].apps++;
+      if (p.isStarter && p.mins > 0) pmap[p.id].starts++;
+    }
+  }
+  const players = Object.values(pmap).filter(p => p.apps > 0).map(p => {
+    const st = pc[p.id] || {};
+    return { ...p, age: st.birthYear ? seasonYear - st.birthYear : null, homegrown: !!st.homegrown };
+  });
+  players.sort((a, b) => b.mins - a.mins);
+  const hgCount = players.filter(p => p.homegrown).length;
+  const wa = players.filter(p => p.age != null);
+  const waMin = wa.reduce((s, p) => s + p.mins, 0);
+  const avgAge = waMin ? wa.reduce((s, p) => s + p.age * p.mins, 0) / waMin : null;
+  const totalMins = players.reduce((s, p) => s + p.mins, 0);
+  const hgMins = players.filter(p => p.homegrown).reduce((s, p) => s + p.mins, 0);
+  const u21 = players.filter(p => p.age != null && p.age < 21).length;
+  return {
+    players, numPlayers: players.length, avgAge,
+    hgPct: players.length ? Math.round(hgCount / players.length * 100) : 0,
+    minPct: totalMins ? Math.round(hgMins / totalMins * 100) : 0,
+    u21,
+  };
+}
+
+/* ── league table for one season ── */
+function standingsFor(matches, teams) {
+  const t = {};
+  teams.forEach(tm => t[tm] = { team: tm, P: 0, W: 0, D: 0, L: 0, GF: 0, GA: 0, Pts: 0 });
+  matches.forEach(m => {
+    if (m.homeScore == null || m.awayScore == null) return;
+    const h = t[m.homeTeam], a = t[m.awayTeam];
+    if (!h || !a) return;
+    h.P++; a.P++;
+    h.GF += m.homeScore; h.GA += m.awayScore;
+    a.GF += m.awayScore; a.GA += m.homeScore;
+    if (m.homeScore > m.awayScore) { h.W++; h.Pts += 3; a.L++; }
+    else if (m.homeScore < m.awayScore) { a.W++; a.Pts += 3; h.L++; }
+    else { h.D++; a.D++; h.Pts++; a.Pts++; }
+  });
+  Object.values(t).forEach(r => r.GD = r.GF - r.GA);
+  return Object.values(t).sort((x, y) => y.Pts - x.Pts || y.GD - x.GD || y.GF - x.GF || x.team.localeCompare(y.team, 'is'));
+}
+
+function fn1(v) { return v == null ? '–' : (+v).toFixed(1).replace('.', ','); }
+function fnPct(v) { return v == null ? '–' : v + '%'; }
+
+/* ── generic Chart.js line-chart wrapper ── */
+function TrendChart({ title, labels, series, suffix }) {
+  const canvasRef = useRef(null);
+  const chartRef = useRef(null);
+
+  useEffect(() => {
+    if (!canvasRef.current) return;
+    if (chartRef.current) chartRef.current.destroy();
+    chartRef.current = new Chart(canvasRef.current, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: series.map((s, i) => ({
+          label: s.label,
+          data: s.data,
+          borderColor: COLORS[i % COLORS.length],
+          backgroundColor: COLORS[i % COLORS.length],
+          spanGaps: true,
+          tension: 0.25,
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          borderWidth: 2,
+        })),
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: series.length > 1, position: 'bottom', labels: { font: { family: 'Inter', size: 11 }, boxWidth: 10 } },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y}${suffix || ''}`,
+            },
+          },
+        },
+        scales: {
+          x: { grid: { display: false }, ticks: { font: { family: 'Inter', size: 12 } } },
+          y: {
+            ticks: { callback: (v) => suffix ? v + suffix : v, font: { family: 'Inter', size: 11 } },
+            grid: { color: '#EEF0F3' },
+          },
+        },
+      },
+    });
+    return () => { if (chartRef.current) chartRef.current.destroy(); };
+  }, [labels.join(','), JSON.stringify(series)]);
+
+  return (
+    <div className="card" style={{ padding: 16, display: 'flex', flexDirection: 'column' }}>
+      <div className="eyebrow" style={{ marginBottom: 10 }}>{title}</div>
+      <div style={{ height: 200, position: 'relative' }}><canvas ref={canvasRef} /></div>
+    </div>
+  );
+}
+
+function App() {
+  const [seasonsData, setSeasonsData] = useState(null); // parallel array to SEASONS_CONF, entries may be null
+  const [selectedTeam, setSelectedTeam] = useState(null);
+  const [minSeasons, setMinSeasons] = useState(1);
+
+  useEffect(() => {
+    Promise.all(
+      SEASONS_CONF.map(s =>
+        fetch(s.file).then(r => (r.ok ? r.json() : null)).catch(() => null)
+      )
+    ).then(setSeasonsData);
+  }, []);
+
+  const teamList = useMemo(() => {
+    if (!seasonsData) return [];
+    const set = new Set();
+    seasonsData.forEach(d => { if (d) d.teams.forEach(t => set.add(t)); });
+    return [...set].sort((a, b) => a.localeCompare(b, 'is'));
+  }, [seasonsData]);
+
+  useEffect(() => {
+    if (!selectedTeam && teamList.length) setSelectedTeam(teamList[0]);
+  }, [teamList]);
+
+  const teamSeasons = useMemo(() => {
+    if (!seasonsData || !selectedTeam) return [];
+    return SEASONS_CONF.map((s, i) => {
+      const d = seasonsData[i];
+      if (!d || !d.teams.includes(selectedTeam)) return null;
+      const agg = teamAggFor(d.matches, d.playerStats, selectedTeam, s.year);
+      const standings = standingsFor(d.matches, d.teams);
+      const idx = standings.findIndex(r => r.team === selectedTeam);
+      const row = idx >= 0 ? standings[idx] : null;
+      return { year: s.year, agg, position: idx >= 0 ? idx + 1 : null, row };
+    }).filter(Boolean);
+  }, [seasonsData, selectedTeam]);
+
+  const playerHistory = useMemo(() => {
+    const byId = {};
+    teamSeasons.forEach(({ year, agg }) => {
+      agg.players.forEach(p => {
+        if (!byId[p.id]) byId[p.id] = { id: p.id, name: p.name, years: {} };
+        byId[p.id].name = p.name;
+        byId[p.id].years[year] = { mins: p.mins, starts: p.starts, age: p.age, homegrown: p.homegrown };
+      });
+    });
+    return Object.values(byId);
+  }, [teamSeasons]);
+
+  const filteredPlayers = useMemo(() => {
+    return playerHistory
+      .filter(p => Object.keys(p.years).length >= minSeasons)
+      .sort((a, b) => {
+        const totA = Object.values(a.years).reduce((s, y) => s + y.mins, 0);
+        const totB = Object.values(b.years).reduce((s, y) => s + y.mins, 0);
+        return totB - totA;
+      });
+  }, [playerHistory, minSeasons]);
+
+  const years = teamSeasons.map(s => s.year);
+
+  if (!seasonsData) {
+    return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', fontSize: 13, color: '#94a3b8', letterSpacing: '.05em' }}>Hleður gögn…</div>;
+  }
+
+  return (
+    <div style={{ width: '100%' }}>
+      <div className="top-nav">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+          <a href="index.html">← Ordio</a>
+          <span style={{ color: '#E7E9EE' }}>|</span>
+          <span style={{ fontWeight: 700, fontSize: 14 }}>Þróun milli ára — Besta deild kvenna</span>
+        </div>
+        <a href="Dashboard.html">Núverandi tímabil →</a>
+      </div>
+
+      <div style={{ maxWidth: 1160, margin: '0 auto', padding: '28px 24px 60px' }}>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 24, flexWrap: 'wrap' }}>
+          <label className="eyebrow" htmlFor="team-select">Lið</label>
+          <select
+            id="team-select"
+            className="select"
+            value={selectedTeam || ''}
+            onChange={e => setSelectedTeam(e.target.value)}
+          >
+            {teamList.map(t => <option key={t} value={t}>{t}</option>)}
+          </select>
+          {selectedTeam && (
+            <span style={{ fontSize: 12, color: '#6B7280' }}>
+              Gögn til staðar fyrir: {years.join(', ')}
+              {years.length < 4 && ' (liðið var ekki í Bestu deild öll árin)'}
+            </span>
+          )}
+        </div>
+
+        {teamSeasons.length === 0 ? (
+          <div className="card" style={{ padding: 24, color: '#6B7280' }}>Engin gögn fundust fyrir þetta lið.</div>
+        ) : (
+          <React.Fragment>
+            <div className="grid3" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16, marginBottom: 16 }}>
+              <TrendChart
+                title="Meðalaldur (mínútuvegið)"
+                labels={years}
+                series={[{ label: 'Meðalaldur', data: teamSeasons.map(s => s.agg.avgAge != null ? +s.agg.avgAge.toFixed(1) : null) }]}
+              />
+              <TrendChart
+                title="Uppeldishlutfall"
+                labels={years}
+                series={[
+                  { label: '% uppaldir leikmenn', data: teamSeasons.map(s => s.agg.hgPct) },
+                  { label: '% uppeldismínútur', data: teamSeasons.map(s => s.agg.minPct) },
+                ]}
+                suffix="%"
+              />
+              <TrendChart
+                title="U21 leikmenn í hópi"
+                labels={years}
+                series={[{ label: 'U21', data: teamSeasons.map(s => s.agg.u21) }]}
+              />
+            </div>
+
+            <div className="card" style={{ padding: 16, marginBottom: 24, overflowX: 'auto' }}>
+              <div className="eyebrow" style={{ marginBottom: 10 }}>Árangur í deild</div>
+              <table className="data-table">
+                <thead>
+                  <tr>
+                    <th>Ár</th><th className="num">Sæti</th><th className="num">Leikir</th>
+                    <th className="num">U</th><th className="num">J</th><th className="num">T</th>
+                    <th className="num">Mörk skorð</th><th className="num">Mörk fengin</th><th className="num">Markamunur</th><th className="num">Stig</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {teamSeasons.map(s => (
+                    <tr key={s.year}>
+                      <td style={{ fontWeight: 600 }}>{s.year}</td>
+                      <td className="num">{s.position != null ? `${s.position}.` : '–'}</td>
+                      <td className="num">{s.row ? s.row.P : '–'}</td>
+                      <td className="num">{s.row ? s.row.W : '–'}</td>
+                      <td className="num">{s.row ? s.row.D : '–'}</td>
+                      <td className="num">{s.row ? s.row.L : '–'}</td>
+                      <td className="num">{s.row ? s.row.GF : '–'}</td>
+                      <td className="num">{s.row ? s.row.GA : '–'}</td>
+                      <td className="num">{s.row ? (s.row.GD > 0 ? '+' + s.row.GD : s.row.GD) : '–'}</td>
+                      <td className="num" style={{ fontWeight: 700 }}>{s.row ? s.row.Pts : '–'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="card" style={{ padding: 16 }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10, flexWrap: 'wrap', gap: 10 }}>
+                <div className="eyebrow">Þróun leikmanna — {selectedTeam}</div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <span style={{ fontSize: 12, color: '#6B7280' }}>Sýna:</span>
+                  <select className="select" style={{ fontSize: 12, padding: '5px 10px' }} value={minSeasons} onChange={e => setMinSeasons(+e.target.value)}>
+                    <option value={1}>Alla leikmenn</option>
+                    <option value={2}>Léku ≥2 ár</option>
+                    <option value={3}>Léku ≥3 ár</option>
+                    <option value={4}>Léku öll árin</option>
+                  </select>
+                </div>
+              </div>
+              <div style={{ overflowX: 'auto' }}>
+                <table className="data-table">
+                  <thead>
+                    <tr>
+                      <th>Leikmaður</th>
+                      {years.map(y => <th key={y} className="num">{y}</th>)}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredPlayers.map(p => {
+                      const everHg = Object.values(p.years).some(y => y.homegrown);
+                      return (
+                        <tr key={p.id}>
+                          <td>
+                            {p.name}
+                            {everHg && <span className="hg-badge" style={{ marginLeft: 8 }}>Uppalin</span>}
+                          </td>
+                          {years.map(y => {
+                            const info = p.years[y];
+                            return (
+                              <td key={y} className="num">
+                                {info ? (
+                                  <span>
+                                    {info.mins}
+                                    <span style={{ color: '#9CA3AF', fontSize: 11 }}> ({info.age != null ? info.age + ' ára' : '–'})</span>
+                                  </span>
+                                ) : <span style={{ color: '#D1D5DB' }}>–</span>}
+                              </td>
+                            );
+                          })}
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </React.Fragment>
+        )}
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

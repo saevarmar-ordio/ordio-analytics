@@ -8,7 +8,7 @@ function AgeDistChart({ playerList, pc }) {
   const players = React.useMemo(() =>
     playerList.map(p => ({
       ...p,
-      age: pc[p.id]?.birthYear ? 2026 - pc[p.id].birthYear : null,
+      age: pc[p.id]?.birthYear ? (window.SEASON_YEAR||2026) - pc[p.id].birthYear : null,
       hg:  pc[p.id]?.homegrown || false,
     })).filter(p => p.age !== null),
   [playerList, pc]);
@@ -155,7 +155,7 @@ function TeamPlayerList({ playerList, pc, avgAge, avgAgeSt }) {
         <tbody>
           {played.map(p=>{
             const s=pc[p.id]||{};
-            const age=s.birthYear?2026-s.birthYear:null;
+            const age=s.birthYear?(window.SEASON_YEAR||2026)-s.birthYear:null;
             const pct=Math.round(p.mins/maxM*100);
             return (
               <tr key={p.id}>
@@ -184,7 +184,7 @@ function TeamPlayerList({ playerList, pc, avgAge, avgAgeSt }) {
           )}
           {benchOnly.map(p=>{
             const s=pc[p.id]||{};
-            const age=s.birthYear?2026-s.birthYear:null;
+            const age=s.birthYear?(window.SEASON_YEAR||2026)-s.birthYear:null;
             return (
               <tr key={p.id} style={{ opacity:.72 }}>
                 <td className="num" style={{ color:C.muted }}>{p.number}</td>

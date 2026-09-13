@@ -22,7 +22,7 @@ function PlayersView({ matches, pc }) {
     filter((p) => p.totalMins > 0).
     map((p) => ({
       ...p,
-      age: pc[p.id]?.birthYear ? 2026 - pc[p.id].birthYear : null,
+      age: pc[p.id]?.birthYear ? (window.SEASON_YEAR||2026) - pc[p.id].birthYear : null,
       homegrown: pc[p.id]?.homegrown || false,
       goals: ev[p.id]?.goals || 0,
       penalties: ev[p.id]?.penalties || 0,

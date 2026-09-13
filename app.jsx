@@ -250,7 +250,7 @@ function HomePage({ matches, pc, teamData, metric, onTeam }) {
   const allMins = matches.flatMap((m) => m.players).reduce((s, p) => s + p.mins, 0);
   const hgMins = matches.flatMap((m) => m.players).filter((p) => pc[p.id]?.homegrown).reduce((s, p) => s + p.mins, 0);
   const waAll = allIds.filter((id) => pc[id]?.birthYear);
-  const avgAge = waAll.length ? (waAll.reduce((s, id) => s + (2026 - pc[id].birthYear), 0) / waAll.length).toFixed(1).replace('.', ',') : '–';
+  const avgAge = waAll.length ? (waAll.reduce((s, id) => s + ((window.SEASON_YEAR||2026) - pc[id].birthYear), 0) / waAll.length).toFixed(1).replace('.', ',') : '–';
   const globalMinPct = allMins ? Math.round(hgMins / allMins * 100) : 0;
   const globalAvgHgSt = teamData.length ? (teamData.reduce((s, t) => s + t.hgStPerMatch, 0) / teamData.length).toFixed(1).replace('.', ',') : '–';
 

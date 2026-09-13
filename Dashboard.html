@@ -110,6 +110,7 @@ window.TEAMS=['Breiðablik','FH','Fram','Grindavík','ÍBV','Stjarnan','Þór','
 window.DATA_FILE='ksi_data.json';
 window.LEAGUE_TITLE=['Besta deild','kvenna 2026'];
 window.LEAGUE_KEY='kvenna';
+window.SEASON_YEAR=2026;
 window.TEAM_DISPLAY={
   'Þór':        'Þór/KA',
   'Grindavík':  'Gri/Nja',
@@ -145,20 +146,20 @@ window.teamAgg=function(matches,pc,team){
   const wa=players.filter(p=>pc[p.id]?.birthYear);
   // Minutes-weighted: age of the players actually getting time
   const waMin=wa.reduce((s,p)=>s+p.mins,0);
-  const avgAge=waMin?wa.reduce((s,p)=>s+(2026-pc[p.id].birthYear)*p.mins,0)/waMin:null;
+  const avgAge=waMin?wa.reduce((s,p)=>s+(window.SEASON_YEAR-pc[p.id].birthYear)*p.mins,0)/waMin:null;
   // Starter minutes per player
   const stMins={};
   for(const m of matches)for(const p of m.players){if(p.team===team&&p.isStarter&&p.mins>0)stMins[p.id]=(stMins[p.id]||0)+p.mins;}
   const stWa=Object.keys(stMins).filter(id=>pc[id]?.birthYear);
   const stWaMin=stWa.reduce((s,id)=>s+stMins[id],0);
-  const avgAgeSt=stWaMin?stWa.reduce((s,id)=>s+(2026-pc[id].birthYear)*stMins[id],0)/stWaMin:null;
-  const u21=players.filter(p=>pc[p.id]?.birthYear&&(2026-pc[p.id].birthYear)<21);
+  const avgAgeSt=stWaMin?stWa.reduce((s,id)=>s+(window.SEASON_YEAR-pc[id].birthYear)*stMins[id],0)/stWaMin:null;
+  const u21=players.filter(p=>pc[p.id]?.birthYear&&(window.SEASON_YEAR-pc[p.id].birthYear)<21);
   const u21active=u21.filter(p=>p.mins>90);
   const teamMatches=matches.filter(m=>m.homeTeam===team||m.awayTeam===team);
   const maxMins=teamMatches.length*90;
   const corePlayers=players.filter(p=>p.mins>maxMins*0.5);
   const top11=players.slice(0,11);
-  const t11a=top11.filter(p=>pc[p.id]?.birthYear).map(p=>2026-pc[p.id].birthYear);
+  const t11a=top11.filter(p=>pc[p.id]?.birthYear).map(p=>window.SEASON_YEAR-pc[p.id].birthYear);
   const coreAge=t11a.length?t11a.reduce((s,a)=>s+a,0)/t11a.length:null;
   let hgStSum=0,matchCt=0;
   for(const m of matches.filter(m=>m.homeTeam===team||m.awayTeam===team)){
@@ -184,9 +185,9 @@ window.matchTeamStats=function(match,team,pc){
   const hg=played.filter(p=>pc[p.id]?.homegrown);
   const hgMins=hg.reduce((s,p)=>s+p.mins,0);
   const wa=played.filter(p=>pc[p.id]?.birthYear);
-  const avgAge=wa.length?wa.reduce((s,p)=>s+(2026-pc[p.id].birthYear),0)/wa.length:null;
+  const avgAge=wa.length?wa.reduce((s,p)=>s+(window.SEASON_YEAR-pc[p.id].birthYear),0)/wa.length:null;
   const stWa=starters.filter(p=>pc[p.id]?.birthYear);
-  const avgAgeSt=stWa.length?stWa.reduce((s,p)=>s+(2026-pc[p.id].birthYear),0)/stWa.length:null;
+  const avgAgeSt=stWa.length?stWa.reduce((s,p)=>s+(window.SEASON_YEAR-pc[p.id].birthYear),0)/stWa.length:null;
   const hgSt=starters.filter(p=>pc[p.id]?.homegrown);
   return{played,starters,bench,avgAge,avgAgeSt,hgCount:hg.length,
     hgPct:played.length?Math.round(hg.length/played.length*100):0,

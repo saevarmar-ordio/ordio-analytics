@@ -14,7 +14,7 @@ function RoundSummary({ matches, pc, metric }) {
       if (pc[p.id]?.homegrown) hgM += p.mins;
     }
     const wa = played.filter(p => pc[p.id]?.birthYear);
-    const avgAge = wa.length ? wa.reduce((s,p) => s+(2026-pc[p.id].birthYear), 0) / wa.length : null;
+    const avgAge = wa.length ? wa.reduce((s,p) => s+((window.SEASON_YEAR||2026)-pc[p.id].birthYear), 0) / wa.length : null;
     const hgCount = played.filter(p => pc[p.id]?.homegrown).length;
     return {
       n: r.n, label: r.label, played: played.length,
@@ -282,7 +282,7 @@ function EventBadges({ ev }) {
 /* ── PLAYER ROW (match detail) ──────────────────────────── */
 function PlayerRow({ p, pc, ev }) {
   const s = pc[p.id] || {};
-  const age = s.birthYear ? 2026 - s.birthYear : null;
+  const age = s.birthYear ? (window.SEASON_YEAR||2026) - s.birthYear : null;
   return (
     <tr>
       <td className="num" style={{ width:32, color:C.muted, fontSize:11 }}>{p.number}</td>
@@ -321,7 +321,7 @@ function TeamBlock({ match, team, pc, onTeam, metric }) {
 
   // Average ages
   const avgAgeOf = list => {
-    const ages = list.map(p => pc[p.id]?.birthYear ? 2026 - pc[p.id].birthYear : null).filter(a => a!=null);
+    const ages = list.map(p => pc[p.id]?.birthYear ? (window.SEASON_YEAR||2026) - pc[p.id].birthYear : null).filter(a => a!=null);
     return ages.length ? (ages.reduce((s,a)=>s+a,0)/ages.length) : null;
   };
   const benchPlayed = bench.filter(p => p.mins > 0);

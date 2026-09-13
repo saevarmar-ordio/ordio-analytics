@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lengjudeild kvenna 2026 — Greining</title>
+<title>Besta deild kvenna 2025 — Greining</title>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0BYTJH1PPX"></script>
 <script>
@@ -21,28 +21,71 @@
 html{height:100%}
 body{font-family:'Inter',sans-serif;color:#111827;font-size:14px;line-height:1.5;height:100%;overflow:hidden}
 #root{height:100%;display:flex}
+
+/* ── DATA TABLES ─────────────────────────────────── */
 .data-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
-.data-table thead th{padding:9px 12px;font-family:'Inter',sans-serif;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#6B7280;background:#F9FAFB;border-bottom:1px solid #E7E9EE;white-space:nowrap;cursor:pointer;user-select:none;transition:color .12s}
+.data-table thead th{
+  padding:9px 12px;
+  font-family:'Inter',sans-serif;font-size:10px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.06em;color:#6B7280;
+  background:#F9FAFB;border-bottom:1px solid #E7E9EE;
+  white-space:nowrap;cursor:pointer;user-select:none;
+  transition:color .12s;
+}
 .data-table thead th:hover{color:#111827}
-.data-table td{padding:9px 12px;border-bottom:1px solid #E7E9EE;font-size:13px;vertical-align:middle;color:#111827}
+.data-table td{
+  padding:9px 12px;border-bottom:1px solid #E7E9EE;
+  font-size:13px;vertical-align:middle;color:#111827;
+}
 .data-table tbody tr:hover td{background:#F4F5F7;cursor:pointer}
 .data-table tbody tr:last-child td{border-bottom:none}
-.data-table th.num,.data-table td.num{text-align:right}
+.data-table th.num,.data-table td.num{
+  text-align:right
+}
 .data-table th.sorted-asc::after{content:' ↑';color:#F97316}
 .data-table th.sorted-desc::after{content:' ↓';color:#F97316}
-.card{background:#fff;border:1px solid #E7E9EE;box-shadow:0 1px 3px rgba(15,23,42,.06),0 1px 2px rgba(15,23,42,.04)}
+
+/* ── CARD ────────────────────────────────────────── */
+.card{
+  background:#fff;border:1px solid #E7E9EE;
+  box-shadow:0 1px 3px rgba(15,23,42,.06),0 1px 2px rgba(15,23,42,.04);
+}
+
+/* ── SCROLLBARS ──────────────────────────────────── */
 ::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
 aside::-webkit-scrollbar{width:0}
+
+/* ── ANIMATIONS ──────────────────────────────────── */
 .fade-in{animation:fadeSlide .2s ease both}
-@keyframes fadeSlide{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.nav-item{display:flex;align-items:center;justify-content:space-between;width:100%;padding:9px 12px;background:none;border:none;border-left:2px solid transparent;cursor:pointer;text-align:left;border-radius:0 6px 6px 0;margin-bottom:2px;transition:background .15s,border-color .15s}
+@keyframes fadeSlide{
+  from{opacity:0;transform:translateY(6px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ── SIDEBAR NAV ITEM ────────────────────────────── */
+.nav-item{
+  display:flex;align-items:center;justify-content:space-between;
+  width:100%;padding:9px 12px;
+  background:none;border:none;
+  border-left:2px solid transparent;
+  cursor:pointer;text-align:left;
+  border-radius:0 6px 6px 0;
+  margin-bottom:2px;
+  transition:background .15s,border-color .15s;
+}
 .nav-item:hover{background:rgba(255,255,255,.06)}
-.nav-item.active{background:rgba(249,115,22,.14);border-left-color:#F97316}
+.nav-item.active{
+  background:rgba(249,115,22,.14);
+  border-left-color:#F97316;
+}
+/* ── CONTENT PADDING ────────────────────────────── */
 .main-content{padding:28px 32px}
 .main-content--compact{padding:20px 24px}
+/* ── TABLE SCROLL ───────────────────────────────── */
 .tbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+/* ── MOBILE NAV ─────────────────────────────────── */
 .mobile-nav{display:none}
 .mobile-header{display:none}
 @media(max-width:768px){
@@ -62,36 +105,48 @@ aside::-webkit-scrollbar{width:0}
 </div>
 
 <script>
-/* ── CONFIG — LENGJUDEILD KVENNA ─────────────────────────── */
-window.DATA_FILE   = 'ksi_lengjudeild_kvenna_data.json';
-window.LEAGUE_TITLE= ['Lengjudeild','kvenna 2026'];
-window.LEAGUE_KEY  = 'lengju_kvenna';
-window.SEASON_YEAR = 2026;
-
-window.TEAMS=['FHL','Grótta','HK','Haukar','KR','Keflavík','Selfoss','Tindastóll','Völsungur','ÍA'];
-window.ROUNDS=[
-  {label:'1. umferð',n:1,ids:['7050800','7050801','7050802','7050803','7050804']},
-  {label:'2. umferð',n:2,ids:['7050805','7050806','7050807','7050808','7050809']},
-  {label:'3. umferð',n:3,ids:['7050810','7050811','7050812','7050813','7050814']},
-  {label:'4. umferð',n:4,ids:['7050815','7050816','7050817','7050818','7050819']},
-  {label:'5. umferð',n:5,ids:['7050820','7050821','7050822','7050823','7050824']},
-  {label:'6. umferð',n:6,ids:['7050825','7050826','7050827','7050828','7050829']},
-  {label:'7. umferð',n:7,ids:['7050830','7050831','7050832','7050833','7050834']},
-  {label:'8. umferð',n:8,ids:['7050835','7050836','7050837','7050838','7050839']},
-  {label:'9. umferð',n:9,ids:['7050840','7050841','7050842','7050843','7050844']},
-  {label:'10. umferð',n:10,ids:['7050845','7050846','7050847','7050848','7050849']},
-  {label:'11. umferð',n:11,ids:['7050850','7050851','7050852','7050853','7050854']},
-  {label:'12. umferð',n:12,ids:['7050855','7050856','7050857','7050858','7050859']},
-  {label:'13. umferð',n:13,ids:['7050860','7050861','7050862','7050863','7050864']},
-  {label:'14. umferð',n:14,ids:['7050865','7050866','7050867','7050868','7050869']},
-  {label:'15. umferð',n:15,ids:['7050870','7050871','7050872','7050873','7050874']},
-  {label:'16. umferð',n:16,ids:['7050875','7050876','7050877','7050878','7050879']},
-  {label:'17. umferð',n:17,ids:['7050880','7050881','7050882','7050883','7050884']},
-];
+/* ── CONFIG — BESTA DEILD KVENNA 2025 ─────────────── */
+window.TEAMS=['Breiðablik','FH','Fram','Höttur','Stjarnan','Tindastóll','Valur','Víkingur R.','Þróttur R.','Þór'];
+window.DATA_FILE='ksi_data_2025.json';
+window.LEAGUE_TITLE=['Besta deild','kvenna 2025'];
+window.LEAGUE_KEY='kvenna_2025';
+window.SEASON_YEAR=2025;
 window.TEAM_DISPLAY={
+  'Þór':        'Þór/KA',
+  'Þróttur R.': 'Þróttur',
+  'Víkingur R.':'Víkingur',
 };
+window.td=function(name){return TEAM_DISPLAY[name]||name;};
+window.ROUNDS=[
+  {label:'1. umferð',n:1,ids:['631478','766011','768158','653656','686016']},
+  {label:'2. umferð',n:2,ids:['715882','725780','738889','766026','768211']},
+  {label:'3. umferð',n:3,ids:['624369','653654','768166','686010','631479']},
+  {label:'4. umferð',n:4,ids:['631487','768628','715883','740410','766128']},
+  {label:'5. umferð',n:5,ids:['653604','725779','768136','686004','624368']},
+  {label:'6. umferð',n:6,ids:['631488','766014','740549','768627','686001']},
+  {label:'7. umferð',n:7,ids:['768626','768156','624367','715889','725778']},
+  {label:'8. umferð',n:8,ids:['653596','685993','631491','768625','766156']},
+  {label:'9. umferð',n:9,ids:['725777','768143','740921','715890','624365']},
+  {label:'10. umferð',n:10,ids:['725776','768624','741320','624364','715893']},
+  {label:'11. umferð',n:11,ids:['653580','768124','631507','624363','685982']},
+  {label:'12. umferð',n:12,ids:['715896','741623','768623','766139','725775']},
+  {label:'13. umferð',n:13,ids:['624360','685976','725774','768137','653579']},
+  {label:'14. umferð',n:14,ids:['766140','768622','715902','741874','631569']},
+  {label:'15. umferð',n:15,ids:['768142','624359','653573','769519','715950']},
+  {label:'16. umferð',n:16,ids:['653571','685969','631645','741826','766142']},
+  {label:'17. umferð',n:17,ids:['624355','715959','741821','768174','769514']},
+  {label:'18. umferð',n:18,ids:['631699','653546','685963','766144','768621']},
+  {label:'Úrslitakeppni - Efri hluti - 1. umferð',n:19,ids:['624235','631864','766037']},
+  {label:'Úrslitakeppni - Efri hluti - 2. umferð',n:20,ids:['685551','766038','740647']},
+  {label:'Úrslitakeppni - Efri hluti - 3. umferð',n:21,ids:['631539','624220','768103']},
+  {label:'Úrslitakeppni - Efri hluti - 4. umferð',n:22,ids:['624219','740604','768105']},
+  {label:'Úrslitakeppni - Efri hluti - 5. umferð',n:23,ids:['631866','685543','766051']},
+  {label:'Úrslitakeppni - Neðri hluti - 1. umferð',n:24,ids:['716309','768516']},
+  {label:'Úrslitakeppni - Neðri hluti - 2. umferð',n:25,ids:['768515','725766']},
+  {label:'Úrslitakeppni - Neðri hluti - 3. umferð',n:26,ids:['716302','653224']},
+];
 
-/* ── DATA UTILS (identical to other dashboards) ──────────── */
+/* ── DATA UTILS ──────────────────────────────────── */
 window.teamAgg=function(matches,pc,team){
   const pmap={};let totalMins=0,hgMins=0;
   for(const m of matches){for(const p of m.players){
@@ -138,6 +193,7 @@ window.teamAgg=function(matches,pc,team){
     u21:u21.length,u21active:u21active.length,corePlayers:corePlayers.length,
     totalMins,hgMins,teamMatches,maxMins};
 };
+
 window.matchTeamStats=function(match,team,pc){
   const played=match.players.filter(p=>p.team===team&&p.mins>0);
   const starters=match.players.filter(p=>p.team===team&&p.isStarter);
@@ -156,12 +212,14 @@ window.matchTeamStats=function(match,team,pc){
     hgStCount:hgSt.length,hgStPct:starters.length?Math.round(hgSt.length/starters.length*100):0,
     totalMins,hgMins};
 };
+
 window.getRound=function(matchId){return ROUNDS.find(r=>r.ids.includes(matchId));};
 window.fn=function(v,d=1){if(v===null||v===undefined)return'–';return(+v).toFixed(d).replace('.',',');};
 window.pctCol=function(pct){return pct>=50?'#16A34A':pct>=30?'#D97706':'#E05A5A';};
-window.td=function(name){return TEAM_DISPLAY[name]||name;};
+window.td=window.td||function(name){return (window.TEAM_DISPLAY||{})[name]||name;};
 
 /* ── RESULTS / EVENTS UTILS ──────────────────────────────── */
+// Full standings table computed from match scores
 window.computeStandings=function(matches){
   const t={};
   for(const team of TEAMS) t[team]={team,P:0,W:0,D:0,L:0,GF:0,GA:0,GD:0,Pts:0};
@@ -180,6 +238,8 @@ window.computeStandings=function(matches){
   return Object.values(t).sort((x,y)=>
     y.Pts-x.Pts || y.GD-x.GD || y.GF-x.GF || x.team.localeCompare(y.team,'is'));
 };
+
+// Aggregate goals + cards for a team across all matches
 window.teamResults=function(matches,team){
   let pts=0,gf=0,ga=0,yc=0,rc=0,w=0,d=0,l=0,p=0;
   for(const m of matches){
@@ -200,6 +260,8 @@ window.teamResults=function(matches,team){
   }
   return {pts,gf,ga,gd:gf-ga,yc,rc,w,d,l,played:p};
 };
+
+// Per-player goals + cards across all matches
 window.playerEvents=function(matches){
   const map={};
   const ensure=id=>{ if(!map[id]) map[id]={goals:0,penalties:0,ownGoals:0,yellow:0,red:0}; return map[id]; };
