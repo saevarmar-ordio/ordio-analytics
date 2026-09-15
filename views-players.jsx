@@ -1,5 +1,43 @@
 /* views-players.jsx — PlayersView */
-const { useState: useStateP, useMemo: useMemoP } = React;
+const { useState: useStateP, useMemo: useMemoP, useEffect: useEffectP } = React;
+
+/* normalise a name/club for contract lookup */
+function normContractKey(s) {
+  return (s || '').toString().trim().toLowerCase().replace(/\s+/g, ' ');
+}
+
+/* look up a player's contract record: name+club match first, then name-only fallback */
+function resolveContract(contracts, name, team) {
+  if (!contracts) return null;
+  const key = normContractKey(name) + '|||' + normContractKey(team);
+  if (contracts.byNameClub[key]) return contracts.byNameClub[key];
+  const nameOnly = contracts.byName[normContractKey(name)];
+  return nameOnly || null;
+}
+
+/* ── CONTRACT BADGE (end date + days remaining) ─────────── */
+function ContractCell({ rec }) {
+  if (!rec) return <span style={{ color: C.border, fontFamily: MONO, fontSize: 12 }}>–</span>;
+  const d = new Date(rec.til + 'T00:00:00');
+  const dd = String(d.getDate()).padStart(2, '0');
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  return (
+    <span style={{ fontFamily: MONO, fontSize: 12, color: C.text }}>
+      {dd}.{mm}.{d.getFullYear()}
+      {rec.loan && <span style={{ marginLeft: 5, fontSize: 9, color: C.orange, fontWeight: 600 }} title="Lánssamningur">L</span>}
+    </span>
+  );
+}
+
+function DaysLeftCell({ rec }) {
+  if (!rec) return <span style={{ color: C.border, fontFamily: MONO, fontSize: 12 }}>–</span>;
+  const d = new Date(rec.til + 'T00:00:00');
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const days = Math.round((d - today) / 86400000);
+  if (days < 0) return <span style={{ fontFamily: MONO, fontSize: 12, color: C.red, fontWeight: 600 }}>Útrunnið</span>;
+  const color = days <= 90 ? C.red : days <= 180 ? C.amber : C.muted;
+  return <span style={{ fontFamily: MONO, fontSize: 12, color, fontWeight: days <= 90 ? 600 : 400 }}>{days}</span>;
+}
 
 function PlayersView({ matches, pc }) {
   const [search, setSearch] = useStateP('');
@@ -7,6 +45,15 @@ function PlayersView({ matches, pc }) {
   const [hgF, setHgF] = useStateP('all'); // all | yes | no
   const [sortCol, setSortCol] = useStateP('totalMins');
   const [sortDir, setSortDir] = useStateP(-1);
+  const [contracts, setContracts] = useStateP(null);
+
+  useEffectP(() => {
+    if (!window.HAS_CONTRACTS) return;
+    fetch('contracts_kvenna.json').
+    then((r) => r.ok ? r.json() : null).
+    then(setContracts).
+    catch(() => setContracts(null));
+  }, []);
 
   /* Build master player list */
   const all = useMemoP(() => {
@@ -20,17 +67,23 @@ function PlayersView({ matches, pc }) {
     }
     return Object.values(pmap).
     filter((p) => p.totalMins > 0).
-    map((p) => ({
-      ...p,
-      age: pc[p.id]?.birthYear ? (window.SEASON_YEAR||2026) - pc[p.id].birthYear : null,
-      homegrown: pc[p.id]?.homegrown || false,
-      goals: ev[p.id]?.goals || 0,
-      penalties: ev[p.id]?.penalties || 0,
-      ownGoals: ev[p.id]?.ownGoals || 0,
-      yellow: ev[p.id]?.yellow || 0,
-      red: ev[p.id]?.red || 0
-    }));
-  }, [matches, pc]);
+    map((p) => {
+      const rec = resolveContract(contracts, p.name, p.team);
+      return {
+        ...p,
+        age: pc[p.id]?.birthYear ? (window.SEASON_YEAR||2026) - pc[p.id].birthYear : null,
+        homegrown: pc[p.id]?.homegrown || false,
+        goals: ev[p.id]?.goals || 0,
+        penalties: ev[p.id]?.penalties || 0,
+        ownGoals: ev[p.id]?.ownGoals || 0,
+        yellow: ev[p.id]?.yellow || 0,
+        red: ev[p.id]?.red || 0,
+        contractTil: rec ? rec.til : null,
+        contractDaysLeft: rec ? Math.round((new Date(rec.til + 'T00:00:00') - new Date(new Date().setHours(0,0,0,0))) / 86400000) : null,
+        contractRec: rec,
+      };
+    });
+  }, [matches, pc, contracts]);
 
   function handleSort(col) {
     if (sortCol === col) setSortDir((d) => d * -1);else
@@ -119,6 +172,8 @@ function PlayersView({ matches, pc }) {
               <SortTh col="name" {...thP}>Leikmaður</SortTh>
               <SortTh col="team" {...thP}>Lið</SortTh>
               <SortTh col="age" {...thP} right>Aldur</SortTh>
+              {window.HAS_CONTRACTS && <SortTh col="contractTil" {...thP} right>Samningur til</SortTh>}
+              {window.HAS_CONTRACTS && <SortTh col="contractDaysLeft" {...thP} right sub="dagar">Rennur út</SortTh>}
               <SortTh col="totalMins" {...thP} right style={{ minWidth: 120 }}>Mínútur</SortTh>
               <SortTh col="goals" {...thP} right sub="víti / sj.m.">Mörk</SortTh>
               <SortTh col="yellow" {...thP} right>Gul</SortTh>
@@ -134,6 +189,8 @@ function PlayersView({ matches, pc }) {
                   <td style={{ fontWeight: 500 }}>{p.name}</td>
                   <td><TeamName name={p.team} bold={false} /></td>
                   <td className="num"><AgeBadge age={p.age} /></td>
+                  {window.HAS_CONTRACTS && <td className="num"><ContractCell rec={p.contractRec} /></td>}
+                  {window.HAS_CONTRACTS && <td className="num"><DaysLeftCell rec={p.contractRec} /></td>}
                   <td className="num">
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 8 }}>
                       <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 12, minWidth: 38, textAlign: 'right' }}>{p.totalMins}</span>
@@ -191,6 +248,7 @@ function PlayersView({ matches, pc }) {
         <span style={{ color: '#1d4ed8' }}>blár</span> = 21–25 &nbsp;
         <span style={{ color: C.muted }}>grár</span> = 26+
         &nbsp;·&nbsp; Mörk: <span style={{ color: C.muted }}>Nv</span> = vítaspyrnur, <span style={{ color: C.red }}>Nsj</span> = sjálfsmörk
+        {window.HAS_CONTRACTS && <><br/>Samningsupplýsingar: KSÍ samningaskrá, uppfært 14.9.2026. <span style={{ color: C.orange }}>L</span> = lánssamningur. „–" = samningur fannst ekki í skránni (t.d. vegna nafnamunar).</>}
       </div>
     </div>);
 
