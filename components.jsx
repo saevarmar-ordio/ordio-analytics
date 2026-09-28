@@ -154,6 +154,110 @@ function SortTh({ col, sortCol, sortDir, onSort, right = false, sub, children, s
   );
 }
 
+/* ── HEADER FILTER (multi-select checkbox dropdown for table headers) ──── */
+function HeaderFilter({ options, selected, onChange, align = 'left' }) {
+  const [open, setOpen] = useState(false);
+  const [pos, setPos] = useState({ top: 0, left: 0 });
+  const btnRef = React.useRef(null);
+  const panelRef = React.useRef(null);
+
+  const active = selected.size < options.length;
+
+  function openPanel(e) {
+    e.stopPropagation();
+    if (btnRef.current) {
+      const r = btnRef.current.getBoundingClientRect();
+      setPos({ top: r.bottom + 6, left: align === 'right' ? r.right : r.left });
+    }
+    setOpen((o) => !o);
+  }
+
+  React.useEffect(() => {
+    if (!open) return;
+    function onDocClick(e) {
+      if (panelRef.current && !panelRef.current.contains(e.target) && btnRef.current && !btnRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', onDocClick);
+    return () => document.removeEventListener('mousedown', onDocClick);
+  }, [open]);
+
+  function toggle(value) {
+    const next = new Set(selected);
+    if (next.has(value)) next.delete(value);else next.add(value);
+    onChange(next);
+  }
+
+  return (
+    <>
+      <span ref={btnRef} onClick={openPanel} title="Sía"
+        style={{
+          display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+          width: 16, height: 16, marginLeft: 5, borderRadius: 3, cursor: 'pointer',
+          color: active ? C.orange : C.muted,
+          background: open ? (active ? C.orangeFaint : C.surfaceAlt) : 'transparent',
+          verticalAlign: 'middle', flexShrink: 0,
+        }}>
+        <svg width="9" height="9" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0.5 1H9.5L6 5.2V8.5L4 9.5V5.2L0.5 1Z" fill="currentColor" />
+        </svg>
+      </span>
+      {open && typeof document !== 'undefined' && ReactDOM.createPortal(
+        <div ref={panelRef} onClick={(e) => e.stopPropagation()} style={{
+          position: 'fixed', top: pos.top,
+          left: align === 'right' ? undefined : pos.left,
+          right: align === 'right' ? (window.innerWidth - pos.left) : undefined,
+          background: C.surface, border: `1px solid ${C.border}`, borderRadius: 6,
+          boxShadow: '0 8px 24px rgba(15,23,42,.14)', padding: 8, minWidth: 168, zIndex: 9999,
+          fontFamily: SANS, textTransform: 'none', letterSpacing: 'normal',
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8, marginBottom: 6, paddingBottom: 6, borderBottom: `1px solid ${C.border}` }}>
+            <button onClick={() => onChange(new Set(options.map((o) => o.value)))}
+              style={{ border: 'none', background: 'none', cursor: 'pointer', color: C.orange, fontSize: 11, fontFamily: SANS, padding: 0 }}>
+              Velja allt
+            </button>
+            <button onClick={() => onChange(new Set())}
+              style={{ border: 'none', background: 'none', cursor: 'pointer', color: C.muted, fontSize: 11, fontFamily: SANS, padding: 0 }}>
+              Hreinsa
+            </button>
+          </div>
+          <div style={{ maxHeight: 260, overflowY: 'auto' }}>
+            {options.map((o) => (
+              <label key={o.value}
+                style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '4px 2px', cursor: 'pointer', fontSize: 12.5, color: C.text, fontWeight: 400 }}>
+                <input type="checkbox" checked={selected.has(o.value)} onChange={() => toggle(o.value)}
+                  style={{ accentColor: C.orange, width: 13, height: 13, cursor: 'pointer', flexShrink: 0 }} />
+                {o.color && <span style={{ width: 7, height: 7, borderRadius: '50%', background: o.color, flexShrink: 0 }} />}
+                <span>{o.label}</span>
+              </label>
+            ))}
+          </div>
+        </div>,
+        document.body
+      )}
+    </>);
+
+}
+window.HeaderFilter = HeaderFilter;
+
+/* ── SORTABLE + FILTERABLE TH ───────────────────────────── */
+function SortFilterTh({ col, sortCol, sortDir, onSort, right = false, sub, children, style = {}, filter }) {
+  const active = col === sortCol;
+  return (
+    <th onClick={() => onSort(col)}
+      className={active ? (sortDir > 0 ? 'sorted-asc' : 'sorted-desc') : ''}
+      style={{ textAlign: right ? 'right' : 'left', color: active ? C.orange : C.muted, ...style }}>
+      <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: right ? 'flex-end' : 'flex-start' }}>
+        <span>{children}</span>
+        {filter}
+      </div>
+      {sub && <div style={{ fontSize: 9, fontWeight: 400, opacity: .7, marginTop: 1, letterSpacing: '.04em' }}>{sub}</div>}
+    </th>);
+
+}
+window.SortFilterTh = SortFilterTh;
+
 /* ── BACK BTN ───────────────────────────────────────────── */
 function BackBtn({ onClick, to = 'Til baka' }) {
   const [h, setH] = useState(false);
@@ -273,4 +377,4 @@ window.TIPS = {
   quartile: 'Liturinn sýnir í hvaða fjórðungi deildarinnar liðið er eftir hlutfalli uppaldra. Mörkin eru reiknuð úr dreifingu ALLRA liða (25/50/75 hlutfallsmörk) og uppfærast eftir umferðum — svo lið færast milli lita þegar staðan breytist, í stað fastra marka. Grænt = efsti fjórðungur, rautt = neðsti.',
 };
 
-Object.assign(window, { C, DISPLAY, MONO, SANS, PageTitle, StatCard, KpiGrid, HgBar, HgDot, TeamName, SortTh, BackBtn, SecHdr, AgeBadge, RoundLabel, InfoTip });
+Object.assign(window, { C, DISPLAY, MONO, SANS, PageTitle, StatCard, KpiGrid, HgBar, HgDot, TeamName, SortTh, SortFilterTh, HeaderFilter, BackBtn, SecHdr, AgeBadge, RoundLabel, InfoTip });

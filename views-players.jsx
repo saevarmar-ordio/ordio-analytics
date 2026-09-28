@@ -39,10 +39,42 @@ function DaysLeftCell({ rec }) {
   return <span style={{ fontFamily: MONO, fontSize: 12, color, fontWeight: days <= 90 ? 600 : 400 }}>{days}</span>;
 }
 
+/* ── header-filter bucket helpers ───────────────────────── */
+function ageBucket(age) {
+  if (age == null) return 'unknown';
+  if (age < 21) return 'u21';
+  if (age <= 25) return '21-25';
+  return '26+';
+}
+function contractBucket(days) {
+  if (days == null) return 'none';
+  if (days < 0) return 'expired';
+  if (days <= 90) return 'lte90';
+  if (days <= 180) return 'lte180';
+  return 'gt180';
+}
+const AGE_OPTIONS = [
+  { value: 'u21', label: 'Undir 21', color: '#e05a5a' },
+  { value: '21-25', label: '21–25', color: '#1d4ed8' },
+  { value: '26+', label: '26+', color: '#6B7280' },
+  { value: 'unknown', label: 'Óþekkt' },
+];
+const CONTRACT_OPTIONS = [
+  { value: 'expired', label: 'Útrunnið', color: '#E05A5A' },
+  { value: 'lte90', label: '≤ 90 daga', color: '#E05A5A' },
+  { value: 'lte180', label: '91–180 daga', color: '#D97706' },
+  { value: 'gt180', label: '> 180 daga', color: '#6B7280' },
+  { value: 'none', label: 'Engin skrá' },
+];
+
 function PlayersView({ matches, pc }) {
   const [search, setSearch] = useStateP('');
-  const [teamF, setTeamF] = useStateP('');
-  const [hgF, setHgF] = useStateP('all'); // all | yes | no
+  const teamOptions = useMemoP(() => TEAMS.map((t) => ({ value: t, label: td(t) })), []);
+  const hgOptions = useMemoP(() => [{ value: 'yes', label: HGADJ, color: C.orange }, { value: 'no', label: 'Ekki ' + HGADJ_LC }], []);
+  const [teamSel, setTeamSel] = useStateP(() => new Set(TEAMS));
+  const [ageSel, setAgeSel] = useStateP(() => new Set(AGE_OPTIONS.map((o) => o.value)));
+  const [contractSel, setContractSel] = useStateP(() => new Set(CONTRACT_OPTIONS.map((o) => o.value)));
+  const [hgSel, setHgSel] = useStateP(() => new Set(['yes', 'no']));
   const [sortCol, setSortCol] = useStateP('totalMins');
   const [sortDir, setSortDir] = useStateP(-1);
   const [contracts, setContracts] = useStateP(null);
@@ -93,9 +125,10 @@ function PlayersView({ matches, pc }) {
   const visible = useMemoP(() => {
     let rows = [...all];
     if (search) rows = rows.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()));
-    if (teamF) rows = rows.filter((p) => p.team === teamF);
-    if (hgF === 'yes') rows = rows.filter((p) => p.homegrown);
-    if (hgF === 'no') rows = rows.filter((p) => !p.homegrown);
+    if (teamSel.size < TEAMS.length) rows = rows.filter((p) => teamSel.has(p.team));
+    if (ageSel.size < AGE_OPTIONS.length) rows = rows.filter((p) => ageSel.has(ageBucket(p.age)));
+    if (window.HAS_CONTRACTS && contractSel.size < CONTRACT_OPTIONS.length) rows = rows.filter((p) => contractSel.has(contractBucket(p.contractDaysLeft)));
+    if (hgSel.size < 2) rows = rows.filter((p) => hgSel.has(p.homegrown ? 'yes' : 'no'));
     rows.sort((a, b) => {
       let av = a[sortCol],bv = b[sortCol];
       if (av === null || av === undefined) av = sortDir > 0 ? Infinity : -Infinity;
@@ -104,7 +137,7 @@ function PlayersView({ matches, pc }) {
       return sortDir * (av - bv);
     });
     return rows;
-  }, [all, search, teamF, hgF, sortCol, sortDir]);
+  }, [all, search, teamSel, ageSel, contractSel, hgSel, sortCol, sortDir]);
 
   const maxMins = useMemoP(() => Math.max(...all.map((p) => p.totalMins), 1), [all]);
 
@@ -124,9 +157,19 @@ function PlayersView({ matches, pc }) {
   const hgCountAll = all.filter((p) => p.homegrown).length;
   const hgCountShown = visible.filter((p) => p.homegrown).length;
 
+  const anyFilterActive = teamSel.size < TEAMS.length || ageSel.size < AGE_OPTIONS.length ||
+  (window.HAS_CONTRACTS && contractSel.size < CONTRACT_OPTIONS.length) || hgSel.size < 2;
+
+  function resetFilters() {
+    setTeamSel(new Set(TEAMS));
+    setAgeSel(new Set(AGE_OPTIONS.map((o) => o.value)));
+    setContractSel(new Set(CONTRACT_OPTIONS.map((o) => o.value)));
+    setHgSel(new Set(['yes', 'no']));
+  }
+
   return (
     <div className="fade-in">
-      <PageTitle sub={`${all.length} leikmenn — leit, röðun og síun`}>Leikmannayfirlit</PageTitle>
+      <PageTitle sub={`${all.length} leikmenn — leit, röðun og síun (síur í dálkahausum)`}>Leikmannayfirlit</PageTitle>
       {/* Filter bar */}
       <div style={{ display: 'flex', gap: 10, marginBottom: 18, alignItems: 'center', flexWrap: 'wrap' }}>
         <input
@@ -137,26 +180,17 @@ function PlayersView({ matches, pc }) {
           style={{ ...inputStyle, width: 220 }}
           onFocus={(e) => e.target.style.borderColor = C.orange}
           onBlur={(e) => e.target.style.borderColor = C.border} />
-        
-        <select value={teamF} onChange={(e) => setTeamF(e.target.value)} style={{ ...inputStyle, cursor: 'pointer' }}>
-          <option value="">Öll lið</option>
-          {TEAMS.map((t) => <option key={t} value={t}>{td(t)}</option>)}
-        </select>
-        {/* Homegrown filter buttons */}
-        <div style={{ display: 'flex', gap: 0, border: `1px solid ${C.border}` }}>
-          {[['all', 'Allir'], ['yes', HGADJ], ['no', 'Aðrir']].map(([v, l]) =>
-          <button key={v} onClick={() => setHgF(v)}
+
+        {anyFilterActive &&
+        <button onClick={resetFilters}
           style={{
-            padding: '7px 12px', border: 'none', cursor: 'pointer',
-            fontFamily: "'Inter',sans-serif", fontSize: 11,
-            background: hgF === v ? C.orange : C.surface,
-            color: hgF === v ? '#fff' : C.muted,
-            borderRight: v !== 'no' ? `1px solid ${C.border}` : 'none',
-            transition: 'background .15s, color .15s'
+            padding: '7px 12px', border: `1px solid ${C.border}`, cursor: 'pointer',
+            fontFamily: "'Inter',sans-serif", fontSize: 11, background: C.surface, color: C.orange
           }}>
-            {l}</button>
-          )}
-        </div>
+            Hreinsa síur
+          </button>
+        }
+
         <div style={{ marginLeft: 'auto', fontFamily: "'Inter',sans-serif", fontSize: 11, color: C.muted }}>
           {visible.length} leikmenn &nbsp;·&nbsp;
           <span style={{ color: C.orange }}>{hgCountShown} {HGADJ_LC}</span>
@@ -170,15 +204,29 @@ function PlayersView({ matches, pc }) {
           <thead>
             <tr>
               <SortTh col="name" {...thP}>Leikmaður</SortTh>
-              <SortTh col="team" {...thP}>Lið</SortTh>
-              <SortTh col="age" {...thP} right>Aldur</SortTh>
+              <SortFilterTh col="team" {...thP}
+                filter={<HeaderFilter options={teamOptions} selected={teamSel} onChange={setTeamSel} />}>
+                Lið
+              </SortFilterTh>
+              <SortFilterTh col="age" {...thP} right
+                filter={<HeaderFilter options={AGE_OPTIONS} selected={ageSel} onChange={setAgeSel} align="right" />}>
+                Aldur
+              </SortFilterTh>
               {window.HAS_CONTRACTS && <SortTh col="contractTil" {...thP} right>Samningur til</SortTh>}
-              {window.HAS_CONTRACTS && <SortTh col="contractDaysLeft" {...thP} right sub="dagar">Rennur út</SortTh>}
+              {window.HAS_CONTRACTS &&
+              <SortFilterTh col="contractDaysLeft" {...thP} right sub="dagar"
+                filter={<HeaderFilter options={CONTRACT_OPTIONS} selected={contractSel} onChange={setContractSel} align="right" />}>
+                  Rennur út
+                </SortFilterTh>
+              }
               <SortTh col="totalMins" {...thP} right style={{ minWidth: 120 }}>Mínútur</SortTh>
               <SortTh col="goals" {...thP} right sub="víti / sj.m.">Mörk</SortTh>
               <SortTh col="yellow" {...thP} right>Gul</SortTh>
               <SortTh col="red" {...thP} right>Rauð</SortTh>
-              <SortTh col="homegrown" {...thP} style={{ textAlign: 'center' }}>{HGSING}</SortTh>
+              <SortFilterTh col="homegrown" {...thP} style={{ textAlign: 'center' }}
+                filter={<HeaderFilter options={hgOptions} selected={hgSel} onChange={setHgSel} align="right" />}>
+                {HGSING}
+              </SortFilterTh>
             </tr>
           </thead>
           <tbody>
