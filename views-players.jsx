@@ -42,9 +42,11 @@ function DaysLeftCell({ rec }) {
 /* ── header-filter bucket helpers ───────────────────────── */
 function ageBucket(age) {
   if (age == null) return 'unknown';
-  if (age < 21) return 'u21';
-  if (age <= 25) return '21-25';
-  return '26+';
+  if (age <= 18) return 'u18';
+  if (age <= 21) return '19-21';
+  if (age <= 25) return '22-25';
+  if (age <= 29) return '26-29';
+  return '30+';
 }
 function contractBucket(days) {
   if (days == null) return 'none';
@@ -53,10 +55,26 @@ function contractBucket(days) {
   if (days <= 180) return 'lte180';
   return 'gt180';
 }
+function minsBucket(mins) {
+  if (mins < 180) return '0-179';
+  if (mins < 450) return '180-449';
+  if (mins < 900) return '450-899';
+  if (mins < 1500) return '900-1499';
+  return '1500+';
+}
+function goalsBucket(goals) {
+  if (goals === 0) return '0';
+  if (goals <= 2) return '1-2';
+  if (goals <= 5) return '3-5';
+  if (goals <= 10) return '6-10';
+  return '11+';
+}
 const AGE_OPTIONS = [
-  { value: 'u21', label: 'Undir 21', color: '#e05a5a' },
-  { value: '21-25', label: '21–25', color: '#1d4ed8' },
-  { value: '26+', label: '26+', color: '#6B7280' },
+  { value: 'u18', label: '18 og undir', color: '#e05a5a' },
+  { value: '19-21', label: '19–21', color: '#e05a5a' },
+  { value: '22-25', label: '22–25', color: '#1d4ed8' },
+  { value: '26-29', label: '26–29', color: '#6B7280' },
+  { value: '30+', label: '30+', color: '#6B7280' },
   { value: 'unknown', label: 'Óþekkt' },
 ];
 const CONTRACT_OPTIONS = [
@@ -66,6 +84,20 @@ const CONTRACT_OPTIONS = [
   { value: 'gt180', label: '> 180 daga', color: '#6B7280' },
   { value: 'none', label: 'Engin skrá' },
 ];
+const MINS_OPTIONS = [
+  { value: '0-179', label: '< 180 mín' },
+  { value: '180-449', label: '180–449 mín' },
+  { value: '450-899', label: '450–899 mín' },
+  { value: '900-1499', label: '900–1499 mín' },
+  { value: '1500+', label: '1500+ mín' },
+];
+const GOALS_OPTIONS = [
+  { value: '0', label: '0 mörk' },
+  { value: '1-2', label: '1–2 mörk' },
+  { value: '3-5', label: '3–5 mörk' },
+  { value: '6-10', label: '6–10 mörk' },
+  { value: '11+', label: '11+ mörk' },
+];
 
 function PlayersView({ matches, pc }) {
   const [search, setSearch] = useStateP('');
@@ -74,6 +106,8 @@ function PlayersView({ matches, pc }) {
   const [teamSel, setTeamSel] = useStateP(() => new Set(TEAMS));
   const [ageSel, setAgeSel] = useStateP(() => new Set(AGE_OPTIONS.map((o) => o.value)));
   const [contractSel, setContractSel] = useStateP(() => new Set(CONTRACT_OPTIONS.map((o) => o.value)));
+  const [minsSel, setMinsSel] = useStateP(() => new Set(MINS_OPTIONS.map((o) => o.value)));
+  const [goalsSel, setGoalsSel] = useStateP(() => new Set(GOALS_OPTIONS.map((o) => o.value)));
   const [hgSel, setHgSel] = useStateP(() => new Set(['yes', 'no']));
   const [sortCol, setSortCol] = useStateP('totalMins');
   const [sortDir, setSortDir] = useStateP(-1);
@@ -128,6 +162,8 @@ function PlayersView({ matches, pc }) {
     if (teamSel.size < TEAMS.length) rows = rows.filter((p) => teamSel.has(p.team));
     if (ageSel.size < AGE_OPTIONS.length) rows = rows.filter((p) => ageSel.has(ageBucket(p.age)));
     if (window.HAS_CONTRACTS && contractSel.size < CONTRACT_OPTIONS.length) rows = rows.filter((p) => contractSel.has(contractBucket(p.contractDaysLeft)));
+    if (minsSel.size < MINS_OPTIONS.length) rows = rows.filter((p) => minsSel.has(minsBucket(p.totalMins)));
+    if (goalsSel.size < GOALS_OPTIONS.length) rows = rows.filter((p) => goalsSel.has(goalsBucket(p.goals)));
     if (hgSel.size < 2) rows = rows.filter((p) => hgSel.has(p.homegrown ? 'yes' : 'no'));
     rows.sort((a, b) => {
       let av = a[sortCol],bv = b[sortCol];
@@ -137,7 +173,7 @@ function PlayersView({ matches, pc }) {
       return sortDir * (av - bv);
     });
     return rows;
-  }, [all, search, teamSel, ageSel, contractSel, hgSel, sortCol, sortDir]);
+  }, [all, search, teamSel, ageSel, contractSel, minsSel, goalsSel, hgSel, sortCol, sortDir]);
 
   const maxMins = useMemoP(() => Math.max(...all.map((p) => p.totalMins), 1), [all]);
 
@@ -158,12 +194,15 @@ function PlayersView({ matches, pc }) {
   const hgCountShown = visible.filter((p) => p.homegrown).length;
 
   const anyFilterActive = teamSel.size < TEAMS.length || ageSel.size < AGE_OPTIONS.length ||
-  (window.HAS_CONTRACTS && contractSel.size < CONTRACT_OPTIONS.length) || hgSel.size < 2;
+  (window.HAS_CONTRACTS && contractSel.size < CONTRACT_OPTIONS.length) ||
+  minsSel.size < MINS_OPTIONS.length || goalsSel.size < GOALS_OPTIONS.length || hgSel.size < 2;
 
   function resetFilters() {
     setTeamSel(new Set(TEAMS));
     setAgeSel(new Set(AGE_OPTIONS.map((o) => o.value)));
     setContractSel(new Set(CONTRACT_OPTIONS.map((o) => o.value)));
+    setMinsSel(new Set(MINS_OPTIONS.map((o) => o.value)));
+    setGoalsSel(new Set(GOALS_OPTIONS.map((o) => o.value)));
     setHgSel(new Set(['yes', 'no']));
   }
 
@@ -219,8 +258,14 @@ function PlayersView({ matches, pc }) {
                   Rennur út
                 </SortFilterTh>
               }
-              <SortTh col="totalMins" {...thP} right style={{ minWidth: 120 }}>Mínútur</SortTh>
-              <SortTh col="goals" {...thP} right sub="víti / sj.m.">Mörk</SortTh>
+              <SortFilterTh col="totalMins" {...thP} right style={{ minWidth: 120 }}
+                filter={<HeaderFilter options={MINS_OPTIONS} selected={minsSel} onChange={setMinsSel} align="right" />}>
+                Mínútur
+              </SortFilterTh>
+              <SortFilterTh col="goals" {...thP} right sub="víti / sj.m."
+                filter={<HeaderFilter options={GOALS_OPTIONS} selected={goalsSel} onChange={setGoalsSel} align="right" />}>
+                Mörk
+              </SortFilterTh>
               <SortTh col="yellow" {...thP} right>Gul</SortTh>
               <SortTh col="red" {...thP} right>Rauð</SortTh>
               <SortFilterTh col="homegrown" {...thP} style={{ textAlign: 'center' }}
