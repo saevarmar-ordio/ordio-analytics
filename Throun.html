@@ -265,7 +265,10 @@ function App() {
           <span style={{ color: '#E7E9EE' }}>|</span>
           <span style={{ fontWeight: 700, fontSize: 14 }}>Þróun milli ára — Besta deild kvenna</span>
         </div>
-        <a href="Dashboard.html">Núverandi tímabil →</a>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+          <a href="Yfirlit.html">Öll lið →</a>
+          <a href="Dashboard.html">Núverandi tímabil →</a>
+        </div>
       </div>
 
       <div style={{ maxWidth: 1160, margin: '0 auto', padding: '28px 24px 60px' }}>
@@ -292,19 +295,22 @@ function App() {
           <div className="card" style={{ padding: 24, color: '#6B7280' }}>Engin gögn fundust fyrir þetta lið.</div>
         ) : (
           <React.Fragment>
-            <div className="grid3" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16, marginBottom: 16 }}>
+            <div className="grid3" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+              <TrendChart
+                title="Hlutfall mínútna — uppaldar (aðalmælikvarði)"
+                labels={years}
+                series={[{ label: '% mínútna uppaldra', data: teamSeasons.map(s => s.agg.minPct) }]}
+                suffix="%"
+              />
               <TrendChart
                 title="Meðalaldur (mínútuvegið)"
                 labels={years}
                 series={[{ label: 'Meðalaldur', data: teamSeasons.map(s => s.agg.avgAge != null ? +s.agg.avgAge.toFixed(1) : null) }]}
               />
               <TrendChart
-                title="Uppeldishlutfall"
+                title="Uppeldishlutfall (% leikmanna)"
                 labels={years}
-                series={[
-                  { label: '% uppaldir leikmenn', data: teamSeasons.map(s => s.agg.hgPct) },
-                  { label: '% uppeldismínútur', data: teamSeasons.map(s => s.agg.minPct) },
-                ]}
+                series={[{ label: '% uppaldir leikmenn', data: teamSeasons.map(s => s.agg.hgPct) }]}
                 suffix="%"
               />
               <TrendChart

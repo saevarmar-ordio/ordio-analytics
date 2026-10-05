@@ -115,10 +115,15 @@ function teamKPIs(matches, pc, team, seasonYear) {
   const startWeight = starters.reduce((s, p) => s + p.starts, 0);
   const avgAgeXI = startWeight ? starters.reduce((s, p) => s + p.age * p.starts, 0) / startWeight : null;
 
-  return { avgAge, hgPct, avgAgeXI, hgCount };
+  const totalMins = players.reduce((s, p) => s + p.mins, 0);
+  const hgMins = players.filter(p => p.homegrown).reduce((s, p) => s + p.mins, 0);
+  const minPct = totalMins ? Math.round(hgMins / totalMins * 100) : null;
+
+  return { avgAge, hgPct, avgAgeXI, hgCount, minPct };
 }
 
 const KPI_DEFS = [
+  { key: 'minPct', label: 'Hlutfall mínútna — uppaldar (aðalmælikvarði)', fmt: v => v == null ? '–' : v + '%', suffix: '%', short: 'Mínútur uppaldra' },
   { key: 'avgAge', label: 'Meðalaldur (allur hópur)', fmt: v => v == null ? '–' : v.toFixed(1).replace('.', ','), suffix: '', short: 'Meðalaldur' },
   { key: 'hgPct', label: 'Uppeldishlutfall (% uppaldir leikmenn)', fmt: v => v == null ? '–' : v + '%', suffix: '%', short: 'Uppeldis-%' },
   { key: 'avgAgeXI', label: 'Meðalaldur byrjunarliðs (XI)', fmt: v => v == null ? '–' : v.toFixed(1).replace('.', ','), suffix: '', short: 'Meðalaldur XI' },
