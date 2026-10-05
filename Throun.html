@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="is">
-<html lang="is">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -192,10 +191,94 @@ function TrendChart({ title, labels, series, suffix }) {
   );
 }
 
+const TEAM_DISPLAY = { 'Þór':'Þór/KA', 'Þróttur R.':'Þróttur', 'Víkingur R.':'Víkingur', 'Grindavík':'Gri/Nja' };
+function teamLabel(t) { return TEAM_DISPLAY[t] || t; }
+const MAX_TEAMS = 4;
+
+/* ── player-development table for one team (own "min seasons" filter) ── */
+function PlayerHistory({ team, seasons }) {
+  const [minSeasons, setMinSeasons] = useState(1);
+  const years = seasons.map(s => s.year);
+
+  const playerHistory = useMemo(() => {
+    const byId = {};
+    seasons.forEach(({ year, agg }) => {
+      agg.players.forEach(p => {
+        if (!byId[p.id]) byId[p.id] = { id: p.id, name: p.name, years: {} };
+        byId[p.id].name = p.name;
+        byId[p.id].years[year] = { mins: p.mins, starts: p.starts, age: p.age, homegrown: p.homegrown };
+      });
+    });
+    return Object.values(byId);
+  }, [seasons]);
+
+  const filteredPlayers = useMemo(() => {
+    return playerHistory
+      .filter(p => Object.keys(p.years).length >= minSeasons)
+      .sort((a, b) => {
+        const totA = Object.values(a.years).reduce((s, y) => s + y.mins, 0);
+        const totB = Object.values(b.years).reduce((s, y) => s + y.mins, 0);
+        return totB - totA;
+      });
+  }, [playerHistory, minSeasons]);
+
+  return (
+    <div className="card" style={{ padding: 16, marginBottom: 16 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10, flexWrap: 'wrap', gap: 10 }}>
+        <div className="eyebrow">Þróun leikmanna — {teamLabel(team)}</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{ fontSize: 12, color: '#6B7280' }}>Sýna:</span>
+          <select className="select" style={{ fontSize: 12, padding: '5px 10px' }} value={minSeasons} onChange={e => setMinSeasons(+e.target.value)}>
+            <option value={1}>Alla leikmenn</option>
+            <option value={2}>Léku ≥2 ár</option>
+            <option value={3}>Léku ≥3 ár</option>
+            <option value={4}>Léku öll árin</option>
+          </select>
+        </div>
+      </div>
+      <div style={{ overflowX: 'auto' }}>
+        <table className="data-table">
+          <thead>
+            <tr>
+              <th>Leikmaður</th>
+              {years.map(y => <th key={y} className="num">{y}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {filteredPlayers.map(p => {
+              const everHg = Object.values(p.years).some(y => y.homegrown);
+              return (
+                <tr key={p.id}>
+                  <td>
+                    {p.name}
+                    {everHg && <span className="hg-badge" style={{ marginLeft: 8 }}>Uppalin</span>}
+                  </td>
+                  {years.map(y => {
+                    const info = p.years[y];
+                    return (
+                      <td key={y} className="num">
+                        {info ? (
+                          <span>
+                            {info.mins}
+                            <span style={{ color: '#9CA3AF', fontSize: 11 }}> ({info.age != null ? info.age + ' ára' : '–'})</span>
+                          </span>
+                        ) : <span style={{ color: '#D1D5DB' }}>–</span>}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const [seasonsData, setSeasonsData] = useState(null); // parallel array to SEASONS_CONF, entries may be null
-  const [selectedTeam, setSelectedTeam] = useState(null);
-  const [minSeasons, setMinSeasons] = useState(1);
+  const [selectedTeams, setSelectedTeams] = useState([]);
 
   useEffect(() => {
     Promise.all(
@@ -213,49 +296,50 @@ function App() {
   }, [seasonsData]);
 
   useEffect(() => {
-    if (!selectedTeam && teamList.length) setSelectedTeam(teamList[0]);
+    if (!selectedTeams.length && teamList.length) setSelectedTeams([teamList[0]]);
   }, [teamList]);
 
-  const teamSeasons = useMemo(() => {
-    if (!seasonsData || !selectedTeam) return [];
-    return SEASONS_CONF.map((s, i) => {
-      const d = seasonsData[i];
-      if (!d || !d.teams.includes(selectedTeam)) return null;
-      const agg = teamAggFor(d.matches, d.playerStats, selectedTeam, s.year);
-      const standings = standingsFor(d.matches, d.teams);
-      const idx = standings.findIndex(r => r.team === selectedTeam);
-      const row = idx >= 0 ? standings[idx] : null;
-      return { year: s.year, agg, position: idx >= 0 ? idx + 1 : null, row };
-    }).filter(Boolean);
-  }, [seasonsData, selectedTeam]);
-
-  const playerHistory = useMemo(() => {
-    const byId = {};
-    teamSeasons.forEach(({ year, agg }) => {
-      agg.players.forEach(p => {
-        if (!byId[p.id]) byId[p.id] = { id: p.id, name: p.name, years: {} };
-        byId[p.id].name = p.name;
-        byId[p.id].years[year] = { mins: p.mins, starts: p.starts, age: p.age, homegrown: p.homegrown };
-      });
+  function toggleTeam(t) {
+    setSelectedTeams(cur => {
+      if (cur.includes(t)) return cur.length > 1 ? cur.filter(x => x !== t) : cur;
+      if (cur.length >= MAX_TEAMS) return cur;
+      return [...cur, t];
     });
-    return Object.values(byId);
-  }, [teamSeasons]);
+  }
 
-  const filteredPlayers = useMemo(() => {
-    return playerHistory
-      .filter(p => Object.keys(p.years).length >= minSeasons)
-      .sort((a, b) => {
-        const totA = Object.values(a.years).reduce((s, y) => s + y.mins, 0);
-        const totB = Object.values(b.years).reduce((s, y) => s + y.mins, 0);
-        return totB - totA;
-      });
-  }, [playerHistory, minSeasons]);
+  /* per selected team: array aligned with SEASONS_CONF (null where team absent) */
+  const teamData = useMemo(() => {
+    if (!seasonsData) return [];
+    return selectedTeams.map(team => ({
+      team,
+      seasons: SEASONS_CONF.map((s, i) => {
+        const d = seasonsData[i];
+        if (!d || !d.teams.includes(team)) return null;
+        const agg = teamAggFor(d.matches, d.playerStats, team, s.year);
+        const standings = standingsFor(d.matches, d.teams);
+        const idx = standings.findIndex(r => r.team === team);
+        return { year: s.year, agg, position: idx >= 0 ? idx + 1 : null, row: idx >= 0 ? standings[idx] : null };
+      }),
+    }));
+  }, [seasonsData, selectedTeams]);
 
-  const years = teamSeasons.map(s => s.year);
+  /* x-axis: seasons where at least one selected team has data */
+  const yearIdx = useMemo(
+    () => SEASONS_CONF.map((s, i) => i).filter(i => teamData.some(td => td.seasons[i])),
+    [teamData]
+  );
+  const years = yearIdx.map(i => SEASONS_CONF[i].year);
+  const seriesFor = (fn) => teamData.map(td => ({
+    label: teamLabel(td.team),
+    data: yearIdx.map(i => td.seasons[i] ? fn(td.seasons[i]) : null),
+  }));
 
   if (!seasonsData) {
     return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', fontSize: 13, color: '#94a3b8', letterSpacing: '.05em' }}>Hleður gögn…</div>;
   }
+
+  const multi = selectedTeams.length > 1;
+  const full = selectedTeams.length >= MAX_TEAMS;
 
   return (
     <div style={{ width: '100%' }}>
@@ -273,50 +357,59 @@ function App() {
 
       <div style={{ maxWidth: 1160, margin: '0 auto', padding: '28px 24px 60px' }}>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 24, flexWrap: 'wrap' }}>
-          <label className="eyebrow" htmlFor="team-select">Lið</label>
-          <select
-            id="team-select"
-            className="select"
-            value={selectedTeam || ''}
-            onChange={e => setSelectedTeam(e.target.value)}
-          >
-            {teamList.map(t => <option key={t} value={t}>{t}</option>)}
-          </select>
-          {selectedTeam && (
-            <span style={{ fontSize: 12, color: '#6B7280' }}>
-              Gögn til staðar fyrir: {years.join(', ')}
-              {years.length < 4 && ' (liðið var ekki í Bestu deild öll árin)'}
-            </span>
-          )}
+        <div className="card" style={{ padding: 16, marginBottom: 24 }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 10, flexWrap: 'wrap' }}>
+            <div className="eyebrow">Veldu lið til samanburðar (allt að {MAX_TEAMS})</div>
+            <span style={{ fontSize: 12, color: '#6B7280' }}>{selectedTeams.length} af {MAX_TEAMS} valin</span>
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            {teamList.map(t => {
+              const pos = selectedTeams.indexOf(t);
+              const on = pos >= 0;
+              const disabled = !on && full;
+              const col = on ? COLORS[pos % COLORS.length] : '#E7E9EE';
+              return (
+                <label key={t} style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 7, padding: '6px 12px',
+                  border: `1.5px solid ${col}`, borderRadius: 100, fontSize: 13, fontWeight: 600,
+                  cursor: disabled ? 'not-allowed' : 'pointer', opacity: disabled ? 0.4 : 1,
+                  background: on ? col + '14' : '#fff', color: '#111827', userSelect: 'none',
+                }}>
+                  <input type="checkbox" checked={on} disabled={disabled} onChange={() => toggleTeam(t)}
+                    style={{ accentColor: on ? col : '#9CA3AF', width: 13, height: 13, cursor: 'inherit' }} />
+                  {teamLabel(t)}
+                </label>
+              );
+            })}
+          </div>
         </div>
 
-        {teamSeasons.length === 0 ? (
-          <div className="card" style={{ padding: 24, color: '#6B7280' }}>Engin gögn fundust fyrir þetta lið.</div>
+        {years.length === 0 ? (
+          <div className="card" style={{ padding: 24, color: '#6B7280' }}>Engin gögn fundust fyrir valin lið.</div>
         ) : (
           <React.Fragment>
             <div className="grid3" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
               <TrendChart
                 title="Hlutfall mínútna — uppaldar (aðalmælikvarði)"
                 labels={years}
-                series={[{ label: '% mínútna uppaldra', data: teamSeasons.map(s => s.agg.minPct) }]}
+                series={seriesFor(s => s.agg.minPct)}
                 suffix="%"
               />
               <TrendChart
                 title="Meðalaldur (mínútuvegið)"
                 labels={years}
-                series={[{ label: 'Meðalaldur', data: teamSeasons.map(s => s.agg.avgAge != null ? +s.agg.avgAge.toFixed(1) : null) }]}
+                series={seriesFor(s => s.agg.avgAge != null ? +s.agg.avgAge.toFixed(1) : null)}
               />
               <TrendChart
                 title="Uppeldishlutfall (% leikmanna)"
                 labels={years}
-                series={[{ label: '% uppaldir leikmenn', data: teamSeasons.map(s => s.agg.hgPct) }]}
+                series={seriesFor(s => s.agg.hgPct)}
                 suffix="%"
               />
               <TrendChart
                 title="U21 leikmenn í hópi"
                 labels={years}
-                series={[{ label: 'U21', data: teamSeasons.map(s => s.agg.u21) }]}
+                series={seriesFor(s => s.agg.u21)}
               />
             </div>
 
@@ -325,14 +418,21 @@ function App() {
               <table className="data-table">
                 <thead>
                   <tr>
+                    {multi && <th>Lið</th>}
                     <th>Ár</th><th className="num">Sæti</th><th className="num">Leikir</th>
                     <th className="num">U</th><th className="num">J</th><th className="num">T</th>
                     <th className="num">Mörk skorð</th><th className="num">Mörk fengin</th><th className="num">Markamunur</th><th className="num">Stig</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {teamSeasons.map(s => (
-                    <tr key={s.year}>
+                  {teamData.flatMap((td, ti) => td.seasons.filter(Boolean).map(s => (
+                    <tr key={td.team + s.year}>
+                      {multi && (
+                        <td style={{ fontWeight: 600 }}>
+                          <span style={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', background: COLORS[ti % COLORS.length], marginRight: 7 }} />
+                          {teamLabel(td.team)}
+                        </td>
+                      )}
                       <td style={{ fontWeight: 600 }}>{s.year}</td>
                       <td className="num">{s.position != null ? `${s.position}.` : '–'}</td>
                       <td className="num">{s.row ? s.row.P : '–'}</td>
@@ -344,61 +444,14 @@ function App() {
                       <td className="num">{s.row ? (s.row.GD > 0 ? '+' + s.row.GD : s.row.GD) : '–'}</td>
                       <td className="num" style={{ fontWeight: 700 }}>{s.row ? s.row.Pts : '–'}</td>
                     </tr>
-                  ))}
+                  )))}
                 </tbody>
               </table>
             </div>
 
-            <div className="card" style={{ padding: 16 }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10, flexWrap: 'wrap', gap: 10 }}>
-                <div className="eyebrow">Þróun leikmanna — {selectedTeam}</div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <span style={{ fontSize: 12, color: '#6B7280' }}>Sýna:</span>
-                  <select className="select" style={{ fontSize: 12, padding: '5px 10px' }} value={minSeasons} onChange={e => setMinSeasons(+e.target.value)}>
-                    <option value={1}>Alla leikmenn</option>
-                    <option value={2}>Léku ≥2 ár</option>
-                    <option value={3}>Léku ≥3 ár</option>
-                    <option value={4}>Léku öll árin</option>
-                  </select>
-                </div>
-              </div>
-              <div style={{ overflowX: 'auto' }}>
-                <table className="data-table">
-                  <thead>
-                    <tr>
-                      <th>Leikmaður</th>
-                      {years.map(y => <th key={y} className="num">{y}</th>)}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredPlayers.map(p => {
-                      const everHg = Object.values(p.years).some(y => y.homegrown);
-                      return (
-                        <tr key={p.id}>
-                          <td>
-                            {p.name}
-                            {everHg && <span className="hg-badge" style={{ marginLeft: 8 }}>Uppalin</span>}
-                          </td>
-                          {years.map(y => {
-                            const info = p.years[y];
-                            return (
-                              <td key={y} className="num">
-                                {info ? (
-                                  <span>
-                                    {info.mins}
-                                    <span style={{ color: '#9CA3AF', fontSize: 11 }}> ({info.age != null ? info.age + ' ára' : '–'})</span>
-                                  </span>
-                                ) : <span style={{ color: '#D1D5DB' }}>–</span>}
-                              </td>
-                            );
-                          })}
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            {teamData.map(td => (
+              <PlayerHistory key={td.team} team={td.team} seasons={td.seasons.filter(Boolean)} />
+            ))}
           </React.Fragment>
         )}
       </div>
