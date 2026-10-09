@@ -109,6 +109,7 @@ function PlayersView({ matches, pc }) {
   const [minsSel, setMinsSel] = useStateP(() => new Set(MINS_OPTIONS.map((o) => o.value)));
   const [goalsSel, setGoalsSel] = useStateP(() => new Set(GOALS_OPTIONS.map((o) => o.value)));
   const [hgSel, setHgSel] = useStateP(() => new Set(['yes', 'no']));
+  const [yearSelRaw, setYearSel] = useStateP(null); // null = all birth years selected
   const [sortCol, setSortCol] = useStateP('totalMins');
   const [sortDir, setSortDir] = useStateP(-1);
   const [contracts, setContracts] = useStateP(null);
@@ -137,6 +138,7 @@ function PlayersView({ matches, pc }) {
       const rec = resolveContract(contracts, p.name, p.team);
       return {
         ...p,
+        birthYear: pc[p.id]?.birthYear || null,
         age: pc[p.id]?.birthYear ? (window.SEASON_YEAR||2026) - pc[p.id].birthYear : null,
         homegrown: pc[p.id]?.homegrown || false,
         goals: ev[p.id]?.goals || 0,
@@ -151,6 +153,15 @@ function PlayersView({ matches, pc }) {
     });
   }, [matches, pc, contracts]);
 
+  /* birth-year filter options: every year present in the data (youngest first) + unknown */
+  const yearOptions = useMemoP(() => {
+    const ys = [...new Set(all.map((p) => p.birthYear).filter(Boolean))].sort((a, b) => b - a);
+    const opts = ys.map((y) => ({ value: String(y), label: String(y) }));
+    if (all.some((p) => !p.birthYear)) opts.push({ value: 'unknown', label: 'Óþekkt' });
+    return opts;
+  }, [all]);
+  const yearSel = useMemoP(() => yearSelRaw || new Set(yearOptions.map((o) => o.value)), [yearSelRaw, yearOptions]);
+
   function handleSort(col) {
     if (sortCol === col) setSortDir((d) => d * -1);else
     {setSortCol(col);setSortDir(col === 'name' || col === 'team' ? 1 : -1);}
@@ -162,6 +173,7 @@ function PlayersView({ matches, pc }) {
     if (teamSel.size < TEAMS.length) rows = rows.filter((p) => teamSel.has(p.team));
     if (ageSel.size < AGE_OPTIONS.length) rows = rows.filter((p) => ageSel.has(ageBucket(p.age)));
     if (window.HAS_CONTRACTS && contractSel.size < CONTRACT_OPTIONS.length) rows = rows.filter((p) => contractSel.has(contractBucket(p.contractDaysLeft)));
+    if (yearSel.size < yearOptions.length) rows = rows.filter((p) => yearSel.has(p.birthYear ? String(p.birthYear) : 'unknown'));
     if (minsSel.size < MINS_OPTIONS.length) rows = rows.filter((p) => minsSel.has(minsBucket(p.totalMins)));
     if (goalsSel.size < GOALS_OPTIONS.length) rows = rows.filter((p) => goalsSel.has(goalsBucket(p.goals)));
     if (hgSel.size < 2) rows = rows.filter((p) => hgSel.has(p.homegrown ? 'yes' : 'no'));
@@ -173,7 +185,7 @@ function PlayersView({ matches, pc }) {
       return sortDir * (av - bv);
     });
     return rows;
-  }, [all, search, teamSel, ageSel, contractSel, minsSel, goalsSel, hgSel, sortCol, sortDir]);
+  }, [all, search, teamSel, ageSel, yearSel, yearOptions, contractSel, minsSel, goalsSel, hgSel, sortCol, sortDir]);
 
   const maxMins = useMemoP(() => Math.max(...all.map((p) => p.totalMins), 1), [all]);
 
@@ -194,12 +206,14 @@ function PlayersView({ matches, pc }) {
   const hgCountShown = visible.filter((p) => p.homegrown).length;
 
   const anyFilterActive = teamSel.size < TEAMS.length || ageSel.size < AGE_OPTIONS.length ||
+  yearSel.size < yearOptions.length ||
   (window.HAS_CONTRACTS && contractSel.size < CONTRACT_OPTIONS.length) ||
   minsSel.size < MINS_OPTIONS.length || goalsSel.size < GOALS_OPTIONS.length || hgSel.size < 2;
 
   function resetFilters() {
     setTeamSel(new Set(TEAMS));
     setAgeSel(new Set(AGE_OPTIONS.map((o) => o.value)));
+    setYearSel(null);
     setContractSel(new Set(CONTRACT_OPTIONS.map((o) => o.value)));
     setMinsSel(new Set(MINS_OPTIONS.map((o) => o.value)));
     setGoalsSel(new Set(GOALS_OPTIONS.map((o) => o.value)));
@@ -251,6 +265,10 @@ function PlayersView({ matches, pc }) {
                 filter={<HeaderFilter options={AGE_OPTIONS} selected={ageSel} onChange={setAgeSel} align="right" />}>
                 Aldur
               </SortFilterTh>
+              <SortFilterTh col="birthYear" {...thP} right
+                filter={<HeaderFilter options={yearOptions} selected={yearSel} onChange={setYearSel} align="right" />}>
+                Fæðingarár
+              </SortFilterTh>
               {window.HAS_CONTRACTS && <SortTh col="contractTil" {...thP} right>Samningur til</SortTh>}
               {window.HAS_CONTRACTS &&
               <SortFilterTh col="contractDaysLeft" {...thP} right sub="dagar"
@@ -282,6 +300,7 @@ function PlayersView({ matches, pc }) {
                   <td style={{ fontWeight: 500 }}>{p.name}</td>
                   <td><TeamName name={p.team} bold={false} /></td>
                   <td className="num"><AgeBadge age={p.age} /></td>
+                  <td className="num" style={{ fontFamily: MONO, fontSize: 12, color: p.birthYear ? C.text : C.border }}>{p.birthYear || '–'}</td>
                   {window.HAS_CONTRACTS && <td className="num"><ContractCell rec={p.contractRec} /></td>}
                   {window.HAS_CONTRACTS && <td className="num"><DaysLeftCell rec={p.contractRec} /></td>}
                   <td className="num">
