@@ -593,7 +593,7 @@
           "playerId": "87202",
           "playerName": "Kayla Marie Rollins",
           "minute": 66,
-          "team": "Breiðablik",
+          "team": "Þróttur R.",
           "isPenalty": false,
           "isOwnGoal": false
         }
@@ -951,7 +951,7 @@
           "playerId": "4730",
           "playerName": "Ingibjörg Lúcía Ragnarsdóttir",
           "minute": 42,
-          "team": "Víkingur R.",
+          "team": "Stjarnan",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -960,7 +960,7 @@
           "playerId": "4730",
           "playerName": "Ingibjörg Lúcía Ragnarsdóttir",
           "minute": 42,
-          "team": "Víkingur R.",
+          "team": "Stjarnan",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -969,7 +969,7 @@
           "playerId": "64189",
           "playerName": "Þóra María Hjaltadóttir",
           "minute": 64,
-          "team": "Víkingur R.",
+          "team": "Stjarnan",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -1320,8 +1320,8 @@
           "type": "goal",
           "playerId": "89132",
           "playerName": "Fridrikka Marie Clementsen",
-          "minute": 21,
-          "team": "Fram",
+          "minute": 4,
+          "team": "ÍBV",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -1329,17 +1329,17 @@
           "type": "goal",
           "playerId": "86152",
           "playerName": "Emma Kate Young",
-          "minute": 43,
-          "team": "Fram",
+          "minute": 21,
+          "team": "ÍBV",
           "isPenalty": false,
-          "isOwnGoal": false
+          "isOwnGoal": true
         },
         {
           "type": "goal",
           "playerId": "87509",
           "playerName": "Allison Grace Lowrey",
-          "minute": 46,
-          "team": "Fram",
+          "minute": 43,
+          "team": "ÍBV",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -1347,8 +1347,8 @@
           "type": "yellow_card",
           "playerId": "56625",
           "playerName": "Embla Harðardóttir",
-          "minute": 66,
-          "team": "Fram",
+          "minute": 63,
+          "team": "ÍBV",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -1356,7 +1356,7 @@
           "type": "yellow_card",
           "playerId": "61991",
           "playerName": "Kristín Magdalena Barboza",
-          "minute": 63,
+          "minute": 69,
           "team": "Fram",
           "isPenalty": false,
           "isOwnGoal": false
@@ -1365,7 +1365,7 @@
           "type": "goal",
           "playerId": "2444",
           "playerName": "Alda Ólafsdóttir",
-          "minute": 46,
+          "minute": 75,
           "team": "Fram",
           "isPenalty": false,
           "isOwnGoal": false
@@ -1374,8 +1374,8 @@
           "type": "goal",
           "playerId": "87509",
           "playerName": "Allison Grace Lowrey",
-          "minute": 46,
-          "team": "Fram",
+          "minute": 80,
+          "team": "ÍBV",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -1383,7 +1383,7 @@
           "type": "yellow_card",
           "playerId": "88349",
           "playerName": "Taylor Marie Hamlett",
-          "minute": 3,
+          "minute": 89,
           "team": "Fram",
           "isPenalty": false,
           "isOwnGoal": false
@@ -1392,7 +1392,7 @@
           "type": "goal",
           "playerId": "88349",
           "playerName": "Taylor Marie Hamlett",
-          "minute": 3,
+          "minute": 90,
           "team": "Fram",
           "isPenalty": false,
           "isOwnGoal": false
@@ -1751,7 +1751,7 @@
           "playerId": "87408",
           "playerName": "Sophia Faith Romine",
           "minute": 28,
-          "team": "Valur",
+          "team": "Grindavík",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -1760,7 +1760,7 @@
           "playerId": "54478",
           "playerName": "Natasha Moraa Anasi",
           "minute": 34,
-          "team": "Valur",
+          "team": "Grindavík",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -1787,7 +1787,7 @@
           "playerId": "89250",
           "playerName": "Maci Nicole Teater",
           "minute": null,
-          "team": "Valur",
+          "team": "Grindavík",
           "isPenalty": false,
           "isOwnGoal": false
         }
@@ -2136,7 +2136,7 @@
           "playerId": "53579",
           "playerName": "Thelma Lóa Hermannsdóttir",
           "minute": 46,
-          "team": "Þór",
+          "team": "FH",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -2521,7 +2521,7 @@
           "playerId": "65216",
           "playerName": "Harpa Helgadóttir",
           "minute": null,
-          "team": "Breiðablik",
+          "team": "Fram",
           "isPenalty": false,
           "isOwnGoal": false
         }
@@ -2880,7 +2880,7 @@
           "playerId": "69725",
           "playerName": "Sonja Björg Sigurðardóttir",
           "minute": null,
-          "team": "Stjarnan",
+          "team": "Valur",
           "isPenalty": false,
           "isOwnGoal": false
         }
@@ -3197,7 +3197,7 @@
           "playerId": "62092",
           "playerName": "Bergdís Sveinsdóttir",
           "minute": 25,
-          "team": "ÍBV",
+          "team": "Víkingur R.",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -3206,7 +3206,7 @@
           "playerId": "41982",
           "playerName": "Jasmín Erla Ingadóttir",
           "minute": 49,
-          "team": "ÍBV",
+          "team": "Víkingur R.",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -3215,7 +3215,7 @@
           "playerId": "55876",
           "playerName": "Kristín Erla Ó Johnson",
           "minute": 50,
-          "team": "ÍBV",
+          "team": "Víkingur R.",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -3251,7 +3251,7 @@
           "playerId": "55876",
           "playerName": "Kristín Erla Ó Johnson",
           "minute": 50,
-          "team": "ÍBV",
+          "team": "Víkingur R.",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -3609,7 +3609,7 @@
           "playerId": "89322",
           "playerName": "Erin Flurey",
           "minute": 63,
-          "team": "Grindavík",
+          "team": "Þór",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -3985,7 +3985,7 @@
           "playerId": "83057",
           "playerName": "Mackenzie Elyze Smith",
           "minute": 19,
-          "team": "Þróttur R.",
+          "team": "FH",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -3994,7 +3994,7 @@
           "playerId": "42479",
           "playerName": "Katla María Þórðardóttir",
           "minute": 34,
-          "team": "Þróttur R.",
+          "team": "FH",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -4003,7 +4003,7 @@
           "playerId": "59024",
           "playerName": "Ída Marín Hermannsdóttir",
           "minute": 42,
-          "team": "Þróttur R.",
+          "team": "FH",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -4012,7 +4012,7 @@
           "playerId": "58106",
           "playerName": "Berglind Freyja Hlynsdóttir",
           "minute": 46,
-          "team": "Þróttur R.",
+          "team": "FH",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -4389,7 +4389,7 @@
           "playerId": "87033",
           "playerName": "Allison Patricia Clark",
           "minute": 16,
-          "team": "Valur",
+          "team": "ÍBV",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -4425,7 +4425,7 @@
           "playerId": "74378",
           "playerName": "Kristín Klara Óskarsdóttir",
           "minute": 66,
-          "team": "Valur",
+          "team": "ÍBV",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -4434,7 +4434,7 @@
           "playerId": "87509",
           "playerName": "Allison Grace Lowrey",
           "minute": 76,
-          "team": "Valur",
+          "team": "ÍBV",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -4443,7 +4443,7 @@
           "playerId": "76659",
           "playerName": "Viktorija Zaicikova",
           "minute": 77,
-          "team": "Valur",
+          "team": "ÍBV",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -4801,7 +4801,7 @@
           "playerId": "49560",
           "playerName": "Sigríður Theód. Guðmundsdóttir",
           "minute": 47,
-          "team": "Fram",
+          "team": "Þróttur R.",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -4810,7 +4810,7 @@
           "playerId": "55743",
           "playerName": "Unnur Dóra Bergsdóttir",
           "minute": 58,
-          "team": "Fram",
+          "team": "Þróttur R.",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -4828,7 +4828,7 @@
           "playerId": "59633",
           "playerName": "Jelena Tinna Kujundzic",
           "minute": 66,
-          "team": "Fram",
+          "team": "Þróttur R.",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -4846,7 +4846,7 @@
           "playerId": "67203",
           "playerName": "Þórdís Nanna Ágústsdóttir",
           "minute": 58,
-          "team": "Fram",
+          "team": "Þróttur R.",
           "isPenalty": false,
           "isOwnGoal": false
         }
@@ -5195,7 +5195,7 @@
           "playerId": "36753",
           "playerName": "Andrea Mist Pálsdóttir",
           "minute": 36,
-          "team": "Þór",
+          "team": "Stjarnan",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -5204,7 +5204,7 @@
           "playerId": "89517",
           "playerName": "Eva Marie Wirtz",
           "minute": 40,
-          "team": "Þór",
+          "team": "Stjarnan",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -5213,7 +5213,7 @@
           "playerId": "36753",
           "playerName": "Andrea Mist Pálsdóttir",
           "minute": 36,
-          "team": "Þór",
+          "team": "Stjarnan",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -5222,7 +5222,7 @@
           "playerId": "36753",
           "playerName": "Andrea Mist Pálsdóttir",
           "minute": 36,
-          "team": "Þór",
+          "team": "Stjarnan",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -5581,7 +5581,7 @@
           "playerId": "38462",
           "playerName": "Agla María Albertsdóttir",
           "minute": 57,
-          "team": "Víkingur R.",
+          "team": "Breiðablik",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -5590,7 +5590,7 @@
           "playerId": "59325",
           "playerName": "Hrafnhildur Ása Halldórsdóttir",
           "minute": 63,
-          "team": "Víkingur R.",
+          "team": "Breiðablik",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -5599,7 +5599,7 @@
           "playerId": "71172",
           "playerName": "Barbára Sól Gísladóttir",
           "minute": 75,
-          "team": "Víkingur R.",
+          "team": "Breiðablik",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -5617,7 +5617,7 @@
           "playerId": "47871",
           "playerName": "Ólöf Sigríður Kristinsdóttir",
           "minute": null,
-          "team": "Víkingur R.",
+          "team": "Breiðablik",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -5984,7 +5984,7 @@
           "playerId": "86607",
           "playerName": "Danai Kaldaridou",
           "minute": 58,
-          "team": "FH",
+          "team": "Grindavík",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -6002,7 +6002,7 @@
           "playerId": "57422",
           "playerName": "Sigríður Emma F. Jónsdóttir",
           "minute": 83,
-          "team": "FH",
+          "team": "Grindavík",
           "isPenalty": false,
           "isOwnGoal": false
         }
@@ -6311,7 +6311,7 @@
           "playerId": "26054",
           "playerName": "Arna Sif Ásgrímsdóttir",
           "minute": 30,
-          "team": "ÍBV",
+          "team": "Þór",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -6329,7 +6329,7 @@
           "playerId": "77464",
           "playerName": "Elísa Bríet Björnsdóttir",
           "minute": 68,
-          "team": "ÍBV",
+          "team": "Þór",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -6347,7 +6347,7 @@
           "playerId": "81559",
           "playerName": "Hildur Anna Birgisdóttir",
           "minute": null,
-          "team": "ÍBV",
+          "team": "Þór",
           "isPenalty": false,
           "isOwnGoal": false
         }
@@ -6688,7 +6688,7 @@
           "playerId": "82560",
           "playerName": "Deja Jaylyn Sandoval",
           "minute": 38,
-          "team": "Stjarnan",
+          "team": "FH",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -6697,7 +6697,7 @@
           "playerId": "82560",
           "playerName": "Deja Jaylyn Sandoval",
           "minute": 38,
-          "team": "Stjarnan",
+          "team": "FH",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -6715,7 +6715,7 @@
           "playerId": "53049",
           "playerName": "Hafrún Birna Helgadóttir",
           "minute": 62,
-          "team": "Stjarnan",
+          "team": "FH",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -7082,7 +7082,7 @@
           "playerId": "87408",
           "playerName": "Sophia Faith Romine",
           "minute": 36,
-          "team": "Þróttur R.",
+          "team": "Grindavík",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -7091,7 +7091,7 @@
           "playerId": "71859",
           "playerName": "Rakel Sigurðardóttir",
           "minute": 45,
-          "team": "Þróttur R.",
+          "team": "Grindavík",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -7100,7 +7100,7 @@
           "playerId": "86607",
           "playerName": "Danai Kaldaridou",
           "minute": 52,
-          "team": "Þróttur R.",
+          "team": "Grindavík",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -7118,7 +7118,7 @@
           "playerId": "87761",
           "playerName": "Lily Anna Farkas",
           "minute": 82,
-          "team": "Þróttur R.",
+          "team": "Grindavík",
           "isPenalty": false,
           "isOwnGoal": false
         }
@@ -7464,8 +7464,8 @@
       "events": [
         {
           "type": "goal",
-          "playerId": "18414",
-          "playerName": "Elísa Viðarsdóttir",
+          "playerId": "71284",
+          "playerName": "Líf Joostdóttir van Bemmel",
           "minute": 3,
           "team": "Breiðablik",
           "isPenalty": false,
@@ -7475,8 +7475,8 @@
           "type": "goal",
           "playerId": "70507",
           "playerName": "Margrét Brynja Kristinsdóttir",
-          "minute": 17,
-          "team": "Breiðablik",
+          "minute": 11,
+          "team": "Valur",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -7485,16 +7485,16 @@
           "playerId": "70507",
           "playerName": "Margrét Brynja Kristinsdóttir",
           "minute": 17,
-          "team": "Breiðablik",
+          "team": "Valur",
           "isPenalty": false,
           "isOwnGoal": false
         },
         {
-          "type": "red_card",
+          "type": "yellow_card",
           "playerId": "63064",
           "playerName": "Hrafnhildur Salka Pálmadóttir",
-          "minute": 23,
-          "team": "Breiðablik",
+          "minute": 18,
+          "team": "Valur",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -7502,7 +7502,7 @@
           "type": "yellow_card",
           "playerId": "18414",
           "playerName": "Elísa Viðarsdóttir",
-          "minute": 3,
+          "minute": 23,
           "team": "Breiðablik",
           "isPenalty": false,
           "isOwnGoal": false
@@ -7512,16 +7512,7 @@
           "playerId": "67810",
           "playerName": "Ágústa María Valtýsdóttir",
           "minute": 87,
-          "team": "Breiðablik",
-          "isPenalty": false,
-          "isOwnGoal": false
-        },
-        {
-          "type": "yellow_card",
-          "playerId": "70507",
-          "playerName": "Margrét Brynja Kristinsdóttir",
-          "minute": 17,
-          "team": "Breiðablik",
+          "team": "Valur",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -7529,7 +7520,7 @@
           "type": "goal",
           "playerId": "84029",
           "playerName": "Sunna Rún Sigurðardóttir",
-          "minute": 63,
+          "minute": 90,
           "team": "Breiðablik",
           "isPenalty": false,
           "isOwnGoal": false
@@ -7540,6 +7531,15 @@
           "playerName": "Málfríður Anna Eiríksdóttir",
           "minute": 90,
           "team": "Breiðablik",
+          "isPenalty": false,
+          "isOwnGoal": true
+        },
+        {
+          "type": "yellow_card",
+          "playerId": "70507",
+          "playerName": "Margrét Brynja Kristinsdóttir",
+          "minute": 90,
+          "team": "Valur",
           "isPenalty": false,
           "isOwnGoal": false
         }
@@ -7879,16 +7879,16 @@
           "type": "goal",
           "playerId": "65216",
           "playerName": "Harpa Helgadóttir",
-          "minute": 69,
-          "team": "Fram",
+          "minute": 55,
+          "team": "Víkingur R.",
           "isPenalty": false,
-          "isOwnGoal": false
+          "isOwnGoal": true
         },
         {
           "type": "yellow_card",
           "playerId": "65216",
           "playerName": "Harpa Helgadóttir",
-          "minute": 69,
+          "minute": 85,
           "team": "Fram",
           "isPenalty": false,
           "isOwnGoal": false
@@ -8615,7 +8615,7 @@
           "playerId": "38462",
           "playerName": "Agla María AlbertsdóttirVítaspyrna",
           "minute": null,
-          "team": "Þór",
+          "team": "Breiðablik",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -8624,7 +8624,7 @@
           "playerId": "59325",
           "playerName": "Hrafnhildur Ása Halldórsdóttir",
           "minute": 69,
-          "team": "Þór",
+          "team": "Breiðablik",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -8633,7 +8633,7 @@
           "playerId": "66670",
           "playerName": "Edith Kristín Kristjánsdóttir",
           "minute": 69,
-          "team": "Þór",
+          "team": "Breiðablik",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -8651,7 +8651,7 @@
           "playerId": "72710",
           "playerName": "Dórothea Ósk Haraldsdóttir",
           "minute": 89,
-          "team": "Þór",
+          "team": "Breiðablik",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -9349,7 +9349,7 @@
           "playerId": "4730",
           "playerName": "Ingibjörg Lúcía Ragnarsdóttir",
           "minute": 90,
-          "team": "Grindavík",
+          "team": "Stjarnan",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -9707,7 +9707,7 @@
           "playerId": "49560",
           "playerName": "Sigríður Theód. Guðmundsdóttir",
           "minute": 35,
-          "team": "Víkingur R.",
+          "team": "Þróttur R.",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -9725,7 +9725,7 @@
           "playerId": "49560",
           "playerName": "Sigríður Theód. Guðmundsdóttir",
           "minute": 35,
-          "team": "Víkingur R.",
+          "team": "Þróttur R.",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -9743,7 +9743,7 @@
           "playerId": "67964",
           "playerName": "Brynja Rán Knudsen",
           "minute": 30,
-          "team": "Víkingur R.",
+          "team": "Þróttur R.",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -9752,7 +9752,7 @@
           "playerId": "67203",
           "playerName": "Þórdís Nanna Ágústsdóttir",
           "minute": 84,
-          "team": "Víkingur R.",
+          "team": "Þróttur R.",
           "isPenalty": false,
           "isOwnGoal": false
         }
@@ -10101,7 +10101,7 @@
           "playerId": "34475",
           "playerName": "Margrét Árnadóttir",
           "minute": 11,
-          "team": "Fram",
+          "team": "Þór",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -10128,7 +10128,7 @@
           "playerId": "34475",
           "playerName": "Margrét Árnadóttir",
           "minute": 11,
-          "team": "Fram",
+          "team": "Þór",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -10146,7 +10146,7 @@
           "playerId": "3837",
           "playerName": "Agnes Birta Stefánsdóttir",
           "minute": 76,
-          "team": "Fram",
+          "team": "Þór",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -10513,7 +10513,7 @@
           "playerId": "54478",
           "playerName": "Natasha Moraa Anasi",
           "minute": 42,
-          "team": "ÍBV",
+          "team": "Grindavík",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -10540,7 +10540,7 @@
           "playerId": "82830",
           "playerName": "Ása Björg Einarsdóttir",
           "minute": 74,
-          "team": "ÍBV",
+          "team": "Grindavík",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -10549,7 +10549,7 @@
           "playerId": "87408",
           "playerName": "Sophia Faith Romine",
           "minute": 80,
-          "team": "ÍBV",
+          "team": "Grindavík",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -10916,7 +10916,7 @@
           "playerId": "76924",
           "playerName": "Anna María Baldursdóttir",
           "minute": 61,
-          "team": "Þróttur R.",
+          "team": "Stjarnan",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -10925,7 +10925,7 @@
           "playerId": "89517",
           "playerName": "Eva Marie Wirtz",
           "minute": 65,
-          "team": "Þróttur R.",
+          "team": "Stjarnan",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -11292,7 +11292,7 @@
           "playerId": "54315",
           "playerName": "Ingibjörg Magnúsdóttir",
           "minute": 45,
-          "team": "Breiðablik",
+          "team": "FH",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -11301,7 +11301,7 @@
           "playerId": "82560",
           "playerName": "Deja Jaylyn Sandoval",
           "minute": 46,
-          "team": "Breiðablik",
+          "team": "FH",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -11337,7 +11337,7 @@
           "playerId": "82560",
           "playerName": "Deja Jaylyn Sandoval",
           "minute": 46,
-          "team": "Breiðablik",
+          "team": "FH",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -11346,7 +11346,7 @@
           "playerId": "59024",
           "playerName": "Ída Marín HermannsdóttirVítaspyrna",
           "minute": null,
-          "team": "Breiðablik",
+          "team": "FH",
           "isPenalty": false,
           "isOwnGoal": false
         }
@@ -11704,7 +11704,7 @@
           "playerId": "38701",
           "playerName": "Nadía Atladóttir",
           "minute": 57,
-          "team": "Víkingur R.",
+          "team": "Valur",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -11713,7 +11713,7 @@
           "playerId": "70507",
           "playerName": "Margrét Brynja Kristinsdóttir",
           "minute": 74,
-          "team": "Víkingur R.",
+          "team": "Valur",
           "isPenalty": false,
           "isOwnGoal": false
         }
@@ -12062,7 +12062,7 @@
           "playerId": "55743",
           "playerName": "Unnur Dóra Bergsdóttir",
           "minute": 46,
-          "team": "Valur",
+          "team": "Þróttur R.",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -12071,7 +12071,7 @@
           "playerId": "86850",
           "playerName": "Alexia Marin Czerwien",
           "minute": 59,
-          "team": "Valur",
+          "team": "Þróttur R.",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -12080,7 +12080,7 @@
           "playerId": "86850",
           "playerName": "Alexia Marin Czerwien",
           "minute": 59,
-          "team": "Valur",
+          "team": "Þróttur R.",
           "isPenalty": false,
           "isOwnGoal": false
         }
@@ -12421,7 +12421,7 @@
           "playerId": "59325",
           "playerName": "Hrafnhildur Ása Halldórsdóttir",
           "minute": 16,
-          "team": "Grindavík",
+          "team": "Breiðablik",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -12430,7 +12430,7 @@
           "playerId": "89243",
           "playerName": "Katelyn Duong",
           "minute": 51,
-          "team": "Grindavík",
+          "team": "Breiðablik",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -12439,7 +12439,7 @@
           "playerId": "38462",
           "playerName": "Agla María Albertsdóttir",
           "minute": 59,
-          "team": "Grindavík",
+          "team": "Breiðablik",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -12457,7 +12457,7 @@
           "playerId": "38462",
           "playerName": "Agla María Albertsdóttir",
           "minute": 59,
-          "team": "Grindavík",
+          "team": "Breiðablik",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -12466,7 +12466,7 @@
           "playerId": "71284",
           "playerName": "Líf Joostdóttir van Bemmel",
           "minute": 72,
-          "team": "Grindavík",
+          "team": "Breiðablik",
           "isPenalty": false,
           "isOwnGoal": false
         }
@@ -12824,7 +12824,7 @@
           "playerId": "88349",
           "playerName": "Taylor Marie Hamlett",
           "minute": 43,
-          "team": "FH",
+          "team": "Fram",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -12833,7 +12833,7 @@
           "playerId": "88349",
           "playerName": "Taylor Marie Hamlett",
           "minute": 43,
-          "team": "FH",
+          "team": "Fram",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -12869,7 +12869,7 @@
           "playerId": "86152",
           "playerName": "Emma Kate Young",
           "minute": 69,
-          "team": "FH",
+          "team": "Fram",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -13236,7 +13236,7 @@
           "playerId": "19457",
           "playerName": "Þórdís Hrönn Sigfúsdóttir",
           "minute": 4,
-          "team": "Þór",
+          "team": "Víkingur R.",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -13254,7 +13254,7 @@
           "playerId": "65545",
           "playerName": "Freyja Stefánsdóttir",
           "minute": 26,
-          "team": "Þór",
+          "team": "Víkingur R.",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -13263,7 +13263,7 @@
           "playerId": "41982",
           "playerName": "Jasmín Erla Ingadóttir",
           "minute": 31,
-          "team": "Þór",
+          "team": "Víkingur R.",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -13272,7 +13272,7 @@
           "playerId": "65545",
           "playerName": "Freyja Stefánsdóttir",
           "minute": 26,
-          "team": "Þór",
+          "team": "Víkingur R.",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -13290,7 +13290,7 @@
           "playerId": "50487",
           "playerName": "Dagný Rún Pétursdóttir",
           "minute": 67,
-          "team": "Þór",
+          "team": "Víkingur R.",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -13299,7 +13299,7 @@
           "playerId": "53262",
           "playerName": "Jóhanna Elín Halldórsdóttir",
           "minute": 60,
-          "team": "Þór",
+          "team": "Víkingur R.",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -13693,7 +13693,7 @@
           "playerId": "85065",
           "playerName": "Sandra Voitane",
           "minute": 85,
-          "team": "Stjarnan",
+          "team": "ÍBV",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -14051,7 +14051,7 @@
           "playerId": "4730",
           "playerName": "Ingibjörg Lúcía Ragnarsdóttir",
           "minute": 35,
-          "team": "Breiðablik",
+          "team": "Stjarnan",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -14060,7 +14060,7 @@
           "playerId": "62082",
           "playerName": "Telma Steindórsdóttir",
           "minute": 46,
-          "team": "Breiðablik",
+          "team": "Stjarnan",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -14069,7 +14069,7 @@
           "playerId": "4730",
           "playerName": "Ingibjörg Lúcía Ragnarsdóttir",
           "minute": 35,
-          "team": "Breiðablik",
+          "team": "Stjarnan",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -14078,7 +14078,7 @@
           "playerId": "54251",
           "playerName": "Úlfa Dís Kreye Úlfarsdóttir",
           "minute": 58,
-          "team": "Breiðablik",
+          "team": "Stjarnan",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -14445,7 +14445,7 @@
           "playerId": "89516",
           "playerName": "Ellie Coffield",
           "minute": 9,
-          "team": "Fram",
+          "team": "Grindavík",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -14454,7 +14454,7 @@
           "playerId": "54478",
           "playerName": "Natasha Moraa Anasi",
           "minute": 45,
-          "team": "Fram",
+          "team": "Grindavík",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -14472,7 +14472,7 @@
           "playerId": "59143",
           "playerName": "Tinna Hrönn Einarsdóttir",
           "minute": 16,
-          "team": "Fram",
+          "team": "Grindavík",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -14481,7 +14481,7 @@
           "playerId": "89516",
           "playerName": "Ellie Coffield",
           "minute": 9,
-          "team": "Fram",
+          "team": "Grindavík",
           "isPenalty": false,
           "isOwnGoal": false
         }
@@ -14839,7 +14839,7 @@
           "playerId": "89428",
           "playerName": "Nia Raisa Christopher",
           "minute": 18,
-          "team": "Víkingur R.",
+          "team": "FH",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -14848,7 +14848,7 @@
           "playerId": "54315",
           "playerName": "Ingibjörg Magnúsdóttir",
           "minute": 37,
-          "team": "Víkingur R.",
+          "team": "FH",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -14857,7 +14857,7 @@
           "playerId": "82560",
           "playerName": "Deja Jaylyn Sandoval",
           "minute": 60,
-          "team": "Víkingur R.",
+          "team": "FH",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -14866,7 +14866,7 @@
           "playerId": "53579",
           "playerName": "Thelma Lóa Hermannsdóttir",
           "minute": 68,
-          "team": "Víkingur R.",
+          "team": "FH",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -14884,7 +14884,7 @@
           "playerId": "34889",
           "playerName": "Andrea Rán Snæfeld Hauksdóttir",
           "minute": null,
-          "team": "Víkingur R.",
+          "team": "FH",
           "isPenalty": false,
           "isOwnGoal": false
         }
@@ -15590,7 +15590,7 @@
           "playerId": "89322",
           "playerName": "Erin Flurey",
           "minute": null,
-          "team": "Valur",
+          "team": "Þór",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -15599,7 +15599,7 @@
           "playerId": "77578",
           "playerName": "Birgitta Rún Finnbogadóttir",
           "minute": 80,
-          "team": "Valur",
+          "team": "Þór",
           "isPenalty": false,
           "isOwnGoal": false
         }
@@ -15966,7 +15966,7 @@
           "playerId": "86850",
           "playerName": "Alexia Marin Czerwien",
           "minute": 62,
-          "team": "Þór",
+          "team": "Þróttur R.",
           "isPenalty": false,
           "isOwnGoal": false
         }
@@ -16315,7 +16315,7 @@
           "playerId": "71284",
           "playerName": "Líf Joostdóttir van Bemmel",
           "minute": 19,
-          "team": "ÍBV",
+          "team": "Breiðablik",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -16324,7 +16324,7 @@
           "playerId": "47871",
           "playerName": "Ólöf Sigríður Kristinsdóttir",
           "minute": 23,
-          "team": "ÍBV",
+          "team": "Breiðablik",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -16333,7 +16333,7 @@
           "playerId": "47871",
           "playerName": "Ólöf Sigríður Kristinsdóttir",
           "minute": 23,
-          "team": "ÍBV",
+          "team": "Breiðablik",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -16727,7 +16727,7 @@
           "playerId": "41445",
           "playerName": "Hildur María Jónasdóttir",
           "minute": 84,
-          "team": "Stjarnan",
+          "team": "Fram",
           "isPenalty": false,
           "isOwnGoal": false
         }
@@ -17069,7 +17069,7 @@
           "playerId": "65545",
           "playerName": "Freyja Stefánsdóttir",
           "minute": 60,
-          "team": "Grindavík",
+          "team": "Víkingur R.",
           "isPenalty": false,
           "isOwnGoal": false
         }
@@ -17427,7 +17427,7 @@
           "playerId": "38701",
           "playerName": "Nadía Atladóttir",
           "minute": 46,
-          "team": "FH",
+          "team": "Valur",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -17436,7 +17436,7 @@
           "playerId": "69521",
           "playerName": "Kimberley Dóra Hjálmarsdóttir",
           "minute": 77,
-          "team": "FH",
+          "team": "Valur",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -17445,7 +17445,7 @@
           "playerId": "70507",
           "playerName": "Margrét Brynja Kristinsdóttir",
           "minute": 80,
-          "team": "FH",
+          "team": "Valur",
           "isPenalty": false,
           "isOwnGoal": false
         },
@@ -17463,7 +17463,7 @@
           "playerId": "61833",
           "playerName": "Helga Rut Einarsdóttir",
           "minute": null,
-          "team": "FH",
+          "team": "Valur",
           "isPenalty": false,
           "isOwnGoal": false
         }
