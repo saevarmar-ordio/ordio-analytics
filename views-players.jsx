@@ -109,6 +109,8 @@ function PlayersView({ matches, pc }) {
   const [minsSel, setMinsSel] = useStateP(() => new Set(MINS_OPTIONS.map((o) => o.value)));
   const [goalsSel, setGoalsSel] = useStateP(() => new Set(GOALS_OPTIONS.map((o) => o.value)));
   const [hgSel, setHgSel] = useStateP(() => new Set(['yes', 'no']));
+  const fgOptions = useMemoP(() => [{ value: 'yes', label: 'Erlendar', color: '#0E7490' }, { value: 'no', label: 'Íslenskar' }], []);
+  const [fgSel, setFgSel] = useStateP(() => new Set(['yes', 'no']));
   const [yearSelRaw, setYearSel] = useStateP(null); // null = all birth years selected
   const [sortCol, setSortCol] = useStateP('totalMins');
   const [sortDir, setSortDir] = useStateP(-1);
@@ -141,6 +143,7 @@ function PlayersView({ matches, pc }) {
         birthYear: pc[p.id]?.birthYear || null,
         age: pc[p.id]?.birthYear ? (window.SEASON_YEAR||2026) - pc[p.id].birthYear : null,
         homegrown: pc[p.id]?.homegrown || false,
+        foreign: window.isForeign(p.id),
         goals: ev[p.id]?.goals || 0,
         penalties: ev[p.id]?.penalties || 0,
         ownGoals: ev[p.id]?.ownGoals || 0,
@@ -177,6 +180,7 @@ function PlayersView({ matches, pc }) {
     if (minsSel.size < MINS_OPTIONS.length) rows = rows.filter((p) => minsSel.has(minsBucket(p.totalMins)));
     if (goalsSel.size < GOALS_OPTIONS.length) rows = rows.filter((p) => goalsSel.has(goalsBucket(p.goals)));
     if (hgSel.size < 2) rows = rows.filter((p) => hgSel.has(p.homegrown ? 'yes' : 'no'));
+    if (window.HAS_FOREIGN && fgSel.size < 2) rows = rows.filter((p) => fgSel.has(p.foreign ? 'yes' : 'no'));
     rows.sort((a, b) => {
       let av = a[sortCol],bv = b[sortCol];
       if (av === null || av === undefined) av = sortDir > 0 ? Infinity : -Infinity;
@@ -185,7 +189,7 @@ function PlayersView({ matches, pc }) {
       return sortDir * (av - bv);
     });
     return rows;
-  }, [all, search, teamSel, ageSel, yearSel, yearOptions, contractSel, minsSel, goalsSel, hgSel, sortCol, sortDir]);
+  }, [all, search, teamSel, ageSel, yearSel, yearOptions, contractSel, minsSel, goalsSel, hgSel, fgSel, sortCol, sortDir]);
 
   const maxMins = useMemoP(() => Math.max(...all.map((p) => p.totalMins), 1), [all]);
 
@@ -208,7 +212,8 @@ function PlayersView({ matches, pc }) {
   const anyFilterActive = teamSel.size < TEAMS.length || ageSel.size < AGE_OPTIONS.length ||
   yearSel.size < yearOptions.length ||
   (window.HAS_CONTRACTS && contractSel.size < CONTRACT_OPTIONS.length) ||
-  minsSel.size < MINS_OPTIONS.length || goalsSel.size < GOALS_OPTIONS.length || hgSel.size < 2;
+  minsSel.size < MINS_OPTIONS.length || goalsSel.size < GOALS_OPTIONS.length || hgSel.size < 2 ||
+  (window.HAS_FOREIGN && fgSel.size < 2);
 
   function resetFilters() {
     setTeamSel(new Set(TEAMS));
@@ -218,6 +223,7 @@ function PlayersView({ matches, pc }) {
     setMinsSel(new Set(MINS_OPTIONS.map((o) => o.value)));
     setGoalsSel(new Set(GOALS_OPTIONS.map((o) => o.value)));
     setHgSel(new Set(['yes', 'no']));
+    setFgSel(new Set(['yes', 'no']));
   }
 
   return (
@@ -290,6 +296,12 @@ function PlayersView({ matches, pc }) {
                 filter={<HeaderFilter options={hgOptions} selected={hgSel} onChange={setHgSel} align="right" />}>
                 {HGSING}
               </SortFilterTh>
+              {window.HAS_FOREIGN &&
+              <SortFilterTh col="foreign" {...thP} style={{ textAlign: 'center' }}
+                filter={<HeaderFilter options={fgOptions} selected={fgSel} onChange={setFgSel} align="right" />}>
+                  Erlend
+                </SortFilterTh>
+              }
             </tr>
           </thead>
           <tbody>
@@ -297,7 +309,7 @@ function PlayersView({ matches, pc }) {
                 const pct = Math.round(p.totalMins / maxMins * 100);
                 return (
                   <tr key={p.id}>
-                  <td style={{ fontWeight: 500 }}>{p.name}</td>
+                  <td style={{ fontWeight: 500 }}>{p.name}<ForeignTag id={p.id} /></td>
                   <td><TeamName name={p.team} bold={false} /></td>
                   <td className="num"><AgeBadge age={p.age} /></td>
                   <td className="num" style={{ fontFamily: MONO, fontSize: 12, color: p.birthYear ? C.text : C.border }}>{p.birthYear || '–'}</td>
@@ -341,6 +353,7 @@ function PlayersView({ matches, pc }) {
                   <td style={{ textAlign: 'center' }}>
                     <span style={{ display: 'inline-flex', verticalAlign: 'middle' }}><HgDot homegrown={p.homegrown} /></span>
                   </td>
+                  {window.HAS_FOREIGN && <td style={{ textAlign: 'center' }}>{p.foreign ? <span style={{ color: FOREIGN_COLOR, fontWeight: 600, fontSize: 12 }}>✓</span> : <span style={{ color: C.border }}>–</span>}</td>}
                 </tr>);
 
               })}

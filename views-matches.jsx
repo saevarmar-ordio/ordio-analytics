@@ -289,6 +289,7 @@ function PlayerRow({ p, pc, ev }) {
       <td style={{ fontWeight: p.mins > 0 ? 500 : 400, color: p.mins > 0 ? C.text : C.muted }}>
         <span style={{ display:'inline-flex', alignItems:'center', flexWrap:'wrap' }}>
           {p.name}
+          <ForeignTag id={p.id}/>
           <EventBadges ev={ev}/>
         </span>
       </td>

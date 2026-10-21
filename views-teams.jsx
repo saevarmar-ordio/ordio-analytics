@@ -160,7 +160,7 @@ function TeamPlayerList({ playerList, pc, avgAge, avgAgeSt }) {
             return (
               <tr key={p.id}>
                 <td className="num" style={{ color:C.muted }}>{p.number}</td>
-                <td style={{ fontWeight:500 }}>{p.name}</td>
+                <td style={{ fontWeight:500 }}>{p.name}<ForeignTag id={p.id}/></td>
                 <td className="num">
                   <div style={{ display:'flex', alignItems:'center', justifyContent:'flex-end', gap:8 }}>
                     <span style={{ fontFamily:"'Inter',sans-serif", fontSize:12, minWidth:38, textAlign:'right' }}>{p.mins}</span>
@@ -188,7 +188,7 @@ function TeamPlayerList({ playerList, pc, avgAge, avgAgeSt }) {
             return (
               <tr key={p.id} style={{ opacity:.72 }}>
                 <td className="num" style={{ color:C.muted }}>{p.number}</td>
-                <td style={{ fontWeight:400, color:C.muted }}>{p.name}</td>
+                <td style={{ fontWeight:400, color:C.muted }}>{p.name}<ForeignTag id={p.id}/></td>
                 <td className="num">
                   <span style={{ fontFamily:MONO, fontSize:11, color:C.muted }}>á bekk ×{p.squad}</span>
                 </td>
@@ -393,6 +393,17 @@ function TeamDetailView({ team, matches, pc, metric, onBack, onMatch }) {
         {label:metric==='minPct'?`${HGADJ} mín%`:'Uppal%', value:agg[metric]+'%', color:quartColorFor(agg[metric], metric), tip:metric==='minPct'?TIPS.hgMin:TIPS.hgPct},
       ]}/>
 
+      {window.HAS_FOREIGN && <>
+        <SecHdr>Erlendar leikmenn</SecHdr>
+        <KpiGrid items={[
+          {label:'Erlendar leikmenn',   value:agg.fgCount, color:FOREIGN_COLOR},
+          {label:'% mínútna',           value:agg.fgMinPct+'%', color:FOREIGN_COLOR},
+          {label:'Mínútur',             value:agg.fgMins},
+          {label:'Leikir (samtals)',    value:agg.fgApps},
+          {label:'Byrjunarliðssæti/leik', value:fn(agg.fgStPerMatch)},
+        ]}/>
+      </>}
+
       {/* Skýringar — always visible, not just hover */}
       <div style={{ background:C.bg, border:`1px solid ${C.border}`, padding:'12px 16px', marginBottom:16 }}>
         <div style={{ fontFamily:MONO, fontSize:10, textTransform:'uppercase', letterSpacing:'.08em', color:C.muted, marginBottom:9 }}>Hvað þýða tölurnar?</div>
@@ -475,6 +486,13 @@ function TeamsView({ matches, pc, metric, onTeam }) {
               <SortTh col="minPct"   {...thP} sub="% mínútur" style={{ minWidth:160 }}>{HGADJ} mín<InfoTip text={TIPS.hgMin}/></SortTh>
               <SortTh col="u21active"  {...thP} sub="Virkar/alls">U21<InfoTip text={TIPS.u21}/></SortTh>
               <SortTh col="corePlayers" {...thP} sub=">50% mín">Kjarni<InfoTip text={TIPS.kjarni}/></SortTh>
+              {window.HAS_FOREIGN && <>
+                <SortTh col="fgCount" {...thP} sub="Leikmenn" style={{ borderLeft:`2px solid ${FOREIGN_COLOR}` }}>Erlendar</SortTh>
+                <SortTh col="fgMinPct" {...thP} sub="% mínútur" style={{ minWidth:140 }}>Erl. hlutf.</SortTh>
+                <SortTh col="fgMins" {...thP} sub="Mínútur">Erl. mín</SortTh>
+                <SortTh col="fgApps" {...thP} sub="Leikir alls">Erl. leikir</SortTh>
+                <SortTh col="fgStPerMatch" {...thP} sub="Byrj./leik">Erl. í byrj.</SortTh>
+              </>}
             </tr>
           </thead>
           <tbody>
@@ -502,6 +520,20 @@ function TeamsView({ matches, pc, metric, onTeam }) {
                   </td>
                   <td className="num" style={{ color:C.muted }}>{d.u21active}/{d.u21}</td>
                   <td className="num" style={{ color:C.muted }}>{d.corePlayers}</td>
+                  {window.HAS_FOREIGN && <>
+                    <td className="num" style={{ borderLeft:`2px solid ${FOREIGN_COLOR}`, fontWeight:600 }}>{d.fgCount}</td>
+                    <td className="num">
+                      <div style={{ display:'flex', alignItems:'center', justifyContent:'flex-end', gap:8 }}>
+                        <span style={{ color:FOREIGN_COLOR, fontWeight:600, fontFamily:"'Inter',sans-serif", fontSize:12, minWidth:32 }}>{d.fgMinPct}%</span>
+                        <div style={{ width:70, height:5, background:C.surfaceAlt, borderRadius:2 }}>
+                          <div style={{ height:5, width:`${d.fgMinPct}%`, background:FOREIGN_COLOR, borderRadius:2 }}/>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="num" style={{ color:C.muted }}>{d.fgMins}</td>
+                    <td className="num" style={{ color:C.muted }}>{d.fgApps}</td>
+                    <td className="num" style={{ color:C.muted }}>{fn(d.fgStPerMatch)}</td>
+                  </>}
                 </tr>
               );
             })}

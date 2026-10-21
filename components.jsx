@@ -126,6 +126,20 @@ function HgBar({ pct, barW = 80, height = 4, showLabel = true }) {
 }
 
 /* ── HG DOT ─────────────────────────────────────────────── */
+const FOREIGN_COLOR = '#0E7490';
+window.isForeign = function (id) { return !!(window.FOREIGN && window.FOREIGN.has(String(id))); };
+function ForeignTag({ id }) {
+  if (!window.isForeign(id)) return null;
+  return (
+    <span title="Erlendur leikmaður" style={{
+      display: 'inline-block', marginLeft: 6, padding: '1px 5px', borderRadius: 3,
+      background: '#CFFAFE', color: '#0E7490', border: '1px solid #67E8F9',
+      fontFamily: "'Inter',sans-serif", fontSize: 9, fontWeight: 600, letterSpacing: '.04em',
+      lineHeight: 1.3, verticalAlign: 'middle', whiteSpace: 'nowrap'
+    }}>ERL</span>
+  );
+}
+
 function HgDot({ homegrown }) {
   return (
     <div style={{
@@ -377,4 +391,4 @@ window.TIPS = {
   quartile: 'Liturinn sýnir í hvaða fjórðungi deildarinnar liðið er eftir hlutfalli uppaldra. Mörkin eru reiknuð úr dreifingu ALLRA liða (25/50/75 hlutfallsmörk) og uppfærast eftir umferðum — svo lið færast milli lita þegar staðan breytist, í stað fastra marka. Grænt = efsti fjórðungur, rautt = neðsti.',
 };
 
-Object.assign(window, { C, DISPLAY, MONO, SANS, PageTitle, StatCard, KpiGrid, HgBar, HgDot, TeamName, SortTh, SortFilterTh, HeaderFilter, BackBtn, SecHdr, AgeBadge, RoundLabel, InfoTip });
+Object.assign(window, { C, DISPLAY, MONO, SANS, PageTitle, StatCard, KpiGrid, HgBar, HgDot, ForeignTag, FOREIGN_COLOR, TeamName, SortTh, SortFilterTh, HeaderFilter, BackBtn, SecHdr, AgeBadge, RoundLabel, InfoTip });

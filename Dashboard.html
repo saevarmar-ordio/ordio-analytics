@@ -111,6 +111,7 @@ window.DATA_FILE='ksi_data.json';
 window.LEAGUE_TITLE=['Besta deild','kvenna 2026'];
 window.LEAGUE_KEY='kvenna';
 window.HAS_CONTRACTS=true;
+window.HAS_FOREIGN=true;
 window.SEASON_YEAR=2026;
 window.TEAM_DISPLAY={
   'Þór':        'Þór/KA',
@@ -169,8 +170,15 @@ window.teamAgg=function(matches,pc,team){
     hgStSum+=hgSt.length; matchCt++;
   }
   const hgStPerMatch=matchCt?+(hgStSum/matchCt).toFixed(1):0;
+  const fg=players.filter(p=>window.isForeign(p.id));
+  const fgMins=fg.reduce((s,p)=>s+p.mins,0);
+  const fgApps=fg.reduce((s,p)=>s+p.apps,0);
+  const fgStarts=fg.reduce((s,p)=>s+p.starts,0);
+  const fgStPerMatch=matchCt?+(fgStarts/matchCt).toFixed(1):0;
 
-  return{team,players:players.length,playerList:players,rosterList:roster,avgAge,avgAgeSt,coreAge,
+  return{team,fgCount:fg.length,fgMins,fgApps,fgStarts,fgStPerMatch,
+    fgMinPct:totalMins?Math.round(fgMins/totalMins*100):0,
+    fgPlayers:fg,players:players.length,playerList:players,rosterList:roster,avgAge,avgAgeSt,coreAge,
     hgCount,hgPct:players.length?Math.round(hgCount/players.length*100):0,
     minPct:totalMins?Math.round(hgMins/totalMins*100):0,
     hgStPerMatch,

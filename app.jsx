@@ -308,9 +308,14 @@ function App() {
   const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
 
   useEA(() => {
+    const metaP = window.HAS_FOREIGN ?
+    fetch('players_meta.json').then((r) => r.ok ? r.json() : null).catch(() => null) :
+    Promise.resolve(null);
     fetch(window.DATA_FILE || 'ksi_data.json').
     then((r) => {if (!r.ok) throw new Error('HTTP ' + r.status);return r.json();}).
-    then((d) => {
+    then(async (d) => {
+      const meta = await metaP;
+      window.FOREIGN = new Set(Object.entries(meta?.players || {}).filter(([, v]) => v.foreign).map(([k]) => String(k)));
       window.__dataLastUpdated = d.lastUpdated || null;
       if (Array.isArray(d.rounds) && d.rounds.length) {
         window.ROUNDS = d.rounds.map((r, i) => ({ ...r, n: parseInt(r.label, 10) || i + 1 }));
