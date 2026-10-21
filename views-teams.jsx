@@ -398,8 +398,7 @@ function TeamDetailView({ team, matches, pc, metric, onBack, onMatch }) {
         <KpiGrid items={[
           {label:'Erlendar leikmenn',   value:agg.fgCount, color:FOREIGN_COLOR},
           {label:'% mínútna',           value:agg.fgMinPct+'%', color:FOREIGN_COLOR},
-          {label:'Mínútur',             value:agg.fgMins},
-          {label:'Leikir (samtals)',    value:agg.fgApps},
+          {label:'Mínútur',             value:agg.fgMins.toLocaleString('is-IS')},
           {label:'Byrjunarliðssæti/leik', value:fn(agg.fgStPerMatch)},
         ]}/>
       </>}
@@ -490,7 +489,6 @@ function TeamsView({ matches, pc, metric, onTeam }) {
                 <SortTh col="fgCount" {...thP} sub="Leikmenn" style={{ borderLeft:`2px solid ${FOREIGN_COLOR}` }}>Erlendar</SortTh>
                 <SortTh col="fgMinPct" {...thP} sub="% mínútur" style={{ minWidth:140 }}>Erl. hlutf.</SortTh>
                 <SortTh col="fgMins" {...thP} sub="Mínútur">Erl. mín</SortTh>
-                <SortTh col="fgApps" {...thP} sub="Leikir alls">Erl. leikir</SortTh>
                 <SortTh col="fgStPerMatch" {...thP} sub="Byrj./leik">Erl. í byrj.</SortTh>
               </>}
             </tr>
@@ -530,8 +528,7 @@ function TeamsView({ matches, pc, metric, onTeam }) {
                         </div>
                       </div>
                     </td>
-                    <td className="num" style={{ color:C.muted }}>{d.fgMins}</td>
-                    <td className="num" style={{ color:C.muted }}>{d.fgApps}</td>
+                    <td className="num" style={{ color:C.muted }}>{d.fgMins.toLocaleString('is-IS')}</td>
                     <td className="num" style={{ color:C.muted }}>{fn(d.fgStPerMatch)}</td>
                   </>}
                 </tr>
