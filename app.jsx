@@ -158,6 +158,12 @@ function AgeRankingChart({ data, onTeam }) {
                 <div style={{ position: 'absolute', inset: 0, background: C.surfaceAlt, borderRadius: 3 }} />
                 {d.coreAge && <div style={{ position: 'absolute', top: 0, bottom: 0, left: 0, width: scl(d.coreAge), background: '#60a5fa', borderRadius: 3, transition: 'width .6s cubic-bezier(.4,0,.2,1)' }} />}
               </div>
+              {window.HAS_FOREIGN &&
+              <div style={{ position: 'relative', height: 5 }}>
+                <div style={{ position: 'absolute', inset: 0, background: C.surfaceAlt, borderRadius: 3 }} />
+                <div style={{ position: 'absolute', top: 0, bottom: 0, left: 0, width: sclHg(d.fgStPerMatch || 0), background: FOREIGN_COLOR, borderRadius: 3, transition: 'width .6s cubic-bezier(.4,0,.2,1)' }} />
+              </div>
+              }
             </div>
 
             {/* Values: ages + homegrown starters — compact inline */}
@@ -169,6 +175,10 @@ function AgeRankingChart({ data, onTeam }) {
                 <span style={{ fontFamily: MONO, fontSize: 11, color: '#60a5fa' }}>{fn(d.coreAge)}</span>
                 <span style={{ fontFamily: MONO, fontSize: 8, color: C.muted }}>↑</span>
                 <span style={{ fontFamily: MONO, fontSize: 11, color: C.orange, fontWeight: 600 }}>{fn(d.hgStPerMatch)}</span>
+                {window.HAS_FOREIGN && <>
+                  <span style={{ fontFamily: MONO, fontSize: 8, color: C.muted }}>Erl</span>
+                  <span style={{ fontFamily: MONO, fontSize: 11, color: FOREIGN_COLOR, fontWeight: 600 }}>{fn(d.fgStPerMatch)}</span>
+                </>}
               </div>
             </div>
           </div>
@@ -178,7 +188,8 @@ function AgeRankingChart({ data, onTeam }) {
         {[
         { c: '#1d4ed8', l: 'XI — Meðalaldur byrjunarliðs', tip: TIPS.avgAgeXI },
         { c: '#60a5fa', l: 'Kj — Kjarnaaldur', tip: TIPS.coreAge },
-        { c: C.orange, l: `↑XI — ${HGADJ} í byrjunarliði`, tip: 'Meðalfjöldi uppaldra leikmanna í byrjunarlið á leik.' }].
+        { c: C.orange, l: `↑XI — ${HGADJ} í byrjunarliði`, tip: 'Meðalfjöldi uppaldra leikmanna í byrjunarlið á leik.' },
+        ...(window.HAS_FOREIGN ? [{ c: FOREIGN_COLOR, l: 'Erl — Erlendar í byrjunarliði', tip: 'Meðalfjöldi erlendra leikmanna í byrjunarliði á leik (kvarði 0–11). Stikan sýnir hlutfall af 11.' }] : [])].
         map(({ c, l, tip }) =>
         <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, color: C.muted }}>
             <div style={{ width: 12, height: 4, borderRadius: 2, background: c }} />
