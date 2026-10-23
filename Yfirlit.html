@@ -119,8 +119,27 @@ function teamKPIs(matches, pc, team, seasonYear) {
   const hgMins = players.filter(p => p.homegrown).reduce((s, p) => s + p.mins, 0);
   const minPct = totalMins ? Math.round(hgMins / totalMins * 100) : null;
 
+  return { avgAge, hgPct, avgAgeXI, hgCount, minPct, players };
+}
+
+/* ── whole-league aggregate for one season: pools every team's players ── */
+function leagueKPIs(perTeam) {
+  const players = perTeam.filter(Boolean).flatMap(r => r.players);
+  if (!players.length) return null;
+  const hgCount = players.filter(p => p.homegrown).length;
+  const hgPct = Math.round(hgCount / players.length * 100);
+  const wa = players.filter(p => p.age != null);
+  const waMin = wa.reduce((s, p) => s + p.mins, 0);
+  const avgAge = waMin ? wa.reduce((s, p) => s + p.age * p.mins, 0) / waMin : null;
+  const starters = players.filter(p => p.starts > 0 && p.age != null);
+  const startWeight = starters.reduce((s, p) => s + p.starts, 0);
+  const avgAgeXI = startWeight ? starters.reduce((s, p) => s + p.age * p.starts, 0) / startWeight : null;
+  const totalMins = players.reduce((s, p) => s + p.mins, 0);
+  const hgMins = players.filter(p => p.homegrown).reduce((s, p) => s + p.mins, 0);
+  const minPct = totalMins ? Math.round(hgMins / totalMins * 100) : null;
   return { avgAge, hgPct, avgAgeXI, hgCount, minPct };
 }
+const LEAGUE_COLOR = '#111827';
 
 const KPI_DEFS = [
   { key: 'minPct', label: 'Hlutfall mínútna — uppaldar (aðalmælikvarði)', fmt: v => v == null ? '–' : v + '%', suffix: '%', short: 'Mínútur uppaldra' },
@@ -130,7 +149,7 @@ const KPI_DEFS = [
   { key: 'hgCount', label: 'Fjöldi uppalinna leikmanna', fmt: v => v == null ? '–' : String(v), suffix: '', short: 'Fjöldi uppalinna' },
 ];
 
-function KpiChart({ def, years, teams, dataByTeam }) {
+function KpiChart({ def, years, teams, dataByTeam, leagueVals }) {
   const canvasRef = useRef(null);
   const chartRef = useRef(null);
 
@@ -151,7 +170,19 @@ function KpiChart({ def, years, teams, dataByTeam }) {
           pointRadius: 3,
           pointHoverRadius: 5,
           borderWidth: 1.75,
-        })),
+        })).concat([{
+          label: 'Deildin alls',
+          data: leagueVals.map(v => v == null ? null : v),
+          borderColor: LEAGUE_COLOR,
+          backgroundColor: LEAGUE_COLOR,
+          borderWidth: 3.5,
+          borderDash: [6, 4],
+          tension: 0.2,
+          pointRadius: 5,
+          pointStyle: 'rectRot',
+          pointHoverRadius: 7,
+          order: -1,
+        }]),
       },
       options: {
         responsive: true,
@@ -176,12 +207,12 @@ function KpiChart({ def, years, teams, dataByTeam }) {
       },
     });
     return () => { if (chartRef.current) chartRef.current.destroy(); };
-  }, [def.key, years.join(','), teams.join(','), JSON.stringify(dataByTeam)]);
+  }, [def.key, years.join(','), teams.join(','), JSON.stringify(dataByTeam), JSON.stringify(leagueVals)]);
 
   return <div style={{ height: 340, position: 'relative' }}><canvas ref={canvasRef} /></div>;
 }
 
-function KpiTable({ def, years, teams, dataByTeam }) {
+function KpiTable({ def, years, teams, dataByTeam, leagueVals }) {
   return (
     <div style={{ overflowX: 'auto' }}>
       <table className="data-table">
@@ -208,6 +239,18 @@ function KpiTable({ def, years, teams, dataByTeam }) {
             </tr>
           ))}
         </tbody>
+        <tfoot>
+          <tr style={{ background: '#F3F4F6' }}>
+            <td style={{ fontWeight: 700, borderTop: '2px solid #111827' }}>
+              <span className="team-cell"><span className="dot" style={{ background: LEAGUE_COLOR }} />Deildin alls</span>
+            </td>
+            {leagueVals.map((v, i) => (
+              <td key={years[i]} className="num" style={{ fontWeight: 700, borderTop: '2px solid #111827', color: v == null ? '#D1D5DB' : '#111827' }}>
+                {def.fmt(v)}
+              </td>
+            ))}
+          </tr>
+        </tfoot>
       </table>
     </div>
   );
@@ -246,6 +289,16 @@ function App() {
         out[def.key][team] = perYear.map(r => r ? r[def.key] : null);
       });
     });
+    // league-wide pooled values per year
+    out.__league = {};
+    const leaguePerYear = SEASONS_CONF.map((s, i) => {
+      const d = seasonsData[i];
+      if (!d) return null;
+      return leagueKPIs(d.teams.map(t => teamKPIs(d.matches, d.playerStats, t, s.year)));
+    });
+    KPI_DEFS.forEach(def => {
+      out.__league[def.key] = leaguePerYear.map(r => r ? r[def.key] : null);
+    });
     return out;
   }, [seasonsData, allTeams]);
 
@@ -277,10 +330,10 @@ function App() {
             <div className="kpi-title">{def.label}</div>
             <div className="kpi-sub">Smelltu á lið í skýringum til að fela/sýna línu</div>
             <div className="card" style={{ padding: 16, marginBottom: 12 }}>
-              <KpiChart def={def} years={years} teams={allTeams} dataByTeam={kpiValues[def.key]} />
+              <KpiChart def={def} years={years} teams={allTeams} dataByTeam={kpiValues[def.key]} leagueVals={kpiValues.__league[def.key]} />
             </div>
             <div className="card" style={{ padding: 16 }}>
-              <KpiTable def={def} years={years} teams={allTeams} dataByTeam={kpiValues[def.key]} />
+              <KpiTable def={def} years={years} teams={allTeams} dataByTeam={kpiValues[def.key]} leagueVals={kpiValues.__league[def.key]} />
             </div>
           </div>
         ))}
