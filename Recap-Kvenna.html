@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tímabilið í hnotskurn — Besta deild kvenna 2026</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0BYTJH1PPX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0BYTJH1PPX');
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/chart.js@4.4.4/dist/chart.umd.js" crossorigin="anonymous"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{height:100%}
+body{font-family:'Inter',sans-serif;color:#111827;font-size:14px;line-height:1.5;height:100%;background:#F4F5F7}
+#root{min-height:100%;display:flex;flex-direction:column}
+
+.card{
+  background:#fff;border:1px solid #E7E9EE;border-radius:10px;
+  box-shadow:0 1px 3px rgba(15,23,42,.06),0 1px 2px rgba(15,23,42,.04);
+}
+.eyebrow{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#6B7280}
+
+.data-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.data-table thead th{
+  padding:8px 10px;font-size:10px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.06em;color:#6B7280;background:#F9FAFB;border-bottom:1px solid #E7E9EE;
+  white-space:nowrap;text-align:left;
+}
+.data-table td{padding:7px 10px;border-bottom:1px solid #E7E9EE;font-size:13px;vertical-align:middle}
+.data-table tbody tr:last-child td{border-bottom:none}
+.data-table th.num,.data-table td.num{text-align:right}
+.data-table tbody tr:hover td{background:#F9FAFB}
+.team-cell{display:flex;align-items:center;gap:8px;font-weight:600}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+
+.top-nav{
+  height:64px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;border-bottom:1px solid #E7E9EE;background:#fff;flex-wrap:wrap;gap:8px;
+}
+.top-nav a{color:#6B7280;font-size:13px;font-weight:500;text-decoration:none}
+.top-nav a:hover{color:#111827}
+.kpi-section{margin-bottom:36px}
+.kpi-title{font-family:'Inter',sans-serif;font-weight:700;font-size:17px;letter-spacing:-.01em;margin-bottom:2px}
+.kpi-sub{font-size:12px;color:#6B7280;margin-bottom:14px}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
+@media(max-width:900px){
+  .grid2{grid-template-columns:1fr!important}
+}
+</style>
+</head>
+<body>
+<div id="root"><div style="display:flex;align-items:center;justify-content:center;height:100vh;font-size:13px;color:#94a3b8;letter-spacing:.05em">Hleður gögn…</div></div>
+<script>
+window.RECAP = {
+  title: 'Tímabilið 2026 — Besta deild kvenna',
+  sub: 'Uppgjör tímabilsins í Bestu deild kvenna 2026: uppeldi liða, leikmenn, met og erlendir leikmenn, auk samanburðar við 2023–2025.',
+  dataFile: 'ksi_data.json', year: 2026, manyWord: 'Flestar', hgWord: 'uppaldar',
+  display: { 'Þór':'Þór/KA', 'Grindavík':'Gri/Nja', 'Þróttur R.':'Þróttur', 'Víkingur R.':'Víkingur' },
+  history: [ {year:2023,file:'ksi_data_2023.json'}, {year:2024,file:'ksi_data_2024.json'}, {year:2025,file:'ksi_data_2025.json'} ],
+  foreign: true,
+  otherLink: { href: 'Recap-Karla.html', label: 'Karlar →' }, dashLink: 'Dashboard.html'
+};
+</script>
+<script type="text/babel" src="recap.jsx"></script>
+</body>
+</html>
