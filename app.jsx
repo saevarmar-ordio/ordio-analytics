@@ -98,6 +98,14 @@ function Sidebar({ view, setView, counts }) {
           }
           </button>
         )}
+        {window.RECAP_LINK &&
+        <a href={window.RECAP_LINK}
+        style={{ display: 'flex', alignItems: 'center', width: '100%', padding: '9px 12px', fontFamily: SANS, fontSize: 13, color: 'rgba(255,255,255,.52)', textDecoration: 'none', borderLeft: '2px solid transparent', borderRadius: '0 6px 6px 0', marginBottom: 2, marginTop: 4, transition: 'background .15s, color .15s' }}
+        onMouseEnter={(e) => {e.currentTarget.style.background = 'rgba(255,255,255,.06)';e.currentTarget.style.color = 'rgba(255,255,255,.8)';}}
+        onMouseLeave={(e) => {e.currentTarget.style.background = 'transparent';e.currentTarget.style.color = 'rgba(255,255,255,.52)';}}>
+          Tímabilið 2026
+        </a>
+        }
         <a href="um-vefinn.html"
         style={{ display: 'flex', alignItems: 'center', width: '100%', padding: '9px 12px', fontFamily: SANS, fontSize: 13, color: 'rgba(255,255,255,.52)', textDecoration: 'none', borderLeft: '2px solid transparent', borderRadius: '0 6px 6px 0', marginBottom: 2, marginTop: 4, transition: 'background .15s, color .15s' }}
         onMouseEnter={(e) => {e.currentTarget.style.background = 'rgba(255,255,255,.06)';e.currentTarget.style.color = 'rgba(255,255,255,.8)';}}
