@@ -1,6 +1,90 @@
 {
   "items": [
     {
+      "date": "2026-10-24",
+      "type": "recap",
+      "league": "karla",
+      "round": "Neðri hluti - 5. umferð",
+      "title": "Stjarnan vann Val 6–0 og KA 5–1 gegn ÍBV í lokaumferð neðri hlutans",
+      "paragraphs": [
+        "Stjarnan vann 6–0 stórsigur á Val á Samsungvellinum, þar sem 467 áhorfendur mættu. Guðmundur Baldvin Nökkvason skoraði á 15. og 86. mínútu, Birnir Snær Ingason á 21. og 35. mínútu, og Örvar Eggertsson (37. mínúta) og Jóhann Árni Gunnarsson (43. mínúta) bættu við mörkum.",
+        "KA vann 5–1 sigur á ÍBV á Greifavellinum fyrir framan 745 áhorfendur. Hallgrímur Mar Steingrímsson skoraði tvö mörk, á 45. og 56. mínútu, og Jakob Snær Árnason (3. mínúta), Mikael Breki Þórðarson (38. mínúta) og Adam Ægir Pálsson (71. mínúta) skoruðu hin mörkin. Heiðmar Þór Magnússon skoraði mark ÍBV á 17. mínútu.",
+        "Þór vann 2–1 útisigur á FH. Adolf Daði Birgisson kom FH yfir á 8. mínútu en Þorri Ingólfsson skoraði tvö mörk fyrir Þór á 17. og 19. mínútu."
+      ]
+    },
+    {
+      "date": "2026-10-24",
+      "type": "recap",
+      "league": "karla",
+      "round": "Efri hluti - 5. umferð",
+      "title": "KR vann Breiðablik 8–3 og ÍA og Keflavík skildu jöfn 4–4 í lokaumferð efri hlutans",
+      "paragraphs": [
+        "KR vann 8–3 stórsigur á Breiðabliki á Meistaravöllum. Aron Sigurðarson (11. og 89. mínúta), Sigurður Breki Kárason (26. og 29. mínúta) og Galdur Guðmundsson (39. og 90. mínúta) skoruðu tvö mörk hver, og Arnór Ingvi Traustason (52. mínúta) og Fannar Heimisson (72. mínúta) bættu við mörkum. Breiðablik skoraði þrjú mörk: Þorleifur Úlfarsson á 25. mínútu, Birkir Þorsteinsson á 74. mínútu og sjálfsmark Sigurðar Breka á 37. mínútu.",
+        "ÍA og Keflavík gerðu 4–4 jafntefli í Akraneshöllinni. Markús Páll Ellertsson (11. mínúta), Gísli Laxdal Unnarsson (22. mínúta), Styrmir Jóhann Ellertsson (38. mínúta) og Gísli Eyjólfsson (74. mínúta) skoruðu fyrir ÍA, en Alpha Conteh skoraði tvö mörk fyrir Keflavík á 17. og 48. mínútu og Eiður Orri Ragnarsson (45. mínúta) og Axel Ingi Jóhannesson (56. mínúta) bættu við mörkum.",
+        "Víkingur R. og Fram gerðu 2–2 jafntefli á Víkingsvelli. Kristófer Konráðsson kom Fram yfir á 10. mínútu og Aron Elís Þrándarson jafnaði á 34. mínútu. Þorri Stefán Þorbjörnsson kom Fram aftur yfir á 57. mínútu en Valdimar Þór Ingimundarson jafnaði fyrir Víking á 71. mínútu."
+      ]
+    },
+    {
+      "date": "2026-10-24",
+      "type": "recap",
+      "league": "kvenna",
+      "round": "Efri hluti - 5. umferð",
+      "title": "Hrafnhildur Ása skoraði fimm mörk í 6–2 sigri Breiðabliks á FH í lokaumferðinni",
+      "paragraphs": [
+        "Breiðablik vann 6–2 sigur á FH á Eikarvellinum, þar sem 572 áhorfendur mættu. Hrafnhildur Ása Halldórsdóttir skoraði fimm mörk, á 12., 14., 37., 42. og 57. mínútu, og Bryndís Arna Níelsdóttir bætti við marki á 80. mínútu. Hrönn Haraldsdóttir (44. mínúta) og Hafrún Birna Helgadóttir (87. mínúta) skoruðu mörk FH.",
+        "ÍBV vann 2–0 sigur á Stjörnunni á Hásteinsvellinum. Olga Sevcova skoraði á 10. mínútu og Allison Patricia Clark á 38. mínútu.",
+        "Þróttur R. vann 3–2 sigur á Grindavík/Njarðvík á PEPSI vellinum. Sierra Marie Lelii skoraði á 48. og 51. mínútu og Bríet Fjóla Bjarnadóttir á 60. mínútu, en Hannah McLaughlin minnkaði muninn úr vítaspyrnu á 72. mínútu. Grindavík/Njarðvík fékk sitt fyrsta mark á 55. mínútu þegar Jelena Tinna Kujundzic skoraði sjálfsmark."
+      ]
+    },
+    {
+      "date": "2026-10-19",
+      "type": "recap",
+      "league": "karla",
+      "round": "Efri hluti - 4. umferð",
+      "title": "Víkingur R. vann Breiðablik og ÍA vann Fram 4–2 í fjórðu umferð efri hlutans",
+      "paragraphs": [
+        "Víkingur R. vann 2–1 útisigur á Breiðabliki á Eikarvellinum. Jónatan Guðni Arnarsson kom Breiðabliki yfir á 20. mínútu en Daníel Hafsteinsson (61. mínúta) og Sveinn Margeir Hauksson (68. mínúta) snéru leiknum fyrir Víking.",
+        "ÍA vann 4–2 útisigur á Fram á Lambhagavellinum, þar sem 525 áhorfendur mættu. Kristófer Konráðsson skoraði tvö mörk fyrir Fram, á 7. og 66. mínútu. Baldvin Þór Berndsen skoraði tvö fyrir ÍA, á 34. og 58. mínútu, og Rafael Máni Þrastarson (90. mínúta) og Viktor Jónsson (90. mínúta) bættu við mörkum.",
+        "KR vann 3–2 útisigur á Keflavík á HS Orku vellinum. Galdur Guðmundsson kom KR yfir á 8. mínútu og Ástbjörn Þórðarson bætti við marki á 29. mínútu. Stefan Alexander Ljubicic (47. mínúta) og Dagur Ingi Valsson (51. mínúta) jöfnuðu fyrir Keflavík, en Gabríel Hrannar Eyjólfsson tryggði KR sigurinn á 89. mínútu."
+      ]
+    },
+    {
+      "date": "2026-10-17",
+      "type": "recap",
+      "league": "karla",
+      "round": "Neðri hluti - 4. umferð",
+      "title": "Þór vann Stjörnuna og Valur vann KA í fjórðu umferð neðri hlutans",
+      "paragraphs": [
+        "Þór vann 3–1 sigur á Stjörnunni á VÍS vellinum, þar sem 463 áhorfendur mættu. Örvar Eggertsson kom Stjörnunni yfir á 3. mínútu en Ásbjörn Líndal Arnarsson (11. mínúta), Sverrir Páll Ingason (19. mínúta) og Þorri Ingólfsson (58. mínúta) skoruðu fyrir Þór.",
+        "Valur vann 4–1 sigur á KA á N1-vellinum Hlíðarenda fyrir framan 429 áhorfendur. Myles A Veldman (23. mínúta), Tryggvi Hrafn Haraldsson (50. mínúta) og Dagur Orri Garðarsson (59. og 90. mínúta) skoruðu fyrir Val. Adam Ægir Pálsson skoraði fyrir KA á 30. mínútu.",
+        "ÍBV vann 3–1 sigur á FH á Hásteinsvelli þrátt fyrir að Bjarki Björn Gunnarsson fengi rautt spjald á 37. mínútu. Omar Sowe skoraði á 11. mínútu, Viggó Valgeirsson á 74. mínútu og Arnór Ingi Kristinsson á 82. mínútu. Kjartan Kári Halldórsson minnkaði muninn fyrir FH á 80. mínútu."
+      ]
+    },
+    {
+      "date": "2026-10-11",
+      "type": "recap",
+      "league": "karla",
+      "round": "Efri hluti - 3. umferð",
+      "title": "Breiðablik vann Keflavík og KR vann Fram í þriðju umferð efri hlutans",
+      "paragraphs": [
+        "Breiðablik vann 3–1 sigur á Keflavík á Eikarvellinum, þar sem 411 áhorfendur mættu. Viktor Karl Einarsson kom Breiðabliki yfir á 18. mínútu og Jónatan Guðni Arnarsson bætti við marki á 69. mínútu. Eiður Orri Ragnarsson minnkaði muninn fyrir Keflavík á 76. mínútu en Höskuldur Gunnlaugsson innsiglaði sigurinn á 90. mínútu.",
+        "KR vann 2–1 útisigur á Fram á Lambhagavellinum fyrir framan 1.167 áhorfendur. Aron Sigurðarson skoraði á 8. mínútu og Arnór Ingvi Traustason á 57. mínútu. Þorri Stefán Þorbjörnsson skoraði fyrir Fram á 20. mínútu.",
+        "Víkingur R. og ÍA gerðu 2–2 jafntefli á Víkingsvelli. Valdimar Þór Ingimundarson (8. mínúta) og Aron Elís Þrándarson (17. mínúta) komu Víkingi í 2–0, en Markús Páll Ellertsson minnkaði muninn á 36. mínútu og Peter Oliver Ekroth jafnaði með sjálfsmarki á 54. mínútu."
+      ]
+    },
+    {
+      "date": "2026-10-10",
+      "type": "recap",
+      "league": "karla",
+      "round": "Neðri hluti - 3. umferð",
+      "title": "Gils Gíslason skoraði þrennu í 5–3 sigri FH á Val",
+      "paragraphs": [
+        "FH vann 5–3 útisigur á Val á N1-vellinum Hlíðarenda. Gils Gíslason skoraði þrennu fyrir FH, á 29., 56. og 58. mínútu, og Adolf Daði Birgisson (2. mínúta) og Tómas Orri Róbertsson (16. mínúta) skoruðu einnig. Dagur Orri Garðarsson (50. mínúta), Jakob Franz Pálsson (85. mínúta) og Shkelzen Veseli (90. mínúta) skoruðu fyrir Val.",
+        "KA vann 3–0 útisigur á Stjörnunni á Samsungvellinum. Hallgrímur Mar Steingrímsson skoraði úr vítaspyrnu á 33. mínútu, Adam Ægir Pálsson á 38. mínútu og Valdimar Logi Sævarsson á 70. mínútu.",
+        "Þór vann ÍBV 1–0 á VÍS vellinum, þar sem 469 áhorfendur mættu. Christian Jakobsen skoraði sigurmarkið á 30. mínútu."
+      ]
+    },
+    {
       "date": "2026-10-19",
       "type": "recap",
       "league": "kvenna",
@@ -10,7 +94,6 @@
         "Þróttur R. vann 4–0 stórsigur á FH í Kaplakrika. Sæunn Björnsdóttir kom Þrótti yfir úr vítaspyrnu á 20. mínútu og Sierra Marie Lelii bætti við marki á 37. mínútu. Bríet Fjóla Bjarnadóttir og Kayla Marie Rollins skoruðu svo báðar á 90. mínútu.",
         "Breiðablik vann 1–0 útisigur á Stjörnunni á Samsungvellinum. Líf Joostdóttir van Bemmel skoraði sigurmarkið á 24. mínútu.",
         "Grindavík/Njarðvík vann 2–1 sigur á ÍBV á Nettóhöllinni. Tinna Hrönn Einarsdóttir kom Grindavík/Njarðvík yfir á 49. mínútu og Elísa Birta Káradóttir bætti við marki á 90. mínútu. Ágústa María Valtýsdóttir minnkaði muninn fyrir ÍBV á sömu mínútu."
-      
       ]
     },
     {
